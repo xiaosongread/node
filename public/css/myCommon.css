@@ -242,11 +242,13 @@ body{
 }
 .mgd_cons_right .aboutMe p{
 	padding: 0 10px;
-	margin-top:10px;
 }
 .mgd_cons_right .aboutMe p span{
 	font-weight: bold;
 	color: #337ab7;
+}
+.mgd_cons_right .aboutMe .QQclub{
+	margin-top:10px;
 }
 /*热门文章*/
 .mgd_cons_right .hotArticle{
