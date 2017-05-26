@@ -1,0 +1,221 @@
+.index{
+	width:100%;
+}
+/*网站内容模块*/
+.mgd_cons{
+	max-width:1200px;
+	overflow: hidden;
+	margin:0 auto;
+	margin-bottom: 100px;
+	overflow: hidden;
+}
+.index .mgd_cons .mgd_cons_left{
+	width:835px;
+	background: #ffffff;
+	margin-top:25px;
+	padding: 20px 40px;
+	float: left;
+}
+
+.index .mgd_cons .mgd_cons_left .content_cons{
+	width:100%;
+	background: #ffffff;
+	padding:25px 30px 65px;
+	color: #444;
+	box-shadow:0 2px 6px rgba(100, 100, 100, 0.3);
+	position: relative;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_forwarding{
+	width:100%;
+	line-height:30px;
+	font-size:14px;
+	color: #337ab7;
+	padding:10px 25px;
+	border-top:1px dashed #ddd;
+	position: absolute;
+	bottom:0;
+	left:0px;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_forwarding span{
+	color: #444444;
+}
+.index .mgd_cons .mgd_cons_left .content_cons h3{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	-ms-box-orient: vertical;
+	-ms-line-clamp: 2;
+	-moz-box-orient: vertical;
+	-moz-line-clamp: 2;
+	-o-box-orient: vertical;
+	-o-line-clamp: 2;
+	overflow: hidden;
+	line-height:50px;
+	font-size:25px;
+}
+.index .mgd_cons .mgd_cons_left .content_introduce{
+	line-height:30px;
+	color: #777;
+	font-size:12px;
+	border-bottom:1px dashed #ddd;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_preface{
+	padding:20px 0;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_preface h4{
+	font-size:21px;
+	font-weight: bold;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_preface p{
+	font-size:14px;
+	padding: 10px 0;
+	border-bottom: 1px dashed #ddd;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content{
+	width: 100%;
+	font-size:14px;
+}
+/*文章内容的样式*/
+.index .mgd_cons .mgd_cons_left .content_cons .content_content p{
+	padding:5px;
+}
+pre{
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content p a{
+	color: #5899f0;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content p a:hover{
+	text-decoration: underline;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content p img{
+	max-width: 60%;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content p span{
+	font-size:16px !important;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content hr{
+	height: 1px !important;
+	border: none !important;
+	border-top: 1px dashed #ddd !important;
+}
+.index .mgd_cons .mgd_cons_left .content_cons .content_content pre{
+	padding: 10px;
+	border-radius: 5px;
+	background: #555;
+	color: #dddddd;
+}
+/*文章评论的显示*/
+.index .mgd_cons .mgd_cons_left .showComment{
+	width:100%;
+	padding:30px;
+	margin-top:30px;
+	box-shadow:0 2px 6px rgba(100, 100, 100, 0.3);
+}
+.index .mgd_cons .mgd_cons_left .showComment .showComment_title{
+	font-size:16px;
+	color: #000;
+	font-weight:bold;
+	padding-bottom:10px;
+	margin-bottom:20px;
+	border-bottom:1px solid #dddddd;
+}
+.index .mgd_cons .mgd_cons_left .showComment li{
+	margin-bottom:15px;
+	border-bottom:1px dashed #dddddd;
+}
+.index .mgd_cons .mgd_cons_left .showComment li .showComment_cons{
+	color: #444;
+	padding:15px 0 25px;
+}
+.index .mgd_cons .mgd_cons_left .showComment li .showComment_time{
+	color: #777;
+	font-size:12px;
+}
+/*评论模块*/
+.index .comment{
+	width:100%;
+	padding:30px;
+	box-shadow:0 2px 6px rgba(100, 100, 100, 0.3);
+	margin-top:30px;
+	float: left;
+}
+.index .comment label{
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	display: block;
+}
+.index .needLogin{
+	width:100%;
+	height:150px;
+	border:1px solid #ddd;
+	text-align: center;
+	line-height:150px;
+}
+.index .comment .needLogin p{
+	width:100%;
+	line-height: 150px;
+	font-size:15px;
+}
+.index .comment .commentCons{
+	width:100%;
+}
+.index .comment .commentCons label{
+	color: #000;
+	font-weight: bold;
+	line-height:50px;
+}
+.index .comment .commentCons textarea{
+	width:100%;
+	height:150px;
+	padding:15px;
+	border:1px solid #ddd;
+}
+.index .comment .commentCons .commentSubmit{
+	width:251px;
+	height:50px;
+	line-height:50px;
+	text-align: center;
+	background: #337ab7;
+	color: #fff;
+	margin:25px auto;
+}
+.index .comment .commentCons .commentSubmit.noClick{
+	background: #dddddd;
+}
+
+table{
+	margin-bottom:15px;
+}
+tr{
+	border: 1px solid #ddd;
+	border-top:none;
+	height: 40px;
+	line-height: 40px;
+}
+tr td{
+	border-right:1px solid #ddd;
+	text-align: center;
+}
+tr td:last-child{
+	border-right:none;
+}
+tr.firstRow{
+	border: 1px solid #ddd;
+	height: 40px;
+	line-height: 40px;
+}
+tr.firstRow td{
+	border-right:1px solid #ddd;
+	text-align: center;
+}
+tr.firstRow td:last-child{
+	border-right:none;
+}

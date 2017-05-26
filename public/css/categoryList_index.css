@@ -1,0 +1,55 @@
+.index{
+	width:100%;
+}
+/*评论模块*/
+.index .comment{
+	width:800px;
+	float: left;
+}
+.index .needLogin{
+	width:100%;
+	height:150px;
+	margin-top:25px;
+	border:1px solid #ddd;
+	text-align: center;
+	line-height:150px;
+}
+.index .comment .needLogin p{
+	width:100%;
+	line-height: 150px;
+	font-size:15px;
+}
+.index .comment .commentCons{
+	width:100%;
+}
+.index .comment .commentCons label{
+	line-height:50px;
+}
+.index .comment .commentCons textarea{
+	width:100%;
+	height:150px;
+	padding:15px;
+	border:1px solid #ddd;
+}
+.index .comment .commentCons .commentSubmit{
+	width:251px;
+	height:50px;
+	line-height:50px;
+	text-align: center;
+	background: #2aabd2;
+	color: #fff;
+	margin:25px auto;
+}
+
+/*分页样式*/
+#kkpager{
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-ms-box-pack: center;
+	-moz-box-pack: center;
+	-o-box-pack: center;
+	box-pack: center;
+}
+.infoTextAndGoPageBtnWrap{
+	display: none;
+}

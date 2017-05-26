@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{%block main%}
+<style>
+    .bottom {
+        position: fixed;
+        bottom:0;
+        left:0;
+    }
+</style>
+<ol class="breadcrumb">
+    <li><a href="/admin/category">分类名称列表</a></li>
+    <li><span>分类名称列表</span></li>
+</ol>
+<h3>分类首页</h3>
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="/admin/category?page={{page-1}}">&larr; 上一页</a></li>
+        <li>一共有 {{count}} 条数据,每页显示 {{limte}} 条数据,一共有 {{pages}} 页,当前显示的是第 {{page}} 页</li>
+        <li class="next"><a href="/admin/category?page={{page+1}}">下一页 &rarr;</a></li>
+    </ul>
+</nav>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>ID</th>
+        <th>分类名称</th>
+        <th>排序</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    {% for category in categorys %}
+    <tr>
+        <td>{{category._id.toString()}}</td>
+        <td>{{category.name}}</td>
+        <td>{{category.sort}}</td>
+        <td>{{category.startTime}}</td>
+        <td>
+            <a href="/admin/category/edit?id={{category._id.toString()}}">编辑</a> |
+            <a href="/admin/category/delete?id={{category._id.toString()}}">删除</a>
+        </td>
+    </tr>
+    {% endfor%}
+</table>
+<nav>
+    <ul class="pager pagerTwo">
+        <li class="previous"><a href="/admin/category?page={{page-1}}">&larr; 上一页</a></li>
+        <li>一共有 {{count}} 条数据,每页显示 {{limte}} 条数据,一共有 {{pages}} 页,当前显示的是第 {{page}} 页</li>
+        <li class="next"><a href="/admin/category?page={{page+1}}">下一页 &rarr;</a></li>
+    </ul>
+</nav>
+{%endblock%}

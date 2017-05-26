@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化,宋彦斌,小宋,抿圪斗,rem">
+		<meta name="description" content="小宋博客专注于前端开发,H5,h5相关技术的分享,主要涉及的html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化的知识,同时记录一些自己在开发中遇到的问题。">
+		<title>小宋博客</title>
+		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/shCoreDefault.css" />
+		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/myCommon.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/contentInfo.css"/>
+		<link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
+		<script src="/public/js/jQuery-2.1.4.min.js"></script>
+		<script src="/public/js/swiper.min.js"></script>
+		<script src="/public/js/common.js"></script>
+		<script src="/public/js/canvas.js"></script>
+		<script src="/public/js/shCore.js"></script>
+		<script src="/public/js/myFilter.js"></script>
+		<script src="/public/js/contentInfo.js"></script>
+		<style></style>
+		<script type="text/javascript">
+//			SyntaxHighlighter.all();
+		</script>
+	</head>
+
+	<body>
+		<div class="index">
+			<nav class="navbar">
+				<div class="logobox">
+					<div class="logo">
+						<a href="/" >
+							<div class="a">
+								<img src="/public/images/logo-default-white.png" class="logoImg"/>
+							</div>
+							<div class="logoIntroduce">
+								<p>关注前沿技术</p>
+								<p>专注前端开发</p>
+							</div>
+						</a>
+					</div>
+					{% if categories %}
+					<ul>
+						{% for categorie in categories %}
+						<li id="{{categorie._id.toString()}}">
+							<a href="/categoryList_index?id={{categorie._id.toString()}}">{{categorie.name}}</a>
+						</li>
+						{% endfor %}
+						<li>
+							<!--http://www.500d.me/resume/4010888448/-->
+							<a href="/videoList">视频</a>
+						</li>
+					</ul>
+					{% endif %}
+				</div>
+			</nav>
+			<div class="canvasBox">
+				<i class="fa fa-search"></i>
+				<div class="canvasSmallBox">
+					<input class="find" type="text" placeholder="搜索文章..."/>
+				</div>
+				<canvas id="c" width="1280" height="204"></canvas>
+			</div>
+			<div class="categoryNameInfo">
+				<div class="categoryNameInfoBox">
+					<div class="categoryName">{{content.category.name}}</div>
+					<ul class="categoryListName">
+						<li>
+							<a href="/" ><i class="fa fa-home"></i>抿圪斗</a>
+						</li>
+						<li>
+							<a href="/categoryList_index?id={{content.category._id.toString()}}"><i class="fa fa-navicon"></i>{{content.category.name}}</a>
+						</li>
+						<li>/</li>
+						<li>{{content.title}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mgd_cons">
+				<div class="mgd_cons_left">
+					<!--文章内容-->
+					<div class="content_cons" id="{{content._id.toString()}}">
+						<h3>{{content.title}}</h3>
+						<div class="content_introduce">
+							<i class="fa fa-clock-o"></i><span>{{content.startTime|date('Y年m月d日 H:i:s', -480, 'CCT')}}</span>
+							<nav class="eyeNum"><i class="fa fa-eye"></i><span>{{content.views}}</span></nav>
+						</div>
+						<div class="content_preface">
+							<h4>前言</h4>
+							<p>{{content.description}}</p>
+						</div>
+						<div class="content_content">
+							<!--<p>{{content.content}}</p>-->
+						</div>
+						<div class="content_forwarding">
+							<span>转载请注明:</span>http://blog.songyanbin.com
+						</div>
+					</div>
+					<!--文章评论的显示-->
+					<!--{% if comments.length %}-->
+					<!--<ul class="showComment">-->
+						<!--<div class="showComment_title">评论</div>-->
+						<!--{% for comment in comments %}-->
+						<!--<li>-->
+							<!--<div class="showComment_time">{{comment.userId.username}} {{(comment.startTime)|date('Y年m月d日 H:i:s', -480, 'CCT')}}</div>-->
+							<!--<div class="showComment_cons">{{comment.commentContents}}</div>-->
+						<!--</li>-->
+						<!--{% endfor%}-->
+					<!--</ul>-->
+					<!--{% endif%}-->
+					<!--&lt;!&ndash;评论&ndash;&gt;-->
+					<!--<div class="comment">-->
+						<!--<label>提交评论:</label>-->
+						<!--{% if !userInfo._id %}-->
+						<!--<div class="needLogin">-->
+							<!--<p>请先在网站右边栏登录之后进行评论,谢谢</p>-->
+						<!--</div>-->
+						<!--{% else %}-->
+						<!--<div class="commentCons">-->
+							<!--<textarea type="text" class="commentConsInput" placeholder="请输入您要评论的内容" value=""></textarea>-->
+							<!--<div class="commentSubmit noClick">提交评论</div>-->
+						<!--</div>-->
+						<!--{% endif %}-->
+					<!--</div>-->
+					<div id="SOHUCS" ></div>
+				</div>
+				<div class="mgd_cons_right">
+					<!--banner-->
+					<div class="aboutMe">
+						<div class="aboutMe_title"><i class="fa fa-newspaper-o"></i>网站最新动态</div>
+						<section class="callMe">
+							<style>
+
+							</style>
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+
+								</div>
+								<!-- 如果需要分页器 -->
+								<div class="swiper-pagination"></div>
+							</div>
+						</section>
+					</div>
+					<!--About me-->
+					<div class="aboutMe">
+						<div class="aboutMe_title"><i class="fa fa-comment"></i>关于S抿圪斗</div>
+						<p><span>小宋</span> 博客，是抿圪斗个人技术博客，主要记录和总结前端工作中常用的知识。</p>
+						<p>本博客所有内容若需转载请联系我。</p>
+						<section class="callMe">
+							<p>联系方式</p>
+							<ul>
+								<li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=598349146&site=qq&menu=yes"><img src="/public/images/QQ.png" /></a></li>
+								<li class="wechatHover"><img src="/public/images/wechat.png" /></li>
+								<li><a href="https://github.com/xiaosongread"><img src="/public/images/github.png" /></a></li>
+								<li class="webchatPublic"><img src="/public/images/wechatpbulic.png" /></li>
+							</ul>
+							<div class="myWechat">
+								<img src="/public/images/mywechat.jpg">
+							</div>
+							<div class="myWebchatPublic">
+								<img src="/public/images/myWebchatPublic.jpg">
+							</div>
+						</section>
+					</div>
+					<!--登录-->
+					{% if userInfo._id %}
+					<div class="userInfo">
+						<p>
+							<i class="fa fa-user-o"></i><span>您的信息</span>
+							{% if userInfo.isAdmin %}
+							<i class="fa fa-hand-o-right"></i><a class="adminPage" href="/admin" target="_blank">点击进入管理后台</a>
+							{% endif %}
+						</p>
+						{% if userInfo.isAdmin %}
+						<div class="welcome">欢迎
+							{% if userInfo.vip %}
+							<img src="/public/images/vip.png" id="viper">
+							{% endif %}
+							<span class="yourUserName">管理员{{userInfo.username}}</span>登陆进入我的博客
+						</div>
+
+						{% else %}
+						<div class="welcome">欢迎
+							{% if userInfo.vip %}
+							<img src="/public/images/vip.png"  id="viper">
+							{% endif %}
+							<span class="yourUserName">{{userInfo.username}}</span>登陆进入我的博客
+						</div>
+						{% endif %}
+						<div class="exit">
+							<p>exit</p>
+						</div>
+					</div>
+					{% else %}
+					<div class="Login">
+						<div class="loginTitle">
+							<p><i class="fa fa-user-circle-o"></i>登陆</p>
+							<div class="selectedLogin selected"><i class="fa fa-hand-o-right"></i>选择注册</div>
+						</div>
+						<div class="username">
+							<!--<span>用户名：</span>-->
+							<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>
+						</div>
+						<div class="password">
+							<!--<span>密码：</span>-->
+							<input type="password" name="password" placeholder="请输入您的密码" class="input"/>
+						</div>
+						<div class="loginBtn">登陆</div>
+						<p class="totast"></p>
+					</div>
+					<div class="registered">
+						<div class="registeredTitle">
+							<p><i class="fa fa-user-circle-o"></i>注册</p>
+							<div class="selectedRegistered selected"><i class="fa fa-hand-o-right"></i>选择登陆</div>
+						</div>
+						<div class="username">
+							<!--<span>用户名：</span>-->
+							<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>
+						</div>
+						<div class="password">
+							<!--<span>输入密码：</span>-->
+							<input type="password" name="password" placeholder="请输入不少于6位数的密码" class="input"/>
+						</div>
+						<div class="repassword">
+							<!--<span>重新输入密码：</span>-->
+							<input type="password" name="repassword" placeholder="请重新输入您的密码" class="input"/>
+						</div>
+						<div class="registeredBtn">注册</div>
+						<p class="totast"></p>
+					</div>
+					{% endif %}
+					<div class="hotArticle">
+						<div class="hotArticle_title"><i class="fa fa-fire"></i>热门文章</div>
+						<ul>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="bottomLeft">
+					<p><a href="https://github.com/">github</a></p>
+					<p><a href="http://jquery.cuishifeng.cn/index.html">jq</a></p>
+					<p><a href="http://www.w3school.com.cn/">w3school</a></p>
+					<p><a href="http://tongji.baidu.com/web/welcome/login" target="_blank">百度统计</a></p>
+				</div>
+				<div class="bottomRight">
+					<p>Copyright © Aaron All Rights Reserved 京ICP备17007771号-1</p>
+				</div>
+				<div class="bottomArtile">
+					<p>逆水行舟,不进则退.  ——宋彦斌</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyt1Y6zbA',
+        conf: 'prod_8344ebad4f1e3c77793ed268f93a1219'
+    });
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?c99f49869b064a7b101d850e21ab5f4b";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>

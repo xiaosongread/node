@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{%block main%}
+<style>
+    .bottom {
+        position: fixed;
+        bottom:0;
+        left:0;
+    }
+    .jumbotron{
+        height:200px;
+        padding:0;
+        overflow: hidden;
+    }
+    .jumbotronLeft{
+        margin-right: 50px;
+        float: left;
+    }
+    .jumbotronLeft img{
+        height:200px;
+    }
+    .jumbotronRight{
+        float: left;
+    }
+    .jumbotronRight h4{
+        height:150px;
+        line-height:150px;
+    }
+</style>
+<div class="jumbotron">
+    <div class="jumbotronLeft">
+        <img src="/public/images/logo.png"/>
+    </div>
+    <div class="jumbotronRight">
+        <h4>Hello, world! 欢迎进入小宋博客管理后台</h4>
+    </div>
+</div>
+{%endblock%}

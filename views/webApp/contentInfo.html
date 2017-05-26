@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="opacity: 0;">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="renderer" content="webkit">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<script src="/public/js/webApp/webApp.js"></script>
+		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
+		<link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
+		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/webApp/myCommon.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/webApp/contentInfo.css" />
+		<title>小宋博客文章详情</title>
+		<script src="/public/js/jQuery-2.1.4.min.js"></script>
+		<script src="/public/js/template.js"></script>
+	</head>
+	<body>
+		<nav>
+			<a href="/"><img src="/public/images/logo.png" class="logo"/></a>
+			<i class="fa fa-navicon"></i>
+		</nav>
+		<ul class="bar"></ul>
+		<section class="allArticle">
+			<div class="allArticleInfoTitle">node后台配置markdown编辑器</div>
+			<div class="allArticleInfoTime">2017年05月10日 22:28:15</div>
+			<div class="allArticleInfoDescriptionLab">前言</div>
+			<div class="allArticleInfoDescription">↵到的问题。</div>
+			<div class="allArticleContent"></div>
+		</section>
+		<div class="bottom">Copyright © Aaron All Rights Reserved 京ICP备17007771号-1</div>
+	</body>
+</html>
+<script src="/public/js/webApp/comman.js"></script>
+<script>
+	$(function(){
+        var id = syb.url_attr("id");
+        $.ajax({
+            type:"post",
+            url:syb.api.api+"api/categories",
+            async:true,
+            success:function(data){
+                var htmls = ''
+                data.data.forEach(function(val,index){
+                    htmls += '<li><a href="/categoryList_index?id='+val._id+'"> '+ val.name+'</a></li>'
+				})
+				$(".bar").html(htmls)
+            }
+        })
+
+        $.ajax({
+            type:"get",
+            url:syb.api.api+"api/content/nowContentInfo",
+            async:true,
+            data:{
+                contentId:id
+			},
+            success:function(data){
+                var times = getDate(data.data[0].startTime)
+                var htmls = '<div class="allArticleInfoTitle">'+data.data[0].title+'</div><div class="allArticleInfoTime">'+times+'</div><div class="allArticleInfoDescriptionLab">前言</div><div class="allArticleInfoDescription">'+data.data[0].description+'</div><div class="allArticleContent">'+data.data[0].content+'</div>'
+                $(".allArticle").html(htmls)
+            }
+        })
+	})
+</script>

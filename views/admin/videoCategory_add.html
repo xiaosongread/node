@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{%block main%}
+<style>
+    .bottom {
+        position: fixed;
+        bottom:0;
+        left:0;
+    }
+
+    .uploadInput{
+        width:150px;
+        height:150px;
+        position: relative;
+    }
+    .uploadImg{
+        width:150px;
+        height:150px;
+        background: url("/public/images/upload.png");
+        background-size: 100% 100%;
+        border:1px solid #ddd;
+        border-radius: 5px;
+    }
+    .fileupload{
+        width:150px;
+        height:150px;
+        opacity: 0;
+    }
+
+</style>
+<ol class="breadcrumb">
+    <li><a href="/admin/category">视频管理</a></li>
+    <li><span>添加视频分类</span></li>
+</ol>
+<h3>添加视频分类</h3>
+<form role="form" method="post" id="form" >
+    <div class="form-group">
+        <span>视频分类名称:</span><input type="text" class="form-control" id="name" placeholder="请输入分类名称" name="name">
+        <span>视频分类ID:</span><input type="number" class="form-control aaa" id="id" placeholder="请输入分类名称的排序" name="id">
+        <div class="upload-container">
+            <span>视频分类封面:</span>
+            <div class="uploadInput">
+                <div class="uploadImg">
+                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" type="hidden"/>
+                </div>
+            </div>
+        </div>
+        <span>视频分类封面:</span><input type="text" class="form-control aaa imgUrl" id="imagePath" placeholder="请输入分类名称的排序" name="imagePath">
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+</form>
+<script>
+    $('.fileupload').change(function(event) {
+        /* Act on the event */
+        if ($('.fileupload').val().length) {
+            var fileName = $('.fileupload').val();
+            var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
+            if (extension == ".jpg" || extension == ".png") {
+                var data = new FormData();
+                data.append('upload', $('#fileToUpload')[0].files[0]);
+                $.ajax({
+                    url: 'apply/upload',
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    contentType: false, //不可缺参数
+                    processData: false, //不可缺参数
+                    success: function(data) {
+                        $(".imgUrl").val(data.url)
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            }
+        }
+    });
+</script>
+{%endblock%}

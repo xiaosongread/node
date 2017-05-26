@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化,宋彦斌,小宋,抿圪斗,rem">
+		<meta name="description" content="小宋博客专注于前端开发,H5,h5相关技术的分享,主要涉及的html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化的知识,同时记录一些自己在开发中遇到的问题。">
+		<title>小宋博客</title>
+		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/public/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/kkpager_blue.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/myCommon.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/index.css"/>
+		<link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
+		<script src="/public/js/jQuery-2.1.4.min.js"></script>
+		<script src="/public/js/swiper.min.js"></script>
+		<script	src="/public/js/template.js"></script>
+		<script src="/public/js/bootstrap.min.js"></script>
+		<script src="/public/js/kkpager.min.js"></script>
+		<script src="/public/js/canvas.js"></script>
+		<script src="/public/js/common.js"></script>
+		<script src="/public/js/index.js"></script>
+		<script>
+//			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+//				window.location.href="http://blog.songyanbin.com/null"
+//			} else if (/(Android)/i.test(navigator.userAgent)) {
+//				window.location.href="http://blog.songyanbin.com/null"
+//			}
+		</script>
+	</head>
+	<body>
+		<div class="index">
+			<nav class="navbar">
+				<div class="logobox">
+				<div class="logo">
+						<a href="/" >
+							<div class="a">
+								<img src="/public/images/logo-default-white.png" class="logoImg"/>
+							</div>
+							<div class="logoIntroduce">
+								<p>关注前沿技术</p>
+								<p>专注前端开发</p>
+							</div>
+						</a>
+				</div>
+				{% if categories %}
+				<ul>
+					{% for categorie in categories %}
+					<li id="{{categorie._id.toString()}}">
+						<a href="/categoryList_index?id={{categorie._id.toString()}}">{{categorie.name}}</a>
+					</li>
+					{% endfor %}
+					<li>
+						<!--http://www.500d.me/resume/4010888448/-->
+						<a href="/videoList">视频</a>
+					</li>
+				</ul>
+				{% endif %}
+				</div>
+			</nav>
+			<div class="canvasBox">
+			<i class="fa fa-search"></i>
+			<div class="canvasSmallBox">
+				<input class="find" type="text" placeholder="搜索文章..."/>
+			</div>
+			<canvas id="c" width="1280" height="204"></canvas>
+		</div>
+			<div class="mgd_cons">
+				<div class="mgd_cons_left">
+					<!--文章的列表-->
+					<ul class="contentList">
+						{% for content in contents %}
+						<a href="/contentInfo?id={{content._id.toString()}}">
+						<li id="{{content._id.toString()}}">
+							<h3>{{content.title}}</h3>
+							<div class="contentInfo">
+								<i class="fa fa-navicon"></i><span>{{content.category.name}}</span><i class="fa fa-clock-o"></i><span>{{content.startTime|date('Y年m月d日 H:i:s', -480, 'CCT')}}</span><nav class="eyeNum"><i class="fa fa-eye"></i><span>{{content.views}}</span></nav>
+							</div>
+							<div class="content_description">
+								<p>{{content.description}}</p>
+							</div>
+						</li>
+						</a>
+						{% endfor%}
+					</ul>
+					<div id="kkpager"></div>
+				</div>
+				<div class="mgd_cons_right">
+					<!--banner-->
+					<div class="aboutMe">
+						<div class="aboutMe_title"><i class="fa fa-newspaper-o"></i>网站最新动态</div>
+						<section class="callMe">
+							<style>
+
+							</style>
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+									<!--<div class="swiper-slide">1</div>-->
+									<!--<div class="swiper-slide">1</div>-->
+								</div>
+								<!-- 如果需要分页器 -->
+								<div class="swiper-pagination"></div>
+							</div>
+						</section>
+					</div>
+					<!--About me-->
+					<div class="aboutMe">
+						<div class="aboutMe_title"><i class="fa fa-comment"></i>关于S抿圪斗</div>
+						<p><span>小宋</span> 博客，是抿圪斗个人技术博客，主要记录和总结前端工作中常用的知识。</p>
+						<p>本博客所有内容若需转载请联系我。</p>
+						<section class="callMe">
+							<p>联系方式</p>
+							<ul>
+								<li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=598349146&site=qq&menu=yes"><img src="/public/images/QQ.png" /></a></li>
+								<li class="wechatHover"><img src="/public/images/wechat.png" /></li>
+								<li><a href="https://github.com/xiaosongread"><img src="/public/images/github.png" /></a></li>
+								<li class="webchatPublic"><img src="/public/images/wechatpbulic.png" /></li>
+							</ul>
+							<div class="myWechat">
+								<img src="/public/images/mywechat.jpg">
+							</div>
+							<div class="myWebchatPublic">
+								<img src="/public/images/myWebchatPublic.jpg">
+							</div>
+						</section>
+					</div>
+					<!--登录-->
+					{% if userInfo._id %}
+					<div class="userInfo">
+						<p>
+							<i class="fa fa-user-o"></i><span>您的信息</span>
+							{% if userInfo.isAdmin %}
+							<i class="fa fa-hand-o-right"></i><a class="adminPage" href="/admin" target="_blank">点击进入管理后台</a>
+							{% endif %}
+						</p>
+							{% if userInfo.isAdmin %}
+								<div class="welcome">欢迎
+									{% if userInfo.vip %}
+									<img src="/public/images/vip.png" id="viper">
+									{% endif %}
+									<span class="yourUserName">管理员{{userInfo.username}}</span>登陆进入我的博客
+								</div>
+
+							{% else %}
+								<div class="welcome">欢迎
+									{% if userInfo.vip %}
+									<img src="/public/images/vip.png"  id="viper">
+									{% endif %}
+									<span class="yourUserName">{{userInfo.username}}</span>登陆进入我的博客
+								</div>
+							{% endif %}
+						<div class="exit">
+							<p>exit</p>
+						</div>
+					</div>
+					{% else %}
+					<div class="Login">
+						<div class="loginTitle">
+							<p><i class="fa fa-user-circle-o"></i>登陆</p>
+							<div class="selectedLogin selected"><i class="fa fa-hand-o-right"></i>选择注册</div>
+						</div>
+						<div class="username">
+							<!--<span>用户名：</span>-->
+							<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>
+						</div>
+						<div class="password">
+							<!--<span>密码：</span>-->
+							<input type="password" name="password" placeholder="请输入您的密码" class="input"/>
+						</div>
+						<div class="loginBtn">登陆</div>
+						<p class="totast"></p>
+					</div>
+					<div class="registered">
+						<div class="registeredTitle">
+							<p><i class="fa fa-user-circle-o"></i>注册</p>
+							<div class="selectedRegistered selected"><i class="fa fa-hand-o-right"></i>选择登陆</div>
+						</div>
+						<div class="username">
+							<!--<span>用户名：</span>-->
+							<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>
+						</div>
+						<div class="password">
+							<!--<span>输入密码：</span>-->
+							<input type="password" name="password" placeholder="请输入不少于6位数的密码" class="input"/>
+						</div>
+						<div class="repassword">
+							<!--<span>重新输入密码：</span>-->
+							<input type="password" name="repassword" placeholder="请重新输入您的密码" class="input"/>
+						</div>
+						<div class="registeredBtn">注册</div>
+						<p class="totast"></p>
+					</div>
+					{% endif %}
+					<div class="hotArticle">
+						<div class="hotArticle_title"><i class="fa fa-fire"></i>热门文章</div>
+						<ul>
+							<li><a href="#">{{value.title}}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--底部导航-->
+			<div class="bottom">
+				<div class="bottomLeft">
+					<p><a href="https://github.com/">github</a></p>
+					<p><a href="http://jquery.cuishifeng.cn/index.html">jq</a></p>
+					<p><a href="http://www.w3school.com.cn/">w3school</a></p>
+					<p><a href="http://tongji.baidu.com/web/welcome/login" target="_blank">百度统计</a></p>
+				</div>
+				<div class="bottomRight">
+					<p>Copyright © Aaron All Rights Reserved 京ICP备17007771号-1</p>
+				</div>
+				<div class="bottomArtile">
+					<p>逆水行舟,不进则退.  ——宋彦斌</p>
+				</div>
+			</div>
+		</div>
+		<!--<img border="0" src="http://wpa.qq.com/pa?p=2:598349146:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>-->
+		<!--<div class="QQ">-->
+			<!--<div class="QQimg">-->
+			<!--<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=598349146&site=qq&menu=yes">-->
+				<!--<img src="/public/images/QQ.jpg"/>-->
+			<!--</a>-->
+			<!--</div>-->
+			<!--<div class="QQwords">戳<br>我<br>戳<br>我<br></div>-->
+		<!--</div>-->
+	</body>
+</html>
+<script>
+	function getParameter(name) {
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r!=null) return unescape(r[2]); return null;
+	}
+	//init
+	$(function(){
+		var counts;
+		$.ajax({
+			type:"post",
+			url:"/api/articlesList",
+			success:function(data){
+				counts = data.data.count;
+				var totalPage = Math.ceil(counts / 10);//总共的页数
+				var totalRecords = counts;//总数据条数
+				var pageNo = getParameter('page');
+				if(!pageNo){
+					pageNo = 1;
+				}
+				//生成分页
+				//有些参数是可选的，比如lang，若不传有默认值
+				kkpager.generPageHtml({
+					//当前的页数
+					pno : pageNo,
+					//总页码
+					total : totalPage,
+					//总数据条数
+					totalRecords : totalRecords,
+					//链接前部
+					hrefFormer : '/',
+					//链接尾部
+					hrefLatter : '',
+					getLink : function(n){
+						return this.hrefFormer + this.hrefLatter + "?page="+n;
+					}
+				});
+			}
+		})
+	});
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?c99f49869b064a7b101d850e21ab5f4b";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>

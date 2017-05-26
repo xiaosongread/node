@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{%block main%}
+<ol class="breadcrumb">
+    <li><a href="/">banner管理</a></li>
+    <li><span>banner列表</span></li>
+</ol>
+<h3>banner列表</h3>
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="/admin/bannerList?page={{page-1}}">&larr; 上一页</a></li>
+        <li>一共有 {{count}} 条数据,每页显示 {{limte}} 条数据,一共有 {{pages}} 页,当前显示的是第 {{page}} 页</li>
+        <li class="next"><a href="/admin/bannerList?page={{page+1}}">下一页 &rarr;</a></li>
+    </ul>
+</nav>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>banner图片</th>
+        <th>banner介绍</th>
+        <th>banner跳转链接</th>
+        <th>操作</th>
+    </tr>
+    {% for banner in bannerLists %}
+    <tr>
+        <td>{{banner.imagePath}}</td>
+        <td>{{banner.introduce}}</td>
+        <td>{{banner.bannerhref}}</td>
+        <td>
+            <a href="/admin/bannerList/delete?id={{banner._id.toString()}}">删除</a>
+        </td>
+    </tr>
+    {% endfor%}
+</table>
+<nav>
+    <ul class="pager pagerTwo">
+        <li class="previous"><a href="/admin/bannerList?page={{page-1}}">&larr; 上一页</a></li>
+        <li>一共有 {{count}} 条数据,每页显示 {{limte}} 条数据,一共有 {{pages}} 页,当前显示的是第 {{page}} 页</li>
+        <li class="next"><a href="/admin/bannerList?page={{page+1}}">下一页 &rarr;</a></li>
+    </ul>
+</nav>
+{%endblock%}

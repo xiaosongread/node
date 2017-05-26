@@ -1,0 +1,25 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookies": "^0.6.1",
+    "express": "^4.14.0",
+    "formidable": "^1.1.1",
+    "fs": "0.0.1-security",
+    "jquery-file-upload-middleware": "^0.1.8",
+    "markdown": "^0.5.0",
+    "mongoose": "^4.5.7",
+    "pm2": "^2.4.0",
+    "swig": "^1.4.2",
+    "ueditor": "^1.2.0",
+    "ueditor-nodejs": "^0.1.4"
+  }
+}

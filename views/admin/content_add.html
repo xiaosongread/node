@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{%block main%}
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.all.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/lang/zh-cn/zh-cn.js"></script>
+<style>
+</style>
+<ol class="breadcrumb">
+    <li><a href="/admin/content">内容首页</a></li>
+    <li><span>内容添加</span></li>
+</ol>
+<h3>内容添加</h3>
+<!--<form role="form" method="post" id="form" >-->
+    <div class="form-group">
+        <label for="category">所属的分类:</label>
+        <select name="category" id="category" class="form-control">
+            {% for category in categories %}
+            <option value="{{category.id}}">{{category.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="title">文章标题:</label>
+        <input type="text" class="form-control" id="title" placeholder="请输入文章标题" name="title">
+    </div>
+    <div class="form-group">
+        <label for="description">内容简介:</label>
+        <textarea name="description" id="description" class="form-control" cols="30" rows="5" placeholder="请输入内容简介"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="content">文章内容:</label>
+        <!--<textarea name="content" id="content" class="form-control" cols="30" rows="5" placeholder="请输入文章内容"></textarea>-->
+        <script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+<!--</form>-->
+<script>
+    $(function(){
+        var ue = UE.getEditor('editor');
+        $(".btn-default").on("click",function(){
+            console.log($(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html())
+            console.log($("#content").val())
+            $.ajax({
+                type:"post",
+                url:"/api/content/add",
+                data:{
+                    category:$('#category option:selected').val(),
+                    title:$("#title").val(),
+                    description:$("#description").val(),
+                    contents:$(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html()
+                },
+                success:function(data){
+                    console.log(data)
+                    if(data.code == 35){
+                        alert("保存文章成功")
+                    }
+                }
+            })
+        })
+    })
+</script>
+{%endblock%}

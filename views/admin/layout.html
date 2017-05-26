@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="/public/css/myCommon.css" />-->
+    <link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
+    <script src="/public/js/jQuery-2.1.4.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <style>
+        .bottom{
+            width:100%;
+            height:60px;
+            line-height:60px;
+            text-align: center;
+            margin-top:30px;
+            background: #34343c;
+            z-index: 99999;
+        }
+        .bottom .bottom-box{
+            width:1250px;
+            height:100%;
+            color: #e6e6e6;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .pagerTwo{
+            margin-bottom:100px;
+        }
+    </style>
+</head>
+<body>
+<!--导航条-->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">网站首页</a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">后台管理</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/admin/user">网站用户列表</a></li>
+                        <li><a href="/admin/wechaUser">微信用户列表</a></li>
+                        <li><a href="/admin/userVip">vip</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类管理 <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                <li><a href="/admin/category">分类名称列表</a></li>
+                <li><a href="/admin/category/add">添加分类</a></li>
+                </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">内容管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/admin/content">内容列表</a></li>
+                        <li><a href="/admin/content/add">添加内容</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">视频管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/admin/videoList">视频分类列表</a></li>
+                        <li><a href="/admin/videoCatoryAdd">添加视频分类</a></li>
+                        <li><a href="/admin/videoAdd">添加视频</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">banner管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/admin/bannerList">banner列表</a></li>
+                        <li><a href="/admin/bannerAdd">添加banner</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{userInfo.username}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--管理后台的内容-->
+<div class="container-fluid">
+    {%block main%}{%endblock%}
+</div>
+<div class="bottom">
+    <div class="bottom-box">Copyright © Aaron All Rights Reserved 京ICP备17007771号-1</div>
+</div>
+</body>
+</html>

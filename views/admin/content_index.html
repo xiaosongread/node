@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{%block main%}
+<ol class="breadcrumb">
+    <li><a href="/">文章内容列表</a></li>
+    <li><span>文章内容列表</span></li>
+</ol>
+<h3>文章内容列表</h3>
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="/admin/content?page={{page-1}}">&larr; 上一页</a></li>
+        <li>一共有 {{count}} 条数据,每页显示 {{limte}} 条数据,一共有 {{pages}} 页,当前显示的是第 {{page}} 页</li>
+        <li class="next"><a href="/admin/content?page={{page+1}}">下一页 &rarr;</a></li>
+    </ul>
+</nav>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>文章ID</th>
+        <th>文章分类</th>
+        <th>文章标题</th>
+        <th>文章操作</th>
+    </tr>
+    {% for content in contents %}
+    <tr>
+        <td>{{content._id.toString()}}</td>
+        <td>{{content.category.name}}</td>
+        <td>{{content.title}}</td>
+        <td>
+            <a href="/admin/content/edit?id={{content._id.toString()}}">编辑</a> |
+            <a href="/admin/content/delete?id={{content._id.toString()}}">删除</a>
+        </td>
+    </tr>
+    {% endfor%}
+</table>
+<nav>
+    <ul class="pager pagerTwo">
+        <li class="previous"><a href="/admin/content?page={{page-1}}">&larr; 上一页</a></li>
+        <li>一共有 {{count}} 条数据,每页显示 {{limte}} 条数据,一共有 {{pages}} 页,当前显示的是第 {{page}} 页</li>
+        <li class="next"><a href="/admin/content?page={{page+1}}">下一页 &rarr;</a></li>
+    </ul>
+</nav>
+
+<!--<nav aria-label="...">-->
+    <!--<ul class="pagination">-->
+        <!--<li class="disabled">-->
+          <!--<span>-->
+            <!--<span aria-hidden="true">&laquo;</span>-->
+          <!--</span>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+            <!--<span>1 <span class="sr-only">(current)</span></span>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+            <!--<span>1 <span class="sr-only">(current)</span></span>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+            <!--<span>1 <span class="sr-only">(current)</span></span>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+            <!--<span>1 <span class="sr-only">(current)</span></span>-->
+        <!--</li>-->
+        <!--<li class="disabled">-->
+          <!--<span>-->
+            <!--<span aria-hidden="true">&laquo;</span>-->
+          <!--</span>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</nav>-->
+{%endblock%}
