@@ -7,11 +7,13 @@ var wechatusers = require('../models/wechatusers');
 var Content = require('../models/contents');
 var VideoCategory = require('../models/videoCategory');
 var VideoList = require('../models/videoList');
+var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
 var fs = require('fs');
 var formidable = require("formidable");
 var bodyParser = require('body-parser');
 var path = require('path');
+var multipart = require('multipart');
 
 /*
  *  用户分类
@@ -530,6 +532,7 @@ router.post('/apply/upload',function(req,res,next){
             return;
         }
         var extName = ''; //后缀名
+		console.log(files.upload.type)
         switch (files.upload.type) {
             case 'image/jpeg':
                 extName = 'jpg';
@@ -542,6 +545,12 @@ router.post('/apply/upload',function(req,res,next){
                 break;
             case 'image/x-png':
                 extName = 'png';
+                break;
+            case 'text/javascript':
+                extName = 'js';
+                break;
+            case 'application/zip':
+                extName = 'zip';
                 break;
         }
         if (extName.length === 0) {
@@ -663,5 +672,90 @@ router.get('/bannerList/delete',function(req,res,next) {
             url:"/admin/bannerList"
         })
     })
+})
+
+//资源上传页面路由
+router.get('/push',function(req,res,next){
+    res.render('admin/push')
+})
+//保存静态资源的数据
+router.post('/push',function(req,res,next){
+    var url = req.body.url || '';
+    var name = req.body.name || '';
+    //保存注册的账号到数据库中
+    var pushsource = new Pushsource({
+        url:  url,
+        name:  name,
+        startTime: Date.parse(new Date())
+    });
+    return pushsource.save().then(function(pushsourceData){
+        res.render('admin/success',{
+            userInfo:req.userInfo,
+            successMessage:"js资源添加成功!",
+            url:"/admin/push"
+        })
+    });
+})
+//上传js静态资源
+router.post('/apply/push',function(req,res,next){
+    var cacheFolder = './public/source/js/';
+    var currentUser = req.userInfo.username;
+    var userDirPath =cacheFolder+ currentUser;
+    if (!fs.existsSync(userDirPath)) {
+        fs.mkdirSync(userDirPath);
+    }
+    var form = new formidable.IncomingForm(); //创建上传表单
+    form.encoding = 'utf-8'; //设置编辑
+    form.uploadDir = userDirPath; //设置上传目录
+    form.keepExtensions = true; //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024; //文件大小
+    form.type = true;
+    var displayUrl;
+    form.parse(req, function(err, fields, files) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        var extName = ''; //后缀名
+        console.log(files.upload.type)
+        switch (files.upload.type) {
+            // case 'image/jpeg':
+            //     extName = 'jpg';
+            //     break;
+            // case 'image/jpeg':
+            //     extName = 'jpg';
+            //     break;
+            // case 'image/png':
+            //     extName = 'png';
+            //     break;
+            // case 'image/x-png':
+            //     extName = 'png';
+            //     break;
+            case 'text/javascript':
+                extName = 'js';
+                break;
+            // case 'application/zip':
+            //     extName = 'zip';
+            //     break;
+        }
+        if (extName.length === 0) {
+            res.send({
+                code: 202,
+                msg: '只支持js静态资源上传'
+            });
+            return;
+        } else {
+            var avatarName = '/' + Date.now() + '.' + extName;
+            var newPath = form.uploadDir + avatarName;
+            displayUrl = currentUser;
+            fs.renameSync(files.upload.path, newPath); //重命名
+            newPath = newPath.substring(1);
+            res.send({
+                code: 200,
+                msg: displayUrl,
+                url: "https://"+ req.host + newPath
+            });
+        }
+    });
 })
 module.exports = router;
