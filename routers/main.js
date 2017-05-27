@@ -228,4 +228,13 @@ router.get('/jssource',function(req,res,next){
         })
     })
 })
+//JQ路由
+router.get('/jquery1.8.3.html',function(req,res,next){
+    Pushsource.find().then(function(source) {
+        res.render('main/jquery1.8.3.html', {
+            userInfo: req.userInfo,
+            source:source
+        })
+    })
+})
 module.exports = router;

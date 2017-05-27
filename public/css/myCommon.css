@@ -42,6 +42,9 @@ body{
 	padding-right:25px;
 	float: left;
 }
+.index .navbar .moreSource .moreSourceBox .moreSourceItem:hover{
+	color: #337ab7;
+}
 .index .navbar.navbarPosition{
 	background: #fff;
 	color: #444444 !important;
