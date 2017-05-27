@@ -12,7 +12,7 @@ body{
 /*顶部导航*/
 .index .navbar{
 	width:100%;
-	height:80px;
+	height:105px;
 	/*padding:0 56px 0 0;*/
 	background: #050505;
 	border-radius: 0;
@@ -20,6 +20,27 @@ body{
 	z-index: 120000;
 	color: #ffffff;
 	overflow: hidden;
+}
+.index .navbar .moreSource{
+	font-size:12px;
+	font-weight:bold;
+	overflow: hidden;
+	border-bottom: 1px solid #212121;
+}
+.index .navbar .moreSource .moreBox{
+	width:1200px;
+	height: 25px;
+	line-height: 25px;
+	margin: 0 auto;
+}
+.index .navbar .moreSource .moreSourceBox{
+	float: right;
+	overflow: hidden;
+}
+.index .navbar .moreSource .moreSourceBox .moreSourceItem{
+	color: #ddd;
+	padding-right:25px;
+	float: left;
 }
 .index .navbar.navbarPosition{
 	background: #fff;
@@ -44,6 +65,12 @@ body{
 .index .navbar.navbarPosition .logo .logoIntroduce{
 	color: #05a2d7;
 	border-left:3px solid #05a2d7;
+}
+.index .navbar.navbarPosition .moreSource{
+	border-bottom: 1px solid #eeeeee;
+}
+.index .navbar.navbarPosition .moreSource .moreSourceItem{
+	color: #6c6c6c;
 }
 .index .navbar .logo{
 	width: 20%;

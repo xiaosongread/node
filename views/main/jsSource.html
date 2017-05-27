@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>静态资源链接</title>
+		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/myCommon.css"/>
+		<script src="/public/js/jQuery-2.1.4.min.js"></script>
+		<script	src="/public/js/template.js"></script>
+		<script src="/public/js/common.js"></script>
+	</head>
+	<style>
+		body{
+			padding:80px 0;
+		}
+		.sourceBox{
+			width:1225px;
+			border-top:2px solid #9d9d9d;
+			border-bottom:2px solid #9d9d9d;
+			margin:0 auto;
+		}
+		h3{
+			width:100%;
+			line-height: 80px;
+			text-align: center;
+			font-size: 22px;
+			font-weight: bold;
+		}
+		.sourceBox li{
+			width:100%;
+			height:35px;
+			padding-left:30px;
+			line-height:35px;
+			color: #333;
+			font-size:14px;
+		}
+		.sourceBox li:nth-child(odd){
+			background: #fff;
+		}
+		.sourceBox li .name{
+			width: 20%;
+			color: #3276b1;
+			display: inline-block;
+		}
+	</style>
+	<body>
+		<h3>前端静态资源库</h3>
+		<ul class="sourceBox">
+			{% for sourceItem in source %}
+			<li>
+				<span class="name">{{sourceItem.name}}</span>
+				<span class="link">{{sourceItem.url}}</span>
+			</li>
+			{% for content in contents %}
+		</ul>
+	</body>
+</html>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?c99f49869b064a7b101d850e21ab5f4b";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>

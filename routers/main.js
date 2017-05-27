@@ -7,6 +7,7 @@ var Content = require('../models/contents');
 var Comments = require('../models/comment');
 var VideoList = require('../models/videoList');
 var VideoCategory = require('../models/videoCategory');
+var Pushsource = require('../models/pushsource');
 router.get('/',function(req,res,next){
 	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
 	var limte = 10;
@@ -217,5 +218,14 @@ router.get('/vip',function(req,res,next){
 				categories:categories
 			})
 	})
+})
+//静态资源路由
+router.get('/jssource',function(req,res,next){
+    Pushsource.find().then(function(source) {
+        res.render('main/jsSource.html', {
+            userInfo: req.userInfo,
+            source:source
+        })
+    })
 })
 module.exports = router;
