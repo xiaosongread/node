@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bb258a2-531f-407b-a9d1-e36f03376169" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/categoryList_index.html" afterPath="$PROJECT_DIR$/views/main/categoryList_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/contentInfo.html" afterPath="$PROJECT_DIR$/views/main/contentInfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/index.html" afterPath="$PROJECT_DIR$/views/main/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/search.html" afterPath="$PROJECT_DIR$/views/main/search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/videoInfo.html" afterPath="$PROJECT_DIR$/views/main/videoInfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/videoList.html" afterPath="$PROJECT_DIR$/views/main/videoList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/videoListCategory.html" afterPath="$PROJECT_DIR$/views/main/videoListCategory.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main/vip.html" afterPath="$PROJECT_DIR$/views/main/vip.html" />
-    </list>
+    <list default="true" id="1bb258a2-531f-407b-a9d1-e36f03376169" name="Default" comment="" />
     <ignored path="node.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,11 +22,11 @@
     <favorites_list name="node" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="search.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
+            <state relative-caret-position="1065">
               <caret line="71" column="29" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
               <folding />
             </state>
@@ -46,7 +36,7 @@
       <file leaf-file-name="videoList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/videoList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
+            <state relative-caret-position="1500">
               <caret line="100" column="29" lean-forward="false" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
               <folding />
             </state>
@@ -56,7 +46,7 @@
       <file leaf-file-name="videoInfo.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/videoInfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
+            <state relative-caret-position="1140">
               <caret line="76" column="29" lean-forward="false" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
               <folding />
             </state>
@@ -66,7 +56,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
+            <state relative-caret-position="1215">
               <caret line="81" column="25" lean-forward="true" selection-start-line="78" selection-start-column="20" selection-end-line="81" selection-end-column="25" />
               <folding />
             </state>
@@ -76,7 +66,7 @@
       <file leaf-file-name="vip.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/vip.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
+            <state relative-caret-position="1140">
               <caret line="76" column="29" lean-forward="false" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
               <folding />
             </state>
@@ -86,7 +76,7 @@
       <file leaf-file-name="contentInfo.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/contentInfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
+            <state relative-caret-position="1125">
               <caret line="75" column="29" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="75" selection-end-column="29" />
               <folding />
             </state>
@@ -96,7 +86,7 @@
       <file leaf-file-name="categoryList_index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/main/categoryList_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
+            <state relative-caret-position="1095">
               <caret line="73" column="29" lean-forward="false" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
               <folding />
             </state>
@@ -257,6 +247,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -269,42 +260,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -520,11 +478,12 @@
       <workItem from="1495874565693" duration="293000" />
       <workItem from="1495875540485" duration="109000" />
       <workItem from="1495875686564" duration="578000" />
+      <workItem from="1495877290762" duration="94000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="415764000" />
+    <option name="totallyTimeSpent" value="415858000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -537,9 +496,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24146147" sideWeight="0.47853735" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24146147" sideWeight="0.47853735" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.4940429" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39041096" sideWeight="0.40587768" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.49717513" order="2" side_tool="false" content_ui="tabs" />
@@ -924,7 +882,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
+        <state relative-caret-position="1215">
           <caret line="81" column="25" lean-forward="true" selection-start-line="78" selection-start-column="20" selection-end-line="81" selection-end-column="25" />
           <folding />
         </state>
@@ -934,13 +892,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-98">
           <caret line="32" column="30" lean-forward="false" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/categoryList_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
+        <state relative-caret-position="1095">
           <caret line="73" column="29" lean-forward="false" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
           <folding />
         </state>
@@ -948,7 +905,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/contentInfo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
+        <state relative-caret-position="1125">
           <caret line="75" column="29" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="75" selection-end-column="29" />
           <folding />
         </state>
@@ -956,7 +913,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/vip.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
+        <state relative-caret-position="1140">
           <caret line="76" column="29" lean-forward="false" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
           <folding />
         </state>
@@ -964,7 +921,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/videoInfo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
+        <state relative-caret-position="1140">
           <caret line="76" column="29" lean-forward="false" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
           <folding />
         </state>
@@ -972,7 +929,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/videoList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
+        <state relative-caret-position="1500">
           <caret line="100" column="29" lean-forward="false" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
           <folding />
         </state>
@@ -980,7 +937,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/main/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
+        <state relative-caret-position="1065">
           <caret line="71" column="29" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
           <folding />
         </state>
