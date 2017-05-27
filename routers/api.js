@@ -10,6 +10,7 @@ var Content = require('../models/contents');
 var Comments = require('../models/comment');
 var Wechatusers = require('../models/wechatusers');
 var VideoList = require('../models/videoList');
+var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
 //统一一下ajax返回客户端的格式
 var responseData;
@@ -555,5 +556,4 @@ router.post('/videoList',function(req,res,next){
         return;
     })
 })
-//
 module.exports = router;
