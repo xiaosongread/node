@@ -7,6 +7,7 @@ var wechatusers = require('../models/wechatusers');
 var Content = require('../models/contents');
 var VideoCategory = require('../models/videoCategory');
 var VideoList = require('../models/videoList');
+var Source = require('../models/source');
 var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
 var fs = require('fs');
@@ -14,6 +15,7 @@ var formidable = require("formidable");
 var bodyParser = require('body-parser');
 var path = require('path');
 var multipart = require('multipart');
+var Minizip = require('node-minizip');
 
 /*
  *  用户分类
@@ -674,6 +676,83 @@ router.get('/bannerList/delete',function(req,res,next) {
     })
 })
 
+//创建一级资源分类页面
+router.get('/addSourceCategoryParent',function(req,res,next){
+    res.render('admin/sourceCategoryParent_add')
+})
+//创建一级资源分类路由
+router.post('/addSourceCategoryParent',function(req,res,next){
+    var sourceParentName = req.body.sourceParentName || '';
+    var icon = req.body.icon || '';
+    var id = 0;
+    Source.find().sort({_id: 1}).then(function(sourceList){
+    	console.log(sourceList)
+		if(!sourceList.length){
+            id ++;
+		}else{
+            id = sourceList[sourceList.length - 1].id + 1
+		}
+        //保存注册的账号到数据库中
+        var source = new Source({
+            sourceParentName:  sourceParentName,
+            id: id,
+            icon: icon,
+            startTime: Date.parse(new Date())
+        });
+        return source.save().then(function(sourceData){
+            res.render('admin/success',{
+                userInfo:req.userInfo,
+                successMessage:"一级资源添加成功!",
+                url:"/admin/addSourceCategoryParent"
+            })
+        });
+	})
+
+})
+//创建2️⃣级资源分类页面
+router.get('/addSourceCategoryChild',function(req,res,next){
+    Source.find({
+        parentId: 0
+	}).then(function(categories){
+        res.render('admin/sourceCategoryChild_add',{
+            categories: categories,
+            userInfo:req.userInfo,
+		})
+	})
+})
+//创建二级资源分类路由
+router.post('/addSourceCategoryChild',function(req,res,next){
+    var sourceParentName = req.body.sourceParentName || '';
+    var parentId = req.body.parentId;
+    var icon = req.body.icon || '';
+    var id = 0;
+    Source.find({
+        parentId:{$gt:0}
+    }).sort({_id: 1}).then(function(sourceList){
+        console.log(sourceList)
+        if(!sourceList.length){
+            id ++;
+        }else{
+            id = sourceList[sourceList.length - 1].id + 1
+        }
+        //保存注册的账号到数据库中
+        var source = new Source({
+            sourceParentName:  sourceParentName,
+            id: id,
+            icon: icon,
+            parentId : parentId,
+            startTime: Date.parse(new Date())
+        });
+        return source.save().then(function(sourceData){
+            res.render('admin/success',{
+                userInfo:req.userInfo,
+                successMessage:"二级资源添加成功!",
+                url:"/admin/addSourceCategoryChild"
+            })
+        });
+    })
+
+})
 //资源上传页面路由
 router.get('/push',function(req,res,next){
     res.render('admin/push')
@@ -734,9 +813,9 @@ router.post('/apply/push',function(req,res,next){
             case 'text/javascript':
                 extName = 'js';
                 break;
-            // case 'application/zip':
-            //     extName = 'zip';
-            //     break;
+            case 'application/zip':
+                extName = 'zip';
+                break;
         }
         if (extName.length === 0) {
             res.send({
@@ -750,6 +829,22 @@ router.post('/apply/push',function(req,res,next){
             displayUrl = currentUser;
             fs.renameSync(files.upload.path, newPath); //重命名
             newPath = newPath.substring(1);
+            console.log(userDirPath)
+			console.log("----")
+			console.log(newPath)
+            console.log("----")
+			console.log(req.host + '/public/js')
+			console.log(1)
+            Minizip.unzip('public/source/js/admin/1495898260876.zip', 'public/source/js/admin/12', function(err) {
+            	console.log(4)
+                if (err){
+                	console.log(2)
+                    console.log(err);
+				}else{
+                	console.log(3)
+                    console.log('unzip successfully.');
+				}
+            });
             res.send({
                 code: 200,
                 msg: displayUrl,

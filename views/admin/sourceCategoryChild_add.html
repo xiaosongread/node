@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{%block main%}
+<style>
+    .bottom {
+        position: fixed;
+        bottom:0;
+        left:0;
+    }
+</style>
+<ol class="breadcrumb">
+    <li><a href="/admin/category">资源分类</a></li>
+    <li><span>添加二级资源分类</span></li>
+</ol>
+<h3>添加二级资源分类</h3>
+<form role="form" method="post" id="form" >
+    <div class="form-group">
+        <label>所属一级分类:</label>
+        <select name="parentId" id="parentId" class="form-control">
+            {% for category in categories %}
+            <option value="{{category.id}}">{{category.sourceParentName}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <span>二级资源分类名称icon:</span><input type="text" class="form-control" id="icon" placeholder="请输入二级资源分类icon" name="icon">
+    </div>
+    <div class="form-group">
+        <span>二级资源分类名称:</span><input type="text" class="form-control" id="sourceParentName" placeholder="请输入二级资源分类名称" name="sourceParentName">
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+</form>
+{%endblock%}

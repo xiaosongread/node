@@ -23,6 +23,7 @@
     "ueditor-nodejs": "^0.1.4"
   },
   "devDependencies": {
-    "multipart": "^0.1.5"
+    "multipart": "^0.1.5",
+    "node-minizip": "^0.3.0"
   }
 }

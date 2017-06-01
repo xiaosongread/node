@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化,宋彦斌,小宋,抿圪斗,rem">
+		<meta name="description" content="小宋博客专注于前端开发,H5,h5相关技术的分享,主要涉及的html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化的知识,同时记录一些自己在开发中遇到的问题。">
+		<title>小宋博客</title>
+		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/public/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/kkpager_blue.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/resource/myCommon.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/resource/index.css"/>
+		<link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
+		<script src="/public/js/jQuery-2.1.4.min.js"></script>
+		<script src="/public/js/swiper.min.js"></script>
+		<script	src="/public/js/template.js"></script>
+		<script src="/public/js/bootstrap.min.js"></script>
+		<script src="/public/js/kkpager.min.js"></script>
+		<script src="/public/js/canvas.js"></script>
+		<script src="/public/js/resource/common.js"></script>
+		<script src="/public/js/resource/index.js"></script>
+	</head>
+	<body>
+		<div class="index">
+			<nav class="navbar">
+				<div class="moreSource">
+					<div class="moreBox">
+						<div class="moreSourceBox">
+							<a href="/jssource">
+								<div class="moreSourceItem">
+									<i class="fa fa-ship"></i>
+									<span>静态资源</span>
+								</div>
+							</a>
+							<a href="/jquery1.8.3.html">
+								<div class="moreSourceItem">
+									<i class="fa fa-book"></i>
+									<span>在线手册</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="moreSourceItem">
+									<i class="fa fa-user"></i>
+									<span>登陆</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="logobox">
+				<div class="logo">
+						<a href="/" >
+							<div class="a">
+								<img src="/public/images/logo-default-white.png" class="logoImg"/>
+							</div>
+							<div class="logoIntroduce">
+								<p>关注前沿技术</p>
+								<p>专注前端开发</p>
+							</div>
+						</a>
+				</div>
+				{% if categories %}
+				<ul>
+					{% for categorie in categories %}
+					<li id="{{categorie._id.toString()}}">
+						<a href="/categoryList_index?id={{categorie._id.toString()}}">{{categorie.name}}</a>
+					</li>
+					{% endfor %}
+					<li>
+						<!--http://www.500d.me/resume/4010888448/-->
+						<a href="">前端资料库</a>
+					</li>
+					<li>
+						<!--http://www.500d.me/resume/4010888448/-->
+						<a href="/videoList">视频</a>
+					</li>
+				</ul>
+				{% endif %}
+				</div>
+			</nav>
+			<div class="canvasBox">
+			<i class="fa fa-search"></i>
+			<div class="canvasSmallBox">
+				<input class="find" type="text" placeholder="搜索文章..."/>
+			</div>
+			<canvas id="c" width="1280" height="204"></canvas>
+			<!--二级导航-->
+			<div class="resource_tabBox">
+				<ul class="resource_tab">
+					<li>
+						<i class="fa fa-ship"></i>
+						<span>UI</span>
+						<i class="fa fa-angle-down"></i>
+						<!--三级导航-->
+						<div class="resource_tabConsBox">
+							<ul class="resource_tabCons">
+								<li>
+									<i class="fa fa-ship"></i>
+									<span>背景</span>
+								</li>
+							</ul>
+						</div>
+					</li>
+					|
+				</ul>
+			</div>
+
+			<div class="mgd_cons">
+				<ul class="resource_cons">
+					<a href="/resources/info?id=592674ec57c1f32c80d92e33">
+					<li>
+						<div class="resource_img">
+							<img src="/public/images/banner1.jpg">
+						</div>
+						<p class="resource_title">js+css3扁平化APP图标时钟</p>
+						<div class="resource_tag">
+							<i class="fa fa-ship"></i>
+							<span>数字滚动,动画,百分比</span>
+						</div>
+						<div class="resource_more">
+							<div class="resource_view">
+								<i class="fa fa-ship"></i>
+								<span>123</span>
+							</div>
+							<div class="resource_time">
+								<span>2017-09</span>
+							</div>
+						</div>
+					</li>
+					</a>
+					<li>
+						<div class="resource_img">
+							<img src="/public/images/banner1.jpg">
+						</div>
+						<p class="resource_title">js+css3扁平化APP图标时钟</p>
+						<div class="resource_tag">
+							<i class="fa fa-ship"></i>
+							<span>数字滚动,动画,百分比</span>
+						</div>
+						<div class="resource_more">
+							<div class="resource_view">
+								<i class="fa fa-ship"></i>
+								<span>123</span>
+							</div>
+							<div class="resource_time">
+								<span>2017-09</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="resource_img">
+							<img src="/public/images/banner1.jpg">
+						</div>
+						<p class="resource_title">js+css3扁平化APP图标时钟</p>
+						<div class="resource_tag">
+							<i class="fa fa-ship"></i>
+							<span>数字滚动,动画,百分比</span>
+						</div>
+						<div class="resource_more">
+							<div class="resource_view">
+								<i class="fa fa-ship"></i>
+								<span>123</span>
+							</div>
+							<div class="resource_time">
+								<span>2017-09</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="resource_img">
+							<img src="/public/images/banner1.jpg">
+						</div>
+						<p class="resource_title">js+css3扁平化APP图标时钟</p>
+						<div class="resource_tag">
+							<i class="fa fa-ship"></i>
+							<span>数字滚动,动画,百分比</span>
+						</div>
+						<div class="resource_more">
+							<div class="resource_view">
+								<i class="fa fa-ship"></i>
+								<span>123</span>
+							</div>
+							<div class="resource_time">
+								<span>2017-09</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="resource_img">
+							<img src="/public/images/banner1.jpg">
+						</div>
+						<p class="resource_title">js+css3扁平化APP图标时钟</p>
+						<div class="resource_tag">
+							<i class="fa fa-ship"></i>
+							<span>数字滚动,动画,百分比</span>
+						</div>
+						<div class="resource_more">
+							<div class="resource_view">
+								<i class="fa fa-ship"></i>
+								<span>123</span>
+							</div>
+							<div class="resource_time">
+								<span>2017-09</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="resource_img">
+							<img src="/public/images/banner1.jpg">
+						</div>
+						<p class="resource_title">js+css3扁平化APP图标时钟</p>
+						<div class="resource_tag">
+							<i class="fa fa-ship"></i>
+							<span>数字滚动,动画,百分比</span>
+						</div>
+						<div class="resource_more">
+							<div class="resource_view">
+								<i class="fa fa-ship"></i>
+								<span>123</span>
+							</div>
+							<div class="resource_time">
+								<span>2017-09</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div id="kkpager"></div>
+			</div>
+			<!--底部导航-->
+			<div class="bottom">
+				<div class="bottomLeft">
+					<p><a href="https://github.com/">github</a></p>
+					<p><a href="http://jquery.cuishifeng.cn/index.html">jq</a></p>
+					<p><a href="http://www.w3school.com.cn/">w3school</a></p>
+					<p><a href="http://tongji.baidu.com/web/welcome/login" target="_blank">百度统计</a></p>
+					<p><a href="http://changyan.kuaizhan.com/" target="_blank">畅言系统</a></p>
+				</div>
+				<div class="bottomRight">
+					<p>Copyright © Aaron All Rights Reserved 京ICP备17007771号-1</p>
+				</div>
+				<div class="bottomArtile">
+					<p>逆水行舟,不进则退.  ——宋彦斌</p>
+				</div>
+			</div>
+		</div>
+		<!--<img border="0" src="http://wpa.qq.com/pa?p=2:598349146:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>-->
+		<!--<div class="QQ">-->
+			<!--<div class="QQimg">-->
+			<!--<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=598349146&site=qq&menu=yes">-->
+				<!--<img src="/public/images/QQ.jpg"/>-->
+			<!--</a>-->
+			<!--</div>-->
+			<!--<div class="QQwords">戳<br>我<br>戳<br>我<br></div>-->
+		<!--</div>-->
+	</body>
+</html>
+<script>
+	function getParameter(name) {
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r!=null) return unescape(r[2]); return null;
+	}
+	//init
+	$(function(){
+		var counts;
+		$.ajax({
+			type:"post",
+			url:"/api/articlesList",
+			success:function(data){
+				counts = data.data.count;
+				var totalPage = Math.ceil(counts / 10);//总共的页数
+				var totalRecords = counts;//总数据条数
+				var pageNo = getParameter('page');
+				if(!pageNo){
+					pageNo = 1;
+				}
+				//生成分页
+				//有些参数是可选的，比如lang，若不传有默认值
+				kkpager.generPageHtml({
+					//当前的页数
+					pno : pageNo,
+					//总页码
+					total : totalPage,
+					//总数据条数
+					totalRecords : totalRecords,
+					//链接前部
+					hrefFormer : '/',
+					//链接尾部
+					hrefLatter : '',
+					getLink : function(n){
+						return this.hrefFormer + this.hrefLatter + "?page="+n;
+					}
+				});
+			}
+		})
+	});
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?c99f49869b064a7b101d850e21ab5f4b";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>

@@ -9,6 +9,7 @@ module.exports = new mongoose.Schema ({
 		 type: mongoose.Schema.Types.ObjectId,//关联字段
 		 ref:'Contents'//引用另一张表
 	},
+
 	userId: {//req.body.userId
 		 type: mongoose.Schema.Types.ObjectId,//关联字段
 		 ref:'User'//默认值

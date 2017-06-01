@@ -6,30 +6,25 @@
 		<meta name="description" content="小宋博客专注于前端开发,H5,h5相关技术的分享,主要涉及的html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化的知识,同时记录一些自己在开发中遇到的问题。">
 		<title>小宋博客</title>
 		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="/public/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/public/css/swiper.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/public/css/kkpager_blue.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/shCoreDefault.css" />
 		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
-		<link rel="stylesheet" type="text/css" href="/public/css/myCommon.css"/>
-		<link rel="stylesheet" type="text/css" href="/public/css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/resource/myCommon.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/resource/contentInfo.css"/>
 		<link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
 		<script src="/public/js/jQuery-2.1.4.min.js"></script>
 		<script src="/public/js/swiper.min.js"></script>
-		<script	src="/public/js/template.js"></script>
-		<script src="/public/js/bootstrap.min.js"></script>
-		<script src="/public/js/kkpager.min.js"></script>
-		<script src="/public/js/canvas.js"></script>
 		<script src="/public/js/common.js"></script>
-		<script src="/public/js/index.js"></script>
-		<script>
-//			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-//				window.location.href="http://blog.songyanbin.com/null"
-//			} else if (/(Android)/i.test(navigator.userAgent)) {
-//				window.location.href="http://blog.songyanbin.com/null"
-//			}
+		<script src="/public/js/canvas.js"></script>
+		<script src="/public/js/shCore.js"></script>
+		<script src="/public/js/myFilter.js"></script>
+		<script src="/public/js/resource/contentInfo.js"></script>
+		<style></style>
+		<script type="text/javascript">
+//			SyntaxHighlighter.all();
 		</script>
 	</head>
+
 	<body>
 		<div class="index">
 			<nav class="navbar">
@@ -58,7 +53,7 @@
 					</div>
 				</div>
 				<div class="logobox">
-				<div class="logo">
+					<div class="logo">
 						<a href="/" >
 							<div class="a">
 								<img src="/public/images/logo-default-white.png" class="logoImg"/>
@@ -68,52 +63,61 @@
 								<p>专注前端开发</p>
 							</div>
 						</a>
-				</div>
-				{% if categories %}
-				<ul>
-					{% for categorie in categories %}
-					<li id="{{categorie._id.toString()}}">
-						<a href="/categoryList_index?id={{categorie._id.toString()}}">{{categorie.name}}</a>
-					</li>
-					{% endfor %}
-					<li>
-						<!--http://www.500d.me/resume/4010888448/-->
-						<a href="/resources">前端资料库</a>
-					</li>
-					<li>
-						<!--http://www.500d.me/resume/4010888448/-->
-						<a href="/videoList">视频</a>
-					</li>
-				</ul>
-				{% endif %}
+					</div>
+					{% if categories %}
+					<ul>
+						{% for categorie in categories %}
+						<li id="{{categorie._id.toString()}}">
+							<a href="/categoryList_index?id={{categorie._id.toString()}}">{{categorie.name}}</a>
+						</li>
+						{% endfor %}
+						<li>
+							<a href="">前端资料库</a>
+						</li>
+						<li>
+							<!--http://www.500d.me/resume/4010888448/-->
+							<a href="/videoList">视频</a>
+						</li>
+					</ul>
+					{% endif %}
 				</div>
 			</nav>
-			<div class="canvasBox">
-			<i class="fa fa-search"></i>
-			<div class="canvasSmallBox">
-				<input class="find" type="text" placeholder="搜索文章..."/>
+			<div class="categoryNameInfo">
+				<div class="categoryNameInfoBox">
+					<div class="categoryName">{{content.category.name}}</div>
+					<ul class="categoryListName">
+						<li>
+							<a href="/" ><i class="fa fa-home"></i>抿圪斗</a>
+						</li>
+						<li>
+							<a href="/categoryList_index?id={{content.category._id.toString()}}"><i class="fa fa-navicon"></i>{{content.category.name}}</a>
+						</li>
+						<li>/</li>
+						<li>{{content.title}}</li>
+					</ul>
+				</div>
 			</div>
-			<canvas id="c" width="1280" height="204"></canvas>
-		</div>
 			<div class="mgd_cons">
 				<div class="mgd_cons_left">
-					<!--文章的列表-->
-					<ul class="contentList">
-						{% for content in contents %}
-						<a href="/contentInfo?id={{content._id.toString()}}">
-						<li id="{{content._id.toString()}}">
-							<h3>{{content.title}}</h3>
-							<div class="contentInfo">
-								<i class="fa fa-navicon"></i><span>{{content.category.name}}</span><i class="fa fa-clock-o"></i><span>{{content.startTime|date('Y年m月d日 H:i:s', -480, 'CCT')}}</span><nav class="eyeNum"><i class="fa fa-eye"></i><span>{{content.views}}</span></nav>
-							</div>
-							<div class="content_description">
-								<p>{{content.description}}</p>
-							</div>
-						</li>
-						</a>
-						{% endfor%}
-					</ul>
-					<div id="kkpager"></div>
+					<!--文章内容-->
+					<div class="resourse_item_title">
+						<span>jquery高仿手机QQ左侧3d滑动导航效果_页面缩放导航</span>
+					</div>
+					<div class="resourse_item_category">
+						<span>所属分类：</span><span>垂直</span>
+					</div>
+					<div class="resourse_item_more">
+						<i class="fa fa-ship"></i>
+						<span>123</span>
+					</div>
+					<div class="resourse_item_img">
+						<img src="/public/images/banner1.jpg">
+					</div>
+					<div class="resourse_item_btns">
+						<div class="lookBtn btn">查看演示</div>
+						<div class="downBtn btn">立即下载</div>
+					</div>
+					<div id="SOHUCS" ></div>
 				</div>
 				<div class="mgd_cons_right">
 					<!--banner-->
@@ -125,8 +129,7 @@
 							</style>
 							<div class="swiper-container">
 								<div class="swiper-wrapper">
-									<!--<div class="swiper-slide">1</div>-->
-									<!--<div class="swiper-slide">1</div>-->
+
 								</div>
 								<!-- 如果需要分页器 -->
 								<div class="swiper-pagination"></div>
@@ -164,22 +167,22 @@
 							<i class="fa fa-hand-o-right"></i><a class="adminPage" href="/admin" target="_blank">点击进入管理后台</a>
 							{% endif %}
 						</p>
-							{% if userInfo.isAdmin %}
-								<div class="welcome">欢迎
-									{% if userInfo.vip %}
-									<img src="/public/images/vip.png" id="viper">
-									{% endif %}
-									<span class="yourUserName">管理员{{userInfo.username}}</span>登陆进入我的博客
-								</div>
-
-							{% else %}
-								<div class="welcome">欢迎
-									{% if userInfo.vip %}
-									<img src="/public/images/vip.png"  id="viper">
-									{% endif %}
-									<span class="yourUserName">{{userInfo.username}}</span>登陆进入我的博客
-								</div>
+						{% if userInfo.isAdmin %}
+						<div class="welcome">欢迎
+							{% if userInfo.vip %}
+							<img src="/public/images/vip.png" id="viper">
 							{% endif %}
+							<span class="yourUserName">管理员{{userInfo.username}}</span>登陆进入我的博客
+						</div>
+
+						{% else %}
+						<div class="welcome">欢迎
+							{% if userInfo.vip %}
+							<img src="/public/images/vip.png"  id="viper">
+							{% endif %}
+							<span class="yourUserName">{{userInfo.username}}</span>登陆进入我的博客
+						</div>
+						{% endif %}
 						<div class="exit">
 							<p>exit</p>
 						</div>
@@ -225,12 +228,11 @@
 					<div class="hotArticle">
 						<div class="hotArticle_title"><i class="fa fa-fire"></i>热门文章</div>
 						<ul>
-							<li><a href="#">{{value.title}}</a></li>
+
 						</ul>
 					</div>
 				</div>
 			</div>
-			<!--底部导航-->
 			<div class="bottom">
 				<div class="bottomLeft">
 					<p><a href="https://github.com/">github</a></p>
@@ -247,57 +249,14 @@
 				</div>
 			</div>
 		</div>
-		<!--<img border="0" src="http://wpa.qq.com/pa?p=2:598349146:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>-->
-		<!--<div class="QQ">-->
-			<!--<div class="QQimg">-->
-			<!--<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=598349146&site=qq&menu=yes">-->
-				<!--<img src="/public/images/QQ.jpg"/>-->
-			<!--</a>-->
-			<!--</div>-->
-			<!--<div class="QQwords">戳<br>我<br>戳<br>我<br></div>-->
-		<!--</div>-->
 	</body>
 </html>
-<script>
-	function getParameter(name) {
-		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-		var r = window.location.search.substr(1).match(reg);
-		if (r!=null) return unescape(r[2]); return null;
-	}
-	//init
-	$(function(){
-		var counts;
-		$.ajax({
-			type:"post",
-			url:"/api/articlesList",
-			success:function(data){
-				counts = data.data.count;
-				var totalPage = Math.ceil(counts / 10);//总共的页数
-				var totalRecords = counts;//总数据条数
-				var pageNo = getParameter('page');
-				if(!pageNo){
-					pageNo = 1;
-				}
-				//生成分页
-				//有些参数是可选的，比如lang，若不传有默认值
-				kkpager.generPageHtml({
-					//当前的页数
-					pno : pageNo,
-					//总页码
-					total : totalPage,
-					//总数据条数
-					totalRecords : totalRecords,
-					//链接前部
-					hrefFormer : '/',
-					//链接尾部
-					hrefLatter : '',
-					getLink : function(n){
-						return this.hrefFormer + this.hrefLatter + "?page="+n;
-					}
-				});
-			}
-		})
-	});
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyt1Y6zbA',
+        conf: 'prod_8344ebad4f1e3c77793ed268f93a1219'
+    });
 </script>
 <script>
 	var _hmt = _hmt || [];

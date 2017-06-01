@@ -237,4 +237,38 @@ router.get('/jquery1.8.3.html',function(req,res,next){
         })
     })
 })
+
+// resource路由
+// 首页页面路由
+router.get('/resources',function(req,res,next){
+    Category.find().then(function(categories) {
+        res.render('resources/index', {
+            categories:categories,
+            userInfo: req.userInfo
+        })
+    })
+})
+// 资源详情页面
+router.get('/resources/info',function(req,res,next){
+    var id = req.query.id || "";//当前点击的文章的ID
+    Category.find().then(function(categories){
+        Content.findById({
+            _id:id
+        }).populate('category').then(function(content){
+            content.views++;
+            content.save();
+            //获取文章对应的评论,按文章的id查询
+            Comments.find({
+                contentId:id
+            }).populate('userId').then(function(comments){
+				res.render('resources/resourcesInfo', {
+					categories:categories,
+					userInfo: req.userInfo,
+					content:content,
+					comments:comments
+				});
+            })
+        })
+    })
+})
 module.exports = router;

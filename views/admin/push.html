@@ -38,7 +38,7 @@
             var FileExt=fileName.replace(/.+\./,"");
             $("#name").val(strFileName + '.' + FileExt)
             var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
-            if (extension == ".js") {
+//            if (extension == ".js") {
                 var data = new FormData();
                 data.append('upload', $('#fileToUpload')[0].files[0]);
                 $.ajax({
@@ -55,7 +55,7 @@
                         console.log('error');
                     }
                 });
-            }
+//            }
         }
     });
 </script>
