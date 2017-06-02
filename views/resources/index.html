@@ -90,21 +90,21 @@
 			<!--二级导航-->
 			<div class="resource_tabBox">
 				<ul class="resource_tab">
-					<li>
-						<i class="fa fa-ship"></i>
-						<span>UI</span>
-						<i class="fa fa-angle-down"></i>
-						<!--三级导航-->
-						<div class="resource_tabConsBox">
-							<ul class="resource_tabCons">
-								<li>
-									<i class="fa fa-ship"></i>
-									<span>背景</span>
-								</li>
-							</ul>
-						</div>
-					</li>
-					|
+					<!--<li>-->
+						<!--<i class="fa fa-ship"></i>-->
+						<!--<span>UI</span>-->
+						<!--<i class="fa fa-angle-down"></i>-->
+						<!--&lt;!&ndash;三级导航&ndash;&gt;-->
+						<!--<div class="resource_tabConsBox">-->
+							<!--<ul class="resource_tabCons">-->
+								<!--<li>-->
+									<!--<i class="fa fa-ship"></i>-->
+									<!--<span>背景</span>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					<!--</li>-->
+
 				</ul>
 			</div>
 
@@ -268,7 +268,7 @@
 		var counts;
 		$.ajax({
 			type:"post",
-			url:"/api/articlesList",
+			url:"/api/soucesList",//soucesList
 			success:function(data){
 				counts = data.data.count;
 				var totalPage = Math.ceil(counts / 10);//总共的页数

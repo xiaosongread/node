@@ -12,6 +12,7 @@ var Wechatusers = require('../models/wechatusers');
 var VideoList = require('../models/videoList');
 var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
+var Source = require('../models/source');
 //统一一下ajax返回客户端的格式
 var responseData;
 router.use(function(req,res,next){
@@ -321,7 +322,9 @@ router.post('/content/hotContents',function(req,res,next){
 })
 // 文章内容保存post的路由(添加)
 router.post('/content/add',function(req,res,next) {
+	console.log("asd-asd")
 	var category = req.body.category; //文章的分类
+	console.log(category)
 	var title = req.body.title; //文章的标题
 	var description = req.body.description; //文章的简介
 	var contents = req.body.contents; //文章的内容
@@ -554,6 +557,58 @@ router.post('/videoList',function(req,res,next){
         responseData.data = videoList;
         res.json(responseData);
         return;
+    })
+})
+
+
+router.post('/resources',function(req,res,next){
+    Category.find().then(function(categories) {
+        Source.find({},{ _id:0,__v:0}).then(function(sourceCategories){
+            var newSourceCategories = [];
+            sourceCategories.forEach(function(value,index){
+                if(value.parentId == 0){
+                    newSourceCategories.push(value);
+                }
+            })
+            // newSourceCategories.forEach(function(val,index){
+             //    val.childData = []
+            // })
+			// console.log(newSourceCategories)
+            Source.find({
+               parentId:{$gt:0}
+            }).then(function(categoriesChild){
+                responseData.code = 42;
+                responseData.message = "视频列表获取成功";
+                responseData.data = newSourceCategories;
+            	responseData.jsonData = categoriesChild;
+                res.json(responseData);
+                return;
+            })
+        })
+    })
+
+})
+//资源首页列表的分页
+router.post('/soucesList',function(req,res,next){
+    var page =  req.body.page;
+    var limte = 10;
+    var pages = 0;
+    var comments;
+//	res.send('shouye')
+    //从数据库中获取网站的分类名称
+    Category.find().then(function(categories){
+        // console.log(categories)
+        //查询数据库中的数据的条数
+        Source.count().then(function(count) {
+            comments = {
+                "count" : count
+            }
+            responseData.code = 24;
+            responseData.message = "数据获取成功!";
+            responseData.data = comments;
+            res.json(responseData);
+            return;
+        })
     })
 })
 module.exports = router;

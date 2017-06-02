@@ -93,6 +93,6 @@ mongoose.connect('mongodb://localhost:27017/blog',function(err){
         console.log("please open localhost:8081")
         // child_process.exec(cmd + ' "'+url + '"');
         //监听http请求
-        app.listen(8081);
+        app.listen(8080);
     }
 });

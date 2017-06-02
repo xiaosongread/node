@@ -10,6 +10,7 @@ var VideoList = require('../models/videoList');
 var Source = require('../models/source');
 var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
+var Plug = require('../models/plug');
 var fs = require('fs');
 var formidable = require("formidable");
 var bodyParser = require('body-parser');
@@ -305,6 +306,7 @@ router.get('/content',function(req,res,next) {
 //文章内容添加的路由
 router.get('/content/add',function(req,res,next) {
 	Category.find().then(function(Categories){//获取到数据库中分类列表
+		console.log(Categories)
 		res.render('admin/content_add',{
 			userInfo:req.userInfo,
 			categories:Categories
@@ -317,7 +319,8 @@ router.post('/content/add',function(req,res,next) {
 	var title = req.body.title; //文章的标题
 	var description = req.body.description; //文章的简介
 	var contents = req.body.content; //文章的内容
-
+	console.log("文章保存")
+	console.log(category)
 	if(!category){//表示没有这条数据
 		res.render('admin/error',{
 			userInfo:req.userInfo,
@@ -511,68 +514,6 @@ router.post('/videoAdd',function(req,res,next){
             successMessage:"添加视频成功!",
             url:"/admin/videoAdd"
         })
-    });
-})
-//上传图片
-router.post('/apply/upload',function(req,res,next){
-    var cacheFolder = './public/images/uploadcache/';
-    var currentUser = req.userInfo.username;
-    var userDirPath =cacheFolder+ currentUser;
-    if (!fs.existsSync(userDirPath)) {
-        fs.mkdirSync(userDirPath);
-    }
-    var form = new formidable.IncomingForm(); //创建上传表单
-    form.encoding = 'utf-8'; //设置编辑
-    form.uploadDir = userDirPath; //设置上传目录
-    form.keepExtensions = true; //保留后缀
-    form.maxFieldsSize = 2 * 1024 * 1024; //文件大小
-    form.type = true;
-    var displayUrl;
-    form.parse(req, function(err, fields, files) {
-        if (err) {
-            res.send(err);
-            return;
-        }
-        var extName = ''; //后缀名
-		console.log(files.upload.type)
-        switch (files.upload.type) {
-            case 'image/jpeg':
-                extName = 'jpg';
-                break;
-            case 'image/jpeg':
-                extName = 'jpg';
-                break;
-            case 'image/png':
-                extName = 'png';
-                break;
-            case 'image/x-png':
-                extName = 'png';
-                break;
-            case 'text/javascript':
-                extName = 'js';
-                break;
-            case 'application/zip':
-                extName = 'zip';
-                break;
-        }
-        if (extName.length === 0) {
-            res.send({
-                code: 202,
-                msg: '只支持png和jpg格式图片'
-            });
-            return;
-        } else {
-            var avatarName = '/' + Date.now() + '.' + extName;
-            var newPath = form.uploadDir + avatarName;
-            displayUrl = currentUser;
-            fs.renameSync(files.upload.path, newPath); //重命名
-            newPath = newPath.substring(1);
-            res.send({
-                code: 200,
-                msg: displayUrl,
-				url: "https://"+ req.host + newPath
-            });
-        }
     });
 })
 //添加视频列表路由
@@ -775,6 +716,115 @@ router.post('/push',function(req,res,next){
         })
     });
 })
+
+//zip资源上传页面路由
+router.get('/addResources',function(req,res,next){
+    Source.find({
+        parentId: {$gt: 0}
+    }).then(function(childCategory){
+        Source.find().then(function(sourceCategories) {
+            var parentCategory = [];
+            sourceCategories.forEach(function (value, index) {
+                if (value.parentId == 0) {
+                    parentCategory.push(value);
+                }
+            })
+            res.render('admin/addResources',{
+                userInfo:req.userInfo,
+                parentCategory:parentCategory,//一级分类
+                childCategory:childCategory//二级分类
+            })
+        })
+	})
+})
+//zip资源上传保存路由
+router.post('/addResources',function(req,res,next){
+    var name = req.body.name || '';
+	var imgurl = req.body.imgurl;
+	var categoryParentId = req.body.categoryParentId;
+    var categoryChildId = req.body.categoryChildId;
+    var introduce = req.body.introduce;//插件简介
+    var downUrl = req.body.downUrl;//资源的下载链接
+    var lookUrl = req.body.lookUrl;//资源的查看地址
+    //保存注册的账号到数据库中
+    var plug = new Plug({
+        name: name,//插件名称
+        imgurl: imgurl,//插件的封面图片
+        categoryParentId:categoryParentId,
+        categoryChildId:categoryChildId,
+        introduce: introduce,//插件简介
+        downUrl: downUrl,//资源的下载链接
+        lookUrl: lookUrl,//资源的查看地址
+        startTime: Date.parse(new Date())
+    });
+    return plug.save().then(function(plugData){
+    	console.log("保存成功2")
+        res.render('admin/success',{
+            userInfo:req.userInfo,
+            successMessage:"zip插件添加成功!",
+            url:"/admin/addResources"
+        })
+    });
+})
+
+//上传图片
+router.post('/apply/upload',function(req,res,next){
+    var cacheFolder = './public/images/uploadcache/';
+    var currentUser = req.userInfo.username;
+    var userDirPath =cacheFolder+ currentUser;
+    if (!fs.existsSync(userDirPath)) {
+        fs.mkdirSync(userDirPath);
+    }
+    var form = new formidable.IncomingForm(); //创建上传表单
+    form.encoding = 'utf-8'; //设置编辑
+    form.uploadDir = userDirPath; //设置上传目录
+    form.keepExtensions = true; //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024; //文件大小
+    form.type = true;
+    var displayUrl;
+    form.parse(req, function(err, fields, files) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        var extName = ''; //后缀名
+        console.log(files.upload.type)
+        switch (files.upload.type) {
+            case 'image/jpeg':
+                extName = 'jpg';
+                break;
+            case 'image/jpeg':
+                extName = 'jpg';
+                break;
+            case 'image/png':
+                extName = 'png';
+                break;
+            case 'image/x-png':
+                extName = 'png';
+                break;
+        }
+        if (extName.length === 0) {
+            res.send({
+                code: 202,
+                msg: '只支持png和jpg格式图片'
+            });
+            return;
+        } else {
+            var avatarName = '/' + Date.now() + '.' + extName;
+            var newPath = form.uploadDir + avatarName;
+            displayUrl = currentUser;
+            fs.renameSync(files.upload.path, newPath); //重命名
+            newPath = newPath.substring(1);
+            res.send({
+                code: 200,
+                msg: displayUrl,
+                url: "https://"+ req.host + newPath
+            });
+        }
+    });
+})
+
+
 //上传js静态资源
 router.post('/apply/push',function(req,res,next){
     var cacheFolder = './public/source/js/';
@@ -798,23 +848,8 @@ router.post('/apply/push',function(req,res,next){
         var extName = ''; //后缀名
         console.log(files.upload.type)
         switch (files.upload.type) {
-            // case 'image/jpeg':
-            //     extName = 'jpg';
-            //     break;
-            // case 'image/jpeg':
-            //     extName = 'jpg';
-            //     break;
-            // case 'image/png':
-            //     extName = 'png';
-            //     break;
-            // case 'image/x-png':
-            //     extName = 'png';
-            //     break;
             case 'text/javascript':
                 extName = 'js';
-                break;
-            case 'application/zip':
-                extName = 'zip';
                 break;
         }
         if (extName.length === 0) {
@@ -829,26 +864,71 @@ router.post('/apply/push',function(req,res,next){
             displayUrl = currentUser;
             fs.renameSync(files.upload.path, newPath); //重命名
             newPath = newPath.substring(1);
-            console.log(userDirPath)
-			console.log("----")
-			console.log(newPath)
-            console.log("----")
-			console.log(req.host + '/public/js')
-			console.log(1)
-            Minizip.unzip('public/source/js/admin/1495898260876.zip', 'public/source/js/admin/12', function(err) {
-            	console.log(4)
-                if (err){
-                	console.log(2)
-                    console.log(err);
-				}else{
-                	console.log(3)
-                    console.log('unzip successfully.');
-				}
-            });
             res.send({
                 code: 200,
                 msg: displayUrl,
                 url: "https://"+ req.host + newPath
+            });
+        }
+    });
+})
+
+
+
+//上传插件资源
+router.post('/apply/addZip',function(req,res,next){
+	console.log(res)
+    var cacheFolder = './public/source/zip/';
+    var currentUser = req.userInfo.username;
+    var userDirPath =cacheFolder+ currentUser;
+    if (!fs.existsSync(userDirPath)) {
+        fs.mkdirSync(userDirPath);
+    }
+    var form = new formidable.IncomingForm(); //创建上传表单
+    form.encoding = 'utf-8'; //设置编辑
+    form.uploadDir = userDirPath; //设置上传目录
+    form.keepExtensions = true; //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024; //文件大小
+    form.type = true;
+    var displayUrl;
+    form.parse(req, function(err, fields, files) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        var extName = ''; //后缀名
+        switch (files.upload.type) {
+            case 'application/zip':
+                extName = 'zip';
+                break;
+        }
+        if (extName.length === 0) {
+            res.send({
+                code: 202,
+                msg: '只支持zip资源上传'
+            });
+            return;
+        } else {
+            var avatarName = '/' + Date.now() + '.' + extName;
+            var newPath = form.uploadDir + avatarName;
+            displayUrl = currentUser;
+            fs.renameSync(files.upload.path, newPath); //重命名
+			var jyName = avatarName.substring(1,avatarName.length - 4);//解压后的文件名字
+            newPath = newPath.substring(2);
+            var path = userDirPath.substring(2) + '/';
+            console.log(userDirPath)
+            Minizip.unzip(newPath, path + jyName, function(err) {
+                if (err){
+                    console.log(err);
+                }else{
+                    console.log('unzip successfully.');
+                }
+            });
+            res.send({
+                code: 200,
+                msg: displayUrl,
+                url: "https://"+ req.host + '/' + newPath,
+                lookUrl: "https://"+ req.host + '/' + path + jyName + '/'
             });
         }
     });

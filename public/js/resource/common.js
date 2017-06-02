@@ -26,17 +26,53 @@ $(function(){
 			window.location.href="search?keyWord="+keyWord;
 		}
 	})
-
-	// 二级导航显示
-	$(".resource_tab li").on({
-        mouseover:function(){
-            $(".resource_tabConsBox").hide();
-			$(this).find(".resource_tabConsBox").show();
-		},
-		mouseout:function(){
-            $(".resource_tabConsBox").hide();
-		}
-	})
+	//二三级导航显示
+    $.ajax({
+        type:"post",
+        url:"/api/resources",
+        success:function(data){
+            parentCategoryData = data.data;
+            childCategoryData = data.jsonData;
+            console.log(parentCategoryData,childCategoryData)
+            var newBarData = [];
+            parentCategoryData.forEach(function(val,index){
+                newBarData.push(val)
+            })
+            newBarData.forEach(function(value,index){
+                childCategoryData.forEach(function(val,i){
+                    if(value.id == val.parentId){
+                        newBarData[index].childData = [];
+                        newBarData[index].childData.push(val)
+                    }
+                })
+            })
+            var htmls =''
+            for(var i=0;i<newBarData.length;i++){
+                htmls += '<li><i class="fa '+newBarData[i].icon+'"></i><span>'+newBarData[i].sourceParentName+'</span><i class="fa fa-angle-down"></i>';
+                for(var j=0;j<newBarData[i].childData.length;j++) {
+                    htmls += '<div class="resource_tabConsBox"><ul class="resource_tabCons"><li><i class="fa '+newBarData[i].childData[j].icon+'"></i><span>'+newBarData[i].childData[j].sourceParentName+'</span></li></ul></div>'
+                }
+                htmls += '</li>';
+                if(newBarData.length - 1 != i){
+                    htmls += '|'
+				}
+                htmls += '</ul>';
+            }
+            $(".resource_tab").html(htmls);
+            // 二级导航显示
+            $(".resource_tab li").on({
+                mouseover:function(){
+                    $(".resource_tabConsBox").hide();
+                    $(this).find(".resource_tabConsBox").show();
+                    $(".mgd_cons").addClass("maoBg");
+                },
+                mouseout:function(){
+                    $(".resource_tabConsBox").hide();
+                    $(".mgd_cons").removeClass("maoBg");
+                }
+            })
+        }
+    })
 })
 var _hmt = _hmt || [];
 (function() {
