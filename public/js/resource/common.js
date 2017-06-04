@@ -51,7 +51,7 @@ $(function(){
             for(var i=0;i<newBarData.length;i++){
                 htmls += '<li><i class="fa '+newBarData[i].icon+'"></i><span>'+newBarData[i].sourceParentName+'</span><i class="fa fa-angle-down"></i><div class="resource_tabConsBox"><ul class="resource_tabCons">';
                 for(var j=0;j<newBarData[i].childData.length;j++) {
-                    htmls += '<li><a href="/resources/categoryList?id='+newBarData[i].childData[j]._id.toString()+'"><i class="fa '+newBarData[i].childData[j].icon+'"></i><span>'+newBarData[i].childData[j].sourceParentName+'</span></a></li>'
+                    htmls += '<a href="/resources/categoryList?id='+newBarData[i].childData[j]._id.toString()+'"><li><i class="fa '+newBarData[i].childData[j].icon+'"></i><span>'+newBarData[i].childData[j].sourceParentName+'</span></li></a>'
                 }
                 htmls += '</ul></div></li>';
                 if(newBarData.length - 1 != i){
