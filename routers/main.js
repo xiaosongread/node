@@ -79,7 +79,7 @@ router.get('/contentInfo',function(req,res,next){
 router.get('/categoryList_index',function(req,res,next){
 	var id = req.query.id || "";//当前点击的分类的ID
 	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
-	var limte = 10;
+	var limte = 12;
 	var pages = 0;
 //	res.send('shouye')
 	//从数据库中获取网站的分类名称
@@ -243,9 +243,8 @@ router.get('/jquery1.8.3.html',function(req,res,next){
 // resource路由
 // 首页页面路由
 router.get('/resources',function(req,res,next){
-
     var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
-    var limte = 10;
+    var limte = 12;
     var pages = 0;
 //	res.send('shouye')
     //从数据库中获取网站的分类名称
@@ -258,7 +257,7 @@ router.get('/resources',function(req,res,next){
             var skip = (page - 1) * limte;
             //sort()排序  -1 降序 1 升序
             //populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
-            Plug.find().sort({_id: -1}).limit(limte).skip(skip).populate('source').then(function (recourcePlug) {
+            Plug.find().sort({_id: -1}).limit(limte).skip(skip).populate('categoryParentId').populate('categoryChildId').then(function (recourcePlug) {
             	console.log(recourcePlug)
 				res.render('resources/index', {
 					categories:categories,
@@ -272,36 +271,59 @@ router.get('/resources',function(req,res,next){
             })
         })
     })
-
-    // Category.find().then(function(categories) {
-		// res.render('resources/index', {
-		// 	categories:categories,
-		// 	userInfo: req.userInfo,
-		// })
-    // })
-
 })
 // 资源详情页面
 router.get('/resources/info',function(req,res,next){
+	console.log("进入插件详情")
     var id = req.query.id || "";//当前点击的文章的ID
     Category.find().then(function(categories){
-        Content.findById({
+    	console.log("1")
+        Plug.findById({
             _id:id
-        }).populate('category').then(function(content){
-            content.views++;
-            content.save();
-            //获取文章对应的评论,按文章的id查询
-            Comments.find({
-                contentId:id
-            }).populate('userId').then(function(comments){
-				res.render('resources/resourcesInfo', {
-					categories:categories,
-					userInfo: req.userInfo,
-					content:content,
-					comments:comments
-				});
+        }).populate('categoryParentId').populate('categoryChildId').then(function(plugInfo){
+			console.log(plugInfo)
+            plugInfo.views++;
+            plugInfo.save();
+			res.render('resources/resourcesInfo.html', {
+				categories:categories,
+				userInfo: req.userInfo,
+                plugInfo:plugInfo
+			});
+        })
+    })
+})
+//插件分类列表页面路由
+router.get('/resources/categoryList',function(req,res,next){
+	var id = req.query.id;
+    var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
+    var limte = 12;
+    var pages = 0;
+    Category.find().then(function(categories) {
+        Pushsource.find().then(function (source) {
+            Plug.find({
+                categoryChildId:id
+			}).count().then(function(count) {
+                pages = Math.ceil(count / limte);//客户端应该显示的总页数
+                page = Math.min(page, pages);//page取值不能超过pages
+                page = Math.max(page, 1);//page取值不能小于1
+                var skip = (page - 1) * limte;
+                Plug.find({
+                    categoryChildId:id
+				}).sort({_id: -1}).limit(limte).skip(skip).populate('categoryParentId').populate('categoryChildId').then(function (recourcePlug) {
+                    res.render('resources/recourceCategoryList', {
+                        categories:categories,
+                        userInfo: req.userInfo,
+                        recourcePlug: recourcePlug,
+                        source: source,
+                        page: page,
+                        count: count,
+                        pages: pages,
+                        limte: limte
+                    });
+                })
             })
         })
     })
 })
+
 module.exports = router;

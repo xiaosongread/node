@@ -607,6 +607,16 @@ body{
 	margin:0 auto;
 	overflow: hidden;
 }
+.bannerTopTag{
+	width:100%;
+	line-height:150px;
+	line-height: 150px;
+	background: #050505;
+	text-align: center;
+	font-size:25px;
+	font-weight: bold;
+	color: #ffffff;
+}
 /*二级导航*/
 .resource_tabBox{
 	width:100%;
@@ -706,6 +716,9 @@ body{
 	height:100%;
 }
 .mgd_cons .resource_cons li .resource_title{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 	color: #05a2d7;
 	font-weight: bold;
 	line-height:30px;

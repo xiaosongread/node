@@ -15,7 +15,7 @@
 		<script src="/public/js/jQuery-2.1.4.min.js"></script>
 		<script src="/public/js/swiper.min.js"></script>
 		<script src="/public/js/common.js"></script>
-		<script src="/public/js/canvas.js"></script>
+		<!--<script src="/public/js/canvas.js"></script>-->
 		<script src="/public/js/shCore.js"></script>
 		<script src="/public/js/myFilter.js"></script>
 		<script src="/public/js/resource/contentInfo.js"></script>
@@ -72,7 +72,7 @@
 						</li>
 						{% endfor %}
 						<li>
-							<a href="">前端资料库</a>
+							<a href="/resources">前端资料库</a>
 						</li>
 						<li>
 							<!--http://www.500d.me/resume/4010888448/-->
@@ -101,21 +101,21 @@
 				<div class="mgd_cons_left">
 					<!--文章内容-->
 					<div class="resourse_item_title">
-						<span>jquery高仿手机QQ左侧3d滑动导航效果_页面缩放导航</span>
+						<span>{{plugInfo.name}}</span>
 					</div>
 					<div class="resourse_item_category">
-						<span>所属分类：</span><span>垂直</span>
+						<span>所属分类：</span><span>{{plugInfo.categoryParentId.sourceParentName}}-{{plugInfo.categoryChildId.sourceParentName}}</span>
 					</div>
 					<div class="resourse_item_more">
-						<i class="fa fa-ship"></i>
-						<span>123</span>
+						<i class="fa fa-eye"></i>
+						<span>{{plugInfo.views}}</span>
 					</div>
 					<div class="resourse_item_img">
-						<img src="/public/images/banner1.jpg">
+						<img src={{plugInfo.imgurl}}>
 					</div>
 					<div class="resourse_item_btns">
-						<div class="lookBtn btn">查看演示</div>
-						<div class="downBtn btn">立即下载</div>
+						<a href={{plugInfo.lookUrl}}><div class="lookBtn btn"><i class="fa fa-eye"></i>查看演示</div></a>
+						<a href={{plugInfo.downUrl}}><div class="downBtn btn"><i class="fa fa-cloud-download"></i>立即下载</div></a>
 					</div>
 					<div id="SOHUCS" ></div>
 				</div>

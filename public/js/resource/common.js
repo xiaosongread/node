@@ -39,20 +39,21 @@ $(function(){
                 newBarData.push(val)
             })
             newBarData.forEach(function(value,index){
+                newBarData[index].childData = [];
                 childCategoryData.forEach(function(val,i){
                     if(value.id == val.parentId){
-                        newBarData[index].childData = [];
                         newBarData[index].childData.push(val)
                     }
                 })
             })
+            console.log(newBarData)
             var htmls =''
             for(var i=0;i<newBarData.length;i++){
-                htmls += '<li><i class="fa '+newBarData[i].icon+'"></i><span>'+newBarData[i].sourceParentName+'</span><i class="fa fa-angle-down"></i>';
+                htmls += '<li><i class="fa '+newBarData[i].icon+'"></i><span>'+newBarData[i].sourceParentName+'</span><i class="fa fa-angle-down"></i><div class="resource_tabConsBox"><ul class="resource_tabCons">';
                 for(var j=0;j<newBarData[i].childData.length;j++) {
-                    htmls += '<div class="resource_tabConsBox"><ul class="resource_tabCons"><li><i class="fa '+newBarData[i].childData[j].icon+'"></i><span>'+newBarData[i].childData[j].sourceParentName+'</span></li></ul></div>'
+                    htmls += '<li><a href="/resources/categoryList?id='+newBarData[i].childData[j]._id.toString()+'"><i class="fa '+newBarData[i].childData[j].icon+'"></i><span>'+newBarData[i].childData[j].sourceParentName+'</span></a></li>'
                 }
-                htmls += '</li>';
+                htmls += '</ul></div></li>';
                 if(newBarData.length - 1 != i){
                     htmls += '|'
 				}
@@ -71,6 +72,14 @@ $(function(){
                     $(".mgd_cons").removeClass("maoBg");
                 }
             })
+        }
+    })
+    $(".resource_img").on({
+        mouseover:function(){
+            $(this).find("img").css({"transform": "scale(1.1, 1.1)","transition": "all 1s"});
+        },
+        mouseout:function(){
+            $(this).find("img").css({"transform": "scale(1, 1)","transition": "all 1s"});
         }
     })
 })

@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 //分类的表结构
 module.exports = new mongoose.Schema ({
+    id: Number,//自定义的ID
     name:  String,//插件名称
     imgurl: String,//插件的封面图片
     categoryParentId:{//插件的主分类ID

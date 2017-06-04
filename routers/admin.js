@@ -746,25 +746,35 @@ router.post('/addResources',function(req,res,next){
     var introduce = req.body.introduce;//插件简介
     var downUrl = req.body.downUrl;//资源的下载链接
     var lookUrl = req.body.lookUrl;//资源的查看地址
-    //保存注册的账号到数据库中
-    var plug = new Plug({
-        name: name,//插件名称
-        imgurl: imgurl,//插件的封面图片
-        categoryParentId:categoryParentId,
-        categoryChildId:categoryChildId,
-        introduce: introduce,//插件简介
-        downUrl: downUrl,//资源的下载链接
-        lookUrl: lookUrl,//资源的查看地址
-        startTime: Date.parse(new Date())
-    });
-    return plug.save().then(function(plugData){
-    	console.log("保存成功2")
-        res.render('admin/success',{
-            userInfo:req.userInfo,
-            successMessage:"zip插件添加成功!",
-            url:"/admin/addResources"
-        })
-    });
+	var id = 0;
+    Plug.find().sort({_id: 1}).then(function(plugList) {
+        console.log(plugList)
+        if (!plugList.length) {
+            id++;
+        } else {
+            id = plugList[plugList.length - 1].id + 1
+        }
+        //保存注册的账号到数据库中
+        var plug = new Plug({
+            id:id,//自定义的Id
+            name: name,//插件名称
+            imgurl: imgurl,//插件的封面图片
+            categoryParentId:categoryParentId,
+            categoryChildId:categoryChildId,
+            introduce: introduce,//插件简介
+            downUrl: downUrl,//资源的下载链接
+            lookUrl: lookUrl,//资源的查看地址
+            startTime: Date.parse(new Date())
+        });
+        return plug.save().then(function(plugData){
+            console.log("保存成功2")
+            res.render('admin/success',{
+                userInfo:req.userInfo,
+                successMessage:"zip插件添加成功!",
+                url:"/admin/addResources"
+            })
+        });
+    })
 })
 
 //上传图片

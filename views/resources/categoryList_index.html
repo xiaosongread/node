@@ -19,7 +19,7 @@
 	<script	src="/public/js/template.js"></script>
 	<script src="/public/js/bootstrap.min.js"></script>
 	<script src="/public/js/kkpager.min.js"></script>
-	<script src="/public/js/canvas.js"></script>
+	<!--<script src="/public/js/canvas.js"></script>-->
 	<script src="/public/js/common.js"></script>
 	<script src="/public/js/index.js"></script>
 </head>
@@ -82,11 +82,14 @@
 		</div>
 	</nav>
 	<div class="canvasBox">
-		<i class="fa fa-search"></i>
-		<div class="canvasSmallBox">
-			<input class="find" type="text" placeholder="搜索文章..."/>
+		<!--<i class="fa fa-search"></i>-->
+		<!--<div class="canvasSmallBox">-->
+			<!--<input class="find" type="text" placeholder="搜索文章..."/>-->
+		<!--</div>-->
+		<!--<canvas id="c" width="1280" height="204"></canvas>-->
+		<div class="bannerTopTag">
+			<p>Welcome to visit my repository</p>
 		</div>
-		<canvas id="c" width="1280" height="204"></canvas>
 		<!--二级导航-->
 		<div class="resource_tabBox">
 			<ul class="resource_tab">
@@ -332,7 +335,7 @@
             url:"/api/articlesList",
             success:function(data){
                 counts = data.data.count;
-                var totalPage = Math.ceil(counts / 10);//总共的页数
+                var totalPage = Math.ceil(counts / 12);//总共的页数
                 var totalRecords = counts;//总数据条数
                 var pageNo = getParameter('page');
                 if(!pageNo){

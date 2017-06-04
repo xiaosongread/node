@@ -13,6 +13,7 @@ var VideoList = require('../models/videoList');
 var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
 var Source = require('../models/source');
+var Plug = require('../models/plug');
 //统一一下ajax返回客户端的格式
 var responseData;
 router.use(function(req,res,next){
@@ -589,17 +590,11 @@ router.post('/resources',function(req,res,next){
 
 })
 //资源首页列表的分页
-router.post('/soucesList',function(req,res,next){
-    var page =  req.body.page;
-    var limte = 10;
-    var pages = 0;
-    var comments;
-//	res.send('shouye')
-    //从数据库中获取网站的分类名称
-    Category.find().then(function(categories){
-        // console.log(categories)
-        //查询数据库中的数据的条数
-        Source.count().then(function(count) {
+router.post('/soucesCount',function(req,res,next){
+    Category.find().then(function(categories) {
+        Plug.count().then(function (count) {
+        	console.log("123")
+			console.log(count)
             comments = {
                 "count" : count
             }

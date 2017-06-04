@@ -161,33 +161,6 @@ $(function(){
 			window.location.href="search?keyWord="+keyWord;
 		}
 	})
-	// 黑客帝国效果
-	// 设备宽度
-	// var s = window.screen;
-	// var width = q.width = s.width;
-	// var height = q.height;
-	// var yPositions = Array(300).join(0).split('');
-	// var ctx = q.getContext('2d');
-	// var draw = function() {
-	// 	ctx.fillStyle = 'rgba(88,152,240,.5)';
-	// 	ctx.fillRect(0, 0, width, height);
-	// 	ctx.fillStyle = 'rgba(255,255,255,.5)';/*代码颜色*/
-	// 	ctx.font = '10pt Georgia';
-	// 	yPositions.map(function(y, index) {
-	// 		text = String.fromCharCode(1e2 + Math.random() * 330);
-	// 		x = (index * 10) + 10;
-	// 		q.getContext('2d').fillText(text, x, y);
-	// 		if (y > Math.random() * 1e4) {
-	// 			yPositions[index] = 0;
-	// 		} else {
-	// 			yPositions[index] = y + 10;
-	// 		}
-	// 	});
-	// };
-	// RunMatrix();
-	// function RunMatrix() {
-	// 	Game_Interval = setInterval(draw,30);
-	// }
 	$(".wechatHover").on({
         mouseover:function(){
             $(".myWechat").show()
