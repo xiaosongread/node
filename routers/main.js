@@ -295,6 +295,7 @@ router.get('/resources/info',function(req,res,next){
 //插件分类列表页面路由
 router.get('/resources/categoryList',function(req,res,next){
 	var id = req.query.id;
+	console.log(id)
     var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
     var limte = 12;
     var pages = 0;
@@ -303,6 +304,7 @@ router.get('/resources/categoryList',function(req,res,next){
             Plug.find({
                 categoryChildId:id
 			}).count().then(function(count) {
+			    console.log(count)
                 pages = Math.ceil(count / limte);//客户端应该显示的总页数
                 page = Math.min(page, pages);//page取值不能超过pages
                 page = Math.max(page, 1);//page取值不能小于1
@@ -322,6 +324,17 @@ router.get('/resources/categoryList',function(req,res,next){
                     });
                 })
             })
+        })
+    })
+})
+
+//登陆页面路由
+router.get('/login',function(req,res,next){
+    console.log(req.userInfo)
+    Category.find().then(function(categories) {
+        res.render('main/login.html', {
+            userInfo: req.userInfo,
+            categories:categories
         })
     })
 })

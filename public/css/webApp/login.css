@@ -1,0 +1,58 @@
+body{
+	font-size: 14px;
+}
+.loginBox {
+	width:1000px;
+	margin:50px auto 0;
+	background: #fff;
+	box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+	display: flex;
+}
+.loginBox .loginBox_left{
+	flex:7;
+	border-right: 1px solid #ddd;
+}
+.loginBox .loginBox_left ul li{
+	height:50px;
+	margin:0;
+	padding:0;
+	line-height:50px;
+	overflow: hidden;
+	border:1px solid #ddd;
+	margin-bottom:50px;
+}
+.loginBox .loginBox_left ul{
+	padding:50px;
+}
+.loginBox .loginBox_left ul li{
+	padding:0 20px;
+}
+.loginBox .loginBox_left ul li span{
+	display: block;
+	margin-right:20px;
+	color: #666;
+	float: left;
+}
+.loginBox .loginBox_left ul li input{
+	display: block;
+	width:430px;
+	height:50px;
+	float: left;
+	border: none;
+}
+.loginBox .loginBox_right{
+	height:100px;
+	flex:3;
+}
+.registeredBtn{
+	width:250px;
+	line-height:50px;
+	margin: 0 auto;
+	color: #fff;
+	text-align: center;
+	background: #5899d0;
+}
+
+
+
+

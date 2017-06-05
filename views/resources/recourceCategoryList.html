@@ -116,7 +116,7 @@
 						</div>
 						<p class="resource_title">{{plugList.name}}</p>
 						<div class="resource_tag">
-							<i class="fa fa-ship"></i>
+							<i class="fa fa-navicon"></i>
 							<span>{{plugList.categoryParentId.sourceParentName}}-{{plugList.categoryChildId.sourceParentName}}</span>
 						</div>
 						<div class="resource_more">
@@ -172,8 +172,11 @@
 	$(function(){
 		var counts;
 		$.ajax({
-			type:"post",
-			url:"/api/soucesCount",//soucesList
+			type:"get",
+			url:"/api/soucesCountList",//soucesList
+			data:{
+			    id:getParameter('id')
+			},
 			success:function(data){
 				counts = data.data.count;
 				var totalPage = Math.ceil(counts / 12);//总共的页数

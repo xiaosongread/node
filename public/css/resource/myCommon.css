@@ -1,6 +1,6 @@
 body{
 	/*color:#e6e6e6;*/
-	background: url(../images/bg.jpg) fixed repeat center top #f0f0f0;
+	background: url(../../images/bg.jpg) fixed repeat center top #f0f0f0;
 	overflow-x: scroll;
 	font-family: "Microsoft Yahei", "Trebuchet MS", Georgia,"Times New Roman",Times,sans-serif;
 	-webkit-font-smoothing: antialiased;

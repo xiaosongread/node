@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化,宋彦斌,小宋,抿圪斗,rem">
+		<meta name="description" content="小宋博客专注于前端开发,H5,h5相关技术的分享,主要涉及的html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化的知识,同时记录一些自己在开发中遇到的问题。">
+		<title>小宋博客</title>
+		<link rel="shortcut  icon" type="image/x-icon" href="/public/images/favicon.ico" media="screen"  />
+		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/shCoreDefault.css" />
+		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/resource/myCommon.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/webApp/login.css"/>
+		<script src="/public/js/jQuery-2.1.4.min.js"></script>
+		<script src="/public/js/login.js"></script>
+		<script src="/public/js/swiper.min.js"></script>
+		<script src="/public/js/shCore.js"></script>
+		<script src="/public/js/myFilter.js"></script>
+	</head>
+
+	<body>
+		<div class="index">
+			<nav class="navbar">
+				<div class="moreSource">
+					<div class="moreBox">
+						<div class="moreSourceBox">
+							<a href="/jssource">
+								<div class="moreSourceItem">
+									<i class="fa fa-ship"></i>
+									<span>静态资源</span>
+								</div>
+							</a>
+							<a href="/jquery1.8.3.html">
+								<div class="moreSourceItem">
+									<i class="fa fa-book"></i>
+									<span>在线手册</span>
+								</div>
+							</a>
+							<a href="/login" target="_self">
+								<div class="moreSourceItem">
+									<i class="fa fa-user"></i>
+									<span>登陆</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="logobox">
+					<div class="logo">
+						<a href="/" >
+							<div class="a">
+								<img src="/public/images/logo-default-white.png" class="logoImg"/>
+							</div>
+							<div class="logoIntroduce">
+								<p>关注前沿技术</p>
+								<p>专注前端开发</p>
+							</div>
+						</a>
+					</div>
+					{% if categories %}
+					<ul>
+						{% for categorie in categories %}
+						<li id="{{categorie._id.toString()}}">
+							<a href="/categoryList_index?id={{categorie._id.toString()}}">{{categorie.name}}</a>
+						</li>
+						{% endfor %}
+						<li>
+							<a href="/resources">前端资料库</a>
+						</li>
+						<li>
+							<!--http://www.500d.me/resume/4010888448/-->
+							<a href="/videoList">视频</a>
+						</li>
+					</ul>
+					{% endif %}
+				</div>
+			</nav>
+			<div class="bannerTopTag">
+				<p>Welcome to registered my repository</p>
+			</div>
+			<div class="mgd_cons">
+				<div class="loginBox">
+					<div class="loginBox_left">
+						<ul>
+							<li>
+								<span>用 户 名</span>
+								<input type="text" name="username">
+							</li>
+							<li>
+								<span>设 置 密 码</span>
+								<input type="text" name="password">
+							</li>
+							<li>
+								<span>确 认 密 码</span>
+								<input type="text" name="repassword">
+							</li>
+							<div class="registeredBtn">注册</div>
+						</ul>
+					</div>
+					<div class="loginBox_right"></div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="bottomLeft">
+					<p><a href="https://github.com/">github</a></p>
+					<p><a href="http://jquery.cuishifeng.cn/index.html">jq</a></p>
+					<p><a href="http://www.w3school.com.cn/">w3school</a></p>
+					<p><a href="http://tongji.baidu.com/web/welcome/login" target="_blank">百度统计</a></p>
+					<p><a href="http://changyan.kuaizhan.com/" target="_blank">畅言系统</a></p>
+				</div>
+				<div class="bottomRight">
+					<p>Copyright © Aaron All Rights Reserved 京ICP备17007771号-1</p>
+				</div>
+				<div class="bottomArtile">
+					<p>逆水行舟,不进则退.  ——宋彦斌</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?c99f49869b064a7b101d850e21ab5f4b";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>

@@ -606,4 +606,24 @@ router.post('/soucesCount',function(req,res,next){
         })
     })
 })
+//资源分类列表的分页
+router.get('/soucesCountList',function(req,res,next){
+	var id = req.query.id;
+    Category.find().then(function(categories) {
+        Plug.find({
+            categoryChildId:id
+		}).count().then(function (count) {
+            console.log("123")
+            console.log(count)
+            comments = {
+                "count" : count
+            }
+            responseData.code = 24;
+            responseData.message = "数据获取成功!";
+            responseData.data = comments;
+            res.json(responseData);
+            return;
+        })
+    })
+})
 module.exports = router;
