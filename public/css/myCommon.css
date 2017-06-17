@@ -121,12 +121,12 @@ body{
 	 -webkit-box-flex: 1;
 	 text-align: center;
 }
-.index .navbar ul li:last-child a{
-	color: #951d00;
-}
-.index .navbar.navbarPosition ul li:last-child a{
-	color: #951d00;
-}
+/*.index .navbar ul li:last-child a{*/
+	/*color: #951d00;*/
+/*}*/
+/*.index .navbar.navbarPosition ul li:last-child a{*/
+	/*color: #951d00;*/
+/*}*/
 .index .navbar.navbarPosition ul li a{
 	color: #444;
 }

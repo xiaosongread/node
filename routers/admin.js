@@ -350,12 +350,12 @@ router.post('/content/add',function(req,res,next) {
 		return Promise.reject();
 	}
 	//保存文章内容到数据库
+	console.log("GGGGGGGGGGGGGGGGGGGGGG")
 	var content = new Content({
 		category:category,
 		title:title,
 		description:description,
-		content:contents,
-		startTime:new Date()
+		content:contents
 	});
 	return content.save().then(function(contents){
 		res.render('admin/success',{

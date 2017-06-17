@@ -362,8 +362,8 @@ router.post('/content/add',function(req,res,next) {
 		category:category,
 		title:title,
 		description:description,
-		content:contents
-		// startTime:Date.parse(new Date())
+		content:contents,
+		startTime:Date.parse(new Date())
 	});
 	return content.save().then(function(contents){
 		// res.render('admin/success',{
