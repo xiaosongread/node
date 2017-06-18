@@ -82,6 +82,24 @@ $(function(){
             $(this).find("img").css({"transform": "scale(1, 1)","transition": "all 1s"});
         }
     })
+
+    var sTop = document.body.scrollTop;//滚动条的高度
+    var wHeight = $(window).height();//浏览器的高度
+    for(var i=0;i<$(".recourceImg").length;i++){
+        if($(".recourceImg")[i].offsetTop <= sTop + wHeight){
+            $(".recourceImg")[i].src = $(".recourceImg")[i].getAttribute("data-src")
+            $(".recourceImg")[i].setAttribute("class","recourceImg del");
+        }
+    }
+    $(window).scroll(function(){
+        console.log("123")
+        sTop = document.body.scrollTop;//滚动条的高度
+        for(var j=0;j<$(".recourceImg.add").length;j++){
+            if($(".recourceImg.add")[j].offsetTop <= sTop + wHeight){
+                $(".recourceImg.add")[j].src = $(".recourceImg.add")[j].getAttribute("data-src")
+            }
+        }
+    })
 })
 var _hmt = _hmt || [];
 (function() {

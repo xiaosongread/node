@@ -244,7 +244,7 @@ router.get('/jquery1.8.3.html',function(req,res,next){
 // 首页页面路由
 router.get('/resources',function(req,res,next){
     var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
-    var limte = 12;
+    var limte = 20;
     var pages = 0;
 //	res.send('shouye')
     //从数据库中获取网站的分类名称
