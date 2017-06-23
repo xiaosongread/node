@@ -105,9 +105,10 @@ pre{
 }
 .index .mgd_cons .mgd_cons_left .content_cons .content_content pre{
 	padding: 10px;
-	border-radius: 5px;
-	background: #555;
-	color: #dddddd;
+	background: #F0F0F0;
+	color: #000;
+	border: 1px solid #ddd;
+	border-left: 2px solid #1b58b8
 }
 /*文章评论的显示*/
 .index .mgd_cons .mgd_cons_left .showComment{
