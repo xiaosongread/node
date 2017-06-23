@@ -593,8 +593,6 @@ router.post('/resources',function(req,res,next){
 router.post('/soucesCount',function(req,res,next){
     Category.find().then(function(categories) {
         Plug.count().then(function (count) {
-        	console.log("123")
-			console.log(count)
             comments = {
                 "count" : count
             }
@@ -613,8 +611,6 @@ router.get('/soucesCountList',function(req,res,next){
         Plug.find({
             categoryChildId:id
 		}).count().then(function (count) {
-            console.log("123")
-            console.log(count)
             comments = {
                 "count" : count
             }

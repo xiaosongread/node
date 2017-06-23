@@ -116,7 +116,7 @@
 					<a href="/resources/info?id={{plugList._id.toString()}}">
 					<li>
 						<div class="resource_img">
-							<img data-src= {{plugList.imgurl}} src="/public/images/logoDafult.png">
+							<img data-src= {{plugList.imgurl}} src="/public/images/logoDafult.png" class="recourceImg add">
 						</div>
 						<p class="resource_title">{{plugList.name}}</p>
 						<div class="resource_tag">
@@ -180,7 +180,7 @@
 			url:"/api/soucesCount",//soucesList
 			success:function(data){
 				counts = data.data.count;
-				var totalPage = Math.ceil(counts / 12);//总共的页数
+				var totalPage = Math.ceil(counts / 20);//总共的页数
 				var totalRecords = counts;//总数据条数
 				var pageNo = getParameter('page');
 				if(!pageNo){
