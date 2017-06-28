@@ -7,10 +7,12 @@ $(function(){
         if(flag){
             $(".bar").hide()
             $(".allArticle").css({"marginTop":"60px"});
+            $(".fa-navicon").css("transform","rotate(180deg)")
             flag = false;
         }else{
             $(".bar").show();
             $(".allArticle").css({"marginTop":"0"});
+            $(".fa-navicon").css("transform","rotate(90deg)")
             flag = true;
         }
     })
