@@ -6,8 +6,14 @@ body{
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.index{
+	min-width:1200px;
+}
 .index i{
 	margin-right:5px;
+}
+canvas{
+	min-width:1200px;
 }
 /*顶部导航*/
 .index .navbar{
@@ -339,11 +345,10 @@ body{
 }
 .userInfo .welcome{
 	width: 100%;
-	height: 50px;
 	padding: 0 10px;
 	font-size: 15px;
 	text-align: left;
-	line-height: 50px;
+	line-height: 30px;
 	border-bottom: 1px solid #ddd;
 }
 .userInfo .adminPage{
@@ -602,6 +607,7 @@ body{
 /*网站内容模块*/
 .mgd_cons{
 	max-width:1200px;
+	min-width:1200px;
 	overflow: hidden;
 	margin:0 auto;
 	overflow: hidden;
