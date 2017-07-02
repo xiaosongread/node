@@ -8,6 +8,7 @@ var Content = require('../models/contents');
 var VideoCategory = require('../models/videoCategory');
 var VideoList = require('../models/videoList');
 var Source = require('../models/source');
+var Book = require('../models/bookList');
 var Pushsource = require('../models/pushsource');
 var Banner = require('../models/banner');
 var Plug = require('../models/plug');
@@ -350,7 +351,6 @@ router.post('/content/add',function(req,res,next) {
 		return Promise.reject();
 	}
 	//保存文章内容到数据库
-	console.log("GGGGGGGGGGGGGGGGGGGGGG")
 	var content = new Content({
 		category:category,
 		title:title,
@@ -882,9 +882,85 @@ router.post('/apply/push',function(req,res,next){
         }
     });
 })
-
-
-
+//书籍列表
+router.get('/addBook',function(req,res,next){
+	res.render('admin/addBook',{
+		userInfo:req.userInfo
+	})
+})
+//保存pdf资源的数据
+router.post('/addBook',function(req,res,next){
+	console.log("ddddd")
+    var bookName = req.body.bookName || '';
+    var bookPath = req.body.bookPath || '';
+    var imagePath = req.body.imagePath || '';
+    console.log(bookName,bookPath,imagePath)
+    //保存注册的账号到数据库中
+    var book = new Book({
+        bookName:  bookName,
+        bookPath:  bookPath,
+        imagePath: imagePath,
+        startTime: Date.parse(new Date())
+    });
+    return book.save().then(function(pushsourceData){
+        res.render('admin/success',{
+            userInfo:req.userInfo,
+            successMessage:"pdf书籍资源添加成功!",
+            url:"/admin/addBook"
+        })
+    });
+})
+//上传书籍封面图片
+router.post('/apply/book',function(req,res,next){
+    var cacheFolder = './public/images/uploadcache/';
+    var currentUser = req.userInfo.username;
+    var userDirPath =cacheFolder+ currentUser;
+    if (!fs.existsSync(userDirPath)) {
+        fs.mkdirSync(userDirPath);
+    }
+    var form = new formidable.IncomingForm(); //创建上传表单
+    form.encoding = 'utf-8'; //设置编辑
+    form.uploadDir = userDirPath; //设置上传目录
+    form.keepExtensions = true; //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024; //文件大小
+    form.type = true;
+    var displayUrl;
+    form.parse(req, function(err, fields, files) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        var extName = ''; //后缀名
+        console.log(files.upload.type)
+        switch (files.upload.type) {
+            case 'image/jpeg':
+                extName = 'jpg';
+                break;
+            case 'text/png':
+                extName = 'png';
+                break;
+        }
+        if (extName.length === 0) {
+            res.send({
+                code: 202,
+                msg: '只支持图片资源上传'
+            });
+            return;
+        } else {
+            var avatarName = '/' + Date.now() + '.' + extName;
+            var newPath = form.uploadDir + avatarName;
+            displayUrl = currentUser;
+            fs.renameSync(files.upload.path, newPath); //重命名
+            newPath = newPath.substring(1);
+            console.log(newPath)
+            res.send({
+                code: 200,
+                msg: displayUrl,
+                url: "https://"+ req.host + newPath
+            });
+        }
+    });
+})
 //上传插件资源
 router.post('/apply/addZip',function(req,res,next){
 	console.log(res)
@@ -907,6 +983,8 @@ router.post('/apply/addZip',function(req,res,next){
             return;
         }
         var extName = ''; //后缀名
+		console.log("类型：")
+		console.log(files.upload.type)
         switch (files.upload.type) {
             case 'application/zip':
                 extName = 'zip';

@@ -39,7 +39,7 @@
             <a class="navbar-brand" href="/">网站首页</a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand">后台管理</a>
+            <a class="navbar-brand" href="/admin">后台管理</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -81,12 +81,6 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">js资源管理 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/admin/push">js资源上传</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">资源分类 <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/admin/addSourceCategoryParent">添加一级分类</a></li>
@@ -94,8 +88,10 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">插件管理 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">资源管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="/admin/push">资源上传</a></li>
+                        <li><a href="/admin/addBook">pdf书籍上传</a></li>
                         <li><a href="/admin/addResources">zip插件上传</a></li>
                     </ul>
                 </li>

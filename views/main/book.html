@@ -28,10 +28,10 @@
 				margin-bottom: 10px !important;
 				float: left;
 			}
-			.videoListBox li:nth-of-type(4n+2){
+			.videoListBox li:nth-child(2){
 				margin:0 10px;
 			}
-			.videoListBox li:nth-of-type(4n+3){
+			.videoListBox li:nth-child(3){
 				margin-right:10px;
 			}
 			.videoListBox li .videoImg{
@@ -45,12 +45,7 @@
 			.videoListBox li p{
 				width:100%;
 				line-height:50px;
-				height:50px;
-				overflow: hidden;
-				text-overflow:ellipsis;
-				white-space: nowrap;
 				text-align: center;
-				padding: 0 15px;
 				border-top:1px solid #ddd;
 			}
 		</style>
@@ -71,12 +66,6 @@
 								<div class="moreSourceItem">
 									<i class="fa fa-bookmark"></i>
 									<span>参考书</span>
-								</div>
-							</a>
-							<a href="/videoList">
-								<div class="moreSourceItem">
-									<i class="fa fa-video-camera"></i>
-									<span>视频</span>
 								</div>
 							</a>
 							<a href="/jquery1.8.3.html">
@@ -116,6 +105,10 @@
 						<li>
 							<a href="/resources">前端资料库</a>
 						</li>
+						<li>
+							<!--http://www.500d.me/resume/4010888448/-->
+							<a href="/videoList">视频</a>
+						</li>
 					</ul>
 					{% endif %}
 				</div>
@@ -134,32 +127,17 @@
 				</div>
 			</div>
 			{% endif %}
-			<div class="categoryNameInfo">
-				<div class="categoryNameInfoBox">
-					<div class="categoryName">{{videoList[0].category.name}}</div>
-					<!--<ul class="categoryListName">-->
-						<!--<li>-->
-							<!--<a href="/" ><i class="fa fa-home"></i>抿圪斗</a>-->
-						<!--</li>-->
-						<!--<li>-->
-							<!--<a href="/categoryList_index?id={{content.category._id.toString()}}"><i class="fa fa-navicon"></i>{{content.category.name}}</a>-->
-						<!--</li>-->
-						<!--<li>/</li>-->
-						<!--<li>{{content.title}}</li>-->
-					<!--</ul>-->
-				</div>
-			</div>
 			<div class="mgd_cons">
 
 				<div class="mgd_cons_left">
 					<ul class="videoListBox">
-						{% for video in videoList %}
+						{% for book in bookList %}
 						<li>
-							<a href="/videoInfo?id={{video._id.toString()}}">
+							<a href="{{book.bookPath}}">
 							<div class="videoImg">
-								<img src={{video.imagePath}} />
+								<img src={{book.imagePath}} />
 							</div>
-							<p>{{video.videoName}}</p>
+							<p>{{book.bookName}}</p>
 							</a>
 						</li>
 						{% endfor %}
@@ -168,7 +146,7 @@
 				<div class="mgd_cons_right">
 					<!--banner-->
 					<div class="aboutMe">
-						<div class="aboutMe_title"><i class="fa fa-newspaper-o"></i>网站最新动态</div>
+						<div class="aboutMe_title"><i class="fa fa-comment"></i>网站最新动态</div>
 						<section class="callMe">
 							<style>
 

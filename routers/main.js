@@ -9,6 +9,7 @@ var VideoList = require('../models/videoList');
 var VideoCategory = require('../models/videoCategory');
 var Pushsource = require('../models/pushsource');
 var Source = require('../models/source');
+var Book = require('../models/bookList');
 var Plug = require('../models/plug');
 router.get('/',function(req,res,next){
 	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
@@ -227,6 +228,24 @@ router.get('/jssource',function(req,res,next){
         res.render('main/jsSource.html', {
             userInfo: req.userInfo,
             source:source
+        })
+    })
+})
+//书籍列表
+router.get('/book',function(req,res,next){
+    Book.find().then(function(bookList) {
+        console.log("book:")
+        console.log(bookList)
+        Category.find().then(function(categories) {
+            VideoCategory.find().then(function (videoCategory) {
+                // console.log(videoCategory)
+                res.render('main/book.html', {
+                    userInfo: req.userInfo,
+                    bookList: bookList,
+                    videoList: bookList,
+                    categories:categories
+                })
+            })
         })
     })
 })
