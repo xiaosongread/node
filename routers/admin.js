@@ -837,6 +837,7 @@ router.post('/apply/upload',function(req,res,next){
 
 //上传js静态资源
 router.post('/apply/push',function(req,res,next){
+	console.log(req)
     var cacheFolder = './public/source/js/';
     var currentUser = req.userInfo.username;
     var userDirPath =cacheFolder+ currentUser;
