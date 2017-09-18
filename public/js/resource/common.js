@@ -47,7 +47,7 @@ $(function(){
                 })
             })
             console.log(newBarData)
-            var htmls =''
+            var htmls ='<li><a href="https://www.songyanbin.com">博客</a></li>|'
             for(var i=0;i<newBarData.length;i++){
                 htmls += '<li><i class="fa '+newBarData[i].icon+'"></i><span>'+newBarData[i].sourceParentName+'</span><i class="fa fa-angle-down"></i><div class="resource_tabConsBox"><ul class="resource_tabCons">';
                 for(var j=0;j<newBarData[i].childData.length;j++) {
