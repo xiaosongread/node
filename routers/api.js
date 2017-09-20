@@ -32,9 +32,10 @@ router.post('/articlesList',function(req,res,next){
 	var limte = 10;
 	var pages = 0;
 	var comments;
-//	res.send('shouye')
 	//从数据库中获取网站的分类名称
-	Category.find().then(function(categories){
+	Category.find({
+        posted: true
+	}).then(function(categories){
 		// console.log(categories)
 		//查询数据库中的数据的条数
 		Content.count().then(function(count) {
@@ -55,16 +56,17 @@ router.post('/articlesList',function(req,res,next){
  */
 router.post('/categoryList/articlesList',function(req,res,next){
 	var id = req.body.id || "";//当前点击的分类的ID
-	console.log("???")
-	console.log(id)
 	//从数据库中获取网站的分类名称
 	Category.find().then(function(categories){
 		//查询数据库中的数据的条数
 		Content.find(
-			{category:id}//分类的ID
+			{
+				category:id//分类的ID
+            },
+			{
+                posted:true//是否发布
+			}
 		).count().then(function(count) {
-			console.log("ASDASDASD")
-			console.log(count)
 			comments = {
 				"count" : count
 			}
@@ -323,12 +325,13 @@ router.post('/content/hotContents',function(req,res,next){
 })
 // 文章内容保存post的路由(添加)
 router.post('/content/add',function(req,res,next) {
-	console.log("asd-asd")
 	var category = req.body.category; //文章的分类
 	console.log(category)
 	var title = req.body.title; //文章的标题
+	var posted = req.body.posted;//是否发布
 	var description = req.body.description; //文章的简介
 	var contents = req.body.contents; //文章的内容
+	console.log('文章提交的数据',req.body)
 	if(!category){//表示没有这条数据
 		res.render('admin/error',{
 			userInfo:req.userInfo,
@@ -361,6 +364,7 @@ router.post('/content/add',function(req,res,next) {
 	var content = new Content({
 		category:category,
 		title:title,
+        posted:posted,
 		description:description,
 		content:contents,
 		startTime:Date.parse(new Date())
@@ -405,6 +409,7 @@ router.post('/content/nowContentInfo',function(req,res,next){
 router.post('/content/edit',function(req,res,next){
 	var id = req.body.id || "";//文章的id
 	var categoryid = req.body.category || "";//文章的分类
+	var posted = req.body.posted;
 	var title = req.body.title || "";
 	var description = req.body.description || "";
 	var contentwords = req.body.contents || "";
@@ -451,6 +456,7 @@ router.post('/content/edit',function(req,res,next){
 		},{
 			//更新的值
 			title:title,
+            posted:posted,
 			description:description,
 			content:contentwords,
 			startTime:Date.parse(new Date())

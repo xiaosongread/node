@@ -837,8 +837,6 @@ router.post('/apply/upload',function(req,res,next){
 
 //上传js静态资源
 router.post('/apply/push',function(req,res,next){
-	console.log(req)
-<<<<<<< HEAD
 	var cacheFolder = './public/source/js/';
 	var currentUser = req.userInfo.username;
 	var userDirPath =cacheFolder+ currentUser;
@@ -883,52 +881,6 @@ router.post('/apply/push',function(req,res,next){
 			});
 		}
 	});
-=======
-    var cacheFolder = './public/source/js/';
-    var currentUser = req.userInfo.username;
-    var userDirPath =cacheFolder+ currentUser;
-    if (!fs.existsSync(userDirPath)) {
-        fs.mkdirSync(userDirPath);
-    }
-    var form = new formidable.IncomingForm(); //创建上传表单
-    form.encoding = 'utf-8'; //设置编辑
-    form.uploadDir = userDirPath; //设置上传目录
-    form.keepExtensions = true; //保留后缀
-    form.maxFieldsSize = 2 * 1024 * 1024; //文件大小
-    form.type = true;
-    var displayUrl;
-    form.parse(req, function(err, fields, files) {
-        if (err) {
-            res.send(err);
-            return;
-        }
-        var extName = ''; //后缀名
-        console.log(files.upload.type)
-        switch (files.upload.type) {
-            case 'text/javascript':
-                extName = 'js';
-                break;
-        }
-        if (extName.length === 0) {
-            res.send({
-                code: 202,
-                msg: '只支持js静态资源上传'
-            });
-            return;
-        } else {
-            var avatarName = '/' + Date.now() + '.' + extName;
-            var newPath = form.uploadDir + avatarName;
-            displayUrl = currentUser;
-            fs.renameSync(files.upload.path, newPath); //重命名
-            newPath = newPath.substring(1);
-            res.send({
-                code: 200,
-                msg: displayUrl,
-                url: "https://"+ req.host + newPath
-            });
-        }
-    });
->>>>>>> b592393a30fd8d3d664e4f25dc585d36f06f411d
 })
 //书籍列表
 router.get('/addBook',function(req,res,next){

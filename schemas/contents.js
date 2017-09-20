@@ -14,6 +14,10 @@ module.exports = new mongoose.Schema ({
 		ref:'Category'//引用另一张表
 	 },
 	 title:  String,
+     posted:{
+		type:Boolean,
+		default:true
+	 },
 	 description: {
 		 type: String,
 		 default:''//默认值

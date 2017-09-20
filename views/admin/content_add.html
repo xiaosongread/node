@@ -24,6 +24,13 @@
         <input type="text" class="form-control" id="title" placeholder="请输入文章标题" name="title">
     </div>
     <div class="form-group">
+        <label for="posted">是否发布:</label>
+        <select name="posted" id="posted" class="form-control">
+            <option value="true">是</option>
+            <option value="false">否</option>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="description">内容简介:</label>
         <textarea name="description" id="description" class="form-control" cols="30" rows="5" placeholder="请输入内容简介"></textarea>
     </div>
@@ -39,13 +46,14 @@
         var ue = UE.getEditor('editor');
         $(".btn-default").on("click",function(){
             console.log($(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html())
-            console.log($("#content").val())
+            console.log($("#posted").val())
             $.ajax({
                 type:"post",
                 url:"/api/content/add",
                 data:{
                     category:$('#category option:selected').val(),
                     title:$("#title").val(),
+                    posted:$("#posted").val(),
                     description:$("#description").val(),
                     contents:$(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html()
                 },

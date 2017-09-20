@@ -26,7 +26,9 @@ router.get('/',function(req,res,next){
 			var skip = (page - 1) * limte;
 			//sort()排序  -1 降序 1 升序
 			//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
-			Content.find().sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
+			Content.find({
+                posted: true
+            }).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
                 var deviceAgent = req.headers["user-agent"].toLowerCase();
                 var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
                 if(agentID){
@@ -87,8 +89,10 @@ router.get('/categoryList_index',function(req,res,next){
 	Category.find().then(function(categories){
 		//查询数据库中的数据的条数
 		Content.find(
-			{category:id}//分类的ID
+			{category:id,posted:true}//分类的ID
 		).count().then(function(count) {
+		    console.log("1-1-1-1-1")
+		    console.log(count)
 			pages = Math.ceil(count / limte);//客户端应该显示的总页数
 			page = Math.min(page, pages);//page取值不能超过pages
 			page = Math.max(page, 1);//page取值不能小于1
@@ -96,7 +100,7 @@ router.get('/categoryList_index',function(req,res,next){
 			//sort()排序  -1 降序 1 升序
 			//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
 			Content.find(
-				{category:id}//分类的ID
+                {category:id,posted:true}//分类的ID
 				).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
                 var deviceAgent = req.headers["user-agent"].toLowerCase();
                 var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
