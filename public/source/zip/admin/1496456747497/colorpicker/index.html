@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>自定义颜色</title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-ui-1.11.0.js"></script>
+    <script src="js/colorpicker.js"></script>
+    <style>
+
+        .rangeslider,
+        .rangeslider__fill {
+            background: rgba(00,255,255,1);
+            display: block;
+            height: 0px;
+            width: 100%;
+
+        }
+        .rangeslider {
+            position: relative;
+        }
+
+        .rangeslider--disabled {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+            opacity: 0.4;
+        }
+
+        .rangeslider__fill {
+            background: rgba(255,25,255,1);
+            position: absolute;
+            top: 0;
+        }
+
+        .rangeslider__handle {
+            background: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            display: inline-block;
+            width: 20px;
+            height:20px;
+            position: absolute;
+            top: -8px;
+            background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4xIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+            background-size: 100%;
+            background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(0, 0, 0, 0.1)));
+            background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
+            background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
+            -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+        output{
+            display: none;
+        }
+        #examples{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 16px;
+        }
+        #js-example-change-value{
+            margin-top: 2px;
+            margin-bottom: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+
+
+        <div id="bg" style="width: 300px;height: 100px;background-color: #ff00ff;margin-left:auto;margin-right: auto;"></div>
+
+            <div id="examples" style="width: 240px">
+                <div id="js-example-change-value">
+                    <input type="range" min="0" max="100" value="50" data-rangeslider>
+                    <output></output>
+                    <canvas id="myCanvas" width="240" height="10">
+                    </canvas>
+                </div>
+                <div id="js-example-change-value1">
+                    <input type="range" min="0" max="100" value="50" data-rangeslider>
+                    <output></output>
+                    <canvas id="myCanvas1" width="240" height="10">
+                    </canvas>
+                </div>
+            </div>
+
+
+
+
+<script>
+    window.onload=function(){
+        myCanvas();
+    }
+</script>
+<script>
+
+    $("#examples").on("touchmove", function(e) {
+        myCanvas();
+
+    });
+    function myCanvas(){
+        var l=parseInt($('.rangeslider__handle').css('left'));
+        var c=document.getElementById("myCanvas");
+        var ctx=c.getContext("2d");
+        var grd=ctx.createLinearGradient(0,0,240,0);
+        grd.addColorStop(0,"#ff0000");
+        grd.addColorStop(0.2,"#ffff00");
+        grd.addColorStop(0.4,"#00ff00");
+        grd.addColorStop(0.6,"#00ffff");
+        grd.addColorStop(0.8,"#ff00ff");
+        grd.addColorStop(1,"#ff0000");
+        ctx.fillStyle=grd;
+        ctx.fillRect(0,0,240,5);
+
+        var imgData=ctx.getImageData(l,0,5,5);
+        red=imgData.data[0];
+        green=imgData.data[1];
+        blue=imgData.data[2];
+        alpha=imgData.data[3];
+//        console.log(red + " " + green + " " + blue + " " + alpha);
+        console.log(l)
+        myCanvas1();
+    }
+
+    function myCanvas1(){
+        var l1=parseInt($('.rangeslider__handle').eq(1).css('left'));
+        var c1=document.getElementById("myCanvas1");
+        var ctx1=c1.getContext("2d");
+        var grd1=ctx1.createLinearGradient(0,0,240,0);
+        grd1.addColorStop(0,('rgb(0,0,0)'));
+        grd1.addColorStop(1,('rgb('+red+','+green+','+blue+')'));
+        ctx1.fillStyle=grd1;
+        ctx1.fillRect(0,0,240,5);
+
+        var imgData1=ctx1.getImageData(l1,0,5,5);
+        red1=imgData1.data[0];
+        green1=imgData1.data[1];
+        blue1=imgData1.data[2];
+        alpha1=imgData1.data[3];
+        backgroundBG=red1 + "," + green1 + "," + blue1;
+//        console.log(backgroundBG);
+        $('#bg').css('background','rgb('+backgroundBG+')')
+    }
+
+
+
+</script>
+</body>
+
+</html>
