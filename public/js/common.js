@@ -120,6 +120,7 @@ $(function(){
 			}
 		});
 	}
+
 	//绑定点击登陆按钮
 	$(".loginBtn").on("click",loginFn)
 	//点击回车执行登陆函数

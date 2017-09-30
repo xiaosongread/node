@@ -556,4 +556,31 @@ router.post('/videoList',function(req,res,next){
         return;
     })
 })
+
+//文章编辑显示内容的的路由
+router.post('/content/admin-edit',function(req,res,next) {
+	console.log("1-1-!!!!")
+	console.log(req.body)
+    var id = req.body.id || "";//文章的id
+	console.log(id)
+    Content.findOne({
+        _id:id
+    }).then(function(contents){
+        var categoryId = contents.category;
+        Category.findOne({
+            _id:categoryId
+        }).then(function(categories){
+        	console.log("2-2-2-!!!!")
+            responseData.code = 200;
+            responseData.message = "文章编辑内容获取成功";
+            responseData.data = new Object();
+            responseData.data.userInfo = req.userInfo;
+            responseData.data.contents = contents;
+            responseData.data.categoriyName = categories.name;
+            responseData.data.id = categories.id;
+            res.json(responseData);
+            return;
+        })
+    })
+})
 module.exports = router;
