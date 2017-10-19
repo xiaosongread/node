@@ -68,7 +68,8 @@ $(function(){
 			data:{
 				username:username,
 				password:password,
-				repassword:repassword
+				repassword:repassword,
+				time:Number(Date.parse(new Date()))
 			},
 			success:function(data){
 				// console.log(data)
