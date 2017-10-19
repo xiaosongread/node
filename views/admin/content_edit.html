@@ -44,7 +44,33 @@
         var ue = UE.getEditor('editor');
 //        var editor = new baidu.editor.ui.Editor();
 //        editor.render("editor");
-//        UE.getEditor('editor').execCommand('insertHtml', value);
+
+//        function GetQueryString(name){
+//            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+//            var r = window.location.search.substr(1).match(reg);
+//            if(r!=null)return  unescape(r[2]); return null;
+//        }
+//        $.ajax({
+//            url: '/api/content/admin-edit',
+//            type:'post',
+//            data:{
+//                id:GetQueryString('id')
+//            },
+//            success:function(data){
+//                console.log(data)
+//                $("#id").val(data.data.id)
+//                $("#category").val(data.data.categoriyName)
+//                $("#title").val(data.data.contents.title)
+//                $("#description").html(data.data.contents.description)
+//                var content = data.data.contents.content
+//                console.log("1:",content)
+//                setTimeout(function(){
+//                    console.log("2:",content)
+//                    ue.execCommand('insertHtml', content);
+//                },1000)
+//
+//            }
+//        })
         $(".btn-default").on("click",function(){
             console.log($(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html())
             $.ajax({

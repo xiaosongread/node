@@ -18,7 +18,7 @@ var swig = require('swig');
 //设置静态文件的托管
 //用户请求的url，如果是以public开头的，他就会去public下面找对应请求的文件
 app.use('/public',express.static(__dirname + "/public"));
-// app.use('/ueditor',express.static(__dirname + "/ueditor"));
+app.use('/ueditor',express.static(__dirname + "/ueditor"));
 //在开发过程中需要取消模板的缓存
 swig.setDefaults({cache:false});
 //配置应用模板

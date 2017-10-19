@@ -68,7 +68,8 @@ $(function(){
 			data:{
 				username:username,
 				password:password,
-				repassword:repassword
+				repassword:repassword,
+				time:Number(Date.parse(new Date()))
 			},
 			success:function(data){
 				// console.log(data)
@@ -120,6 +121,7 @@ $(function(){
 			}
 		});
 	}
+
 	//绑定点击登陆按钮
 	$(".loginBtn").on("click",loginFn)
 	//点击回车执行登陆函数
