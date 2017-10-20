@@ -187,6 +187,14 @@ $(function(){
             $(this).find("img").css({"transform": "scale(1, 1)","transition": "all 1s"});
         }
 	})
+	//点击顶部登陆按钮
+	$(".loginTop").on("click",function(){
+		$(".top-loginBox").show();
+		$("body,html").addClass('fixed')
+	})
+	// $(".top-loginBox").on("click",function(){
+     //    $(this).hide()
+	// })
 })
 var _hmt = _hmt || [];
 (function() {
