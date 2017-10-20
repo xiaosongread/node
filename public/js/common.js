@@ -114,12 +114,9 @@ $(function(){
 			success:function(data){
 				console.log(data)
 				if(data.code == 9){
-					// setTimeout(function(){
-					// 	window.location.reload();
-					// },300)
-                    $(".loginTop").find("span").html(data.data.username)
-                    $(".loginTop").removeClass('loginTop')
-					$(".top-loginBox").hide()
+					setTimeout(function(){
+						window.location.reload();
+					},300)
 				}else{
 					$(".totast").html(data.message)
 				}

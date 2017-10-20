@@ -70,26 +70,18 @@
 							</a>
 							<a>
 								<div class="moreSourceItem loginTop">
-									<div>
-										<i class="fa fa-user"></i>
-										<span>
-											{% if userInfo.username %}
-												{{userInfo.username}}
-											{% else %}
-												登陆
-											{% endif %}
-										</span>
-									</div>
-									<div class="userMore">
-										<div>
-											<i class="fa fa-user"></i>
-											<span>个人中心</span>
-										</div>
-										<div>
-											<i class="fa fa-user"></i>
-											<span>退出</span>
-										</div>
-									</div>
+									<i class="fa fa-user"></i>
+									<span>
+										{% if userInfo.username %}
+											{{userInfo.username}}
+										{% else %}
+											登陆
+										{% endif %}
+									</span>
+									{% if userInfo.username %}
+									<span>| 个人中心 | </span>
+									<span>退出</span>
+									{% endif %}
 								</div>
 							</a>
 						</div>

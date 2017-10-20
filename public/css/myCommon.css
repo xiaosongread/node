@@ -58,6 +58,12 @@ canvas{
 .index .navbar .moreSource .moreSourceBox .SourceItem:hover{
 	color: #337ab7;
 }
+.index .navbar .moreSource .moreSourceBox .loginTop span{
+	cursor: pointer;
+}
+.index .navbar .moreSource .moreSourceBox .loginTop span:hover{
+	color: #337ab7;
+}
 .index .navbar.navbarPosition{
 	background: #fff;
 	color: #444444 !important;
@@ -88,13 +94,13 @@ canvas{
 .index .navbar.navbarPosition .moreSource .moreSourceItem{
 	color: #6c6c6c;
 }
-.index .navbar.navbarPosition .moreSource .moreBox .loginTop{
-	position: relative;
+.index .navbar.navbarPosition .loginTop:hover{
+	color:#337ab7
 }
-.index .navbar.navbarPosition .moreSource .moreBox .loginTop .userMore{
+/*.index .navbar.navbarPosition .moreSource .moreBox .loginTop .userMore{
 	position: absolute;
 	top:200px;
-}
+}*/
 .index .navbar .logo{
 	width: 20%;
 	position:relative;
