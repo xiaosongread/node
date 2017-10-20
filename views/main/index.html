@@ -45,33 +45,51 @@
 					<div class="moreBox">
 						<div class="moreSourceBox">
 							<a href="/jssource">
-								<div class="moreSourceItem">
+								<div class="moreSourceItem SourceItem">
 									<i class="fa fa-ship"></i>
 									<span>js静态资源</span>
 								</div>
 							</a>
 							<a href="/book">
-								<div class="moreSourceItem">
+								<div class="moreSourceItem SourceItem">
 									<i class="fa fa-bookmark"></i>
 									<span>参考书</span>
 								</div>
 							</a>
 							<a href="/videoList">
-								<div class="moreSourceItem">
+								<div class="moreSourceItem SourceItem">
 									<i class="fa fa-video-camera"></i>
 									<span>视频</span>
 								</div>
 							</a>
 							<a href="/jquery1.8.3.html">
-								<div class="moreSourceItem">
+								<div class="moreSourceItem SourceItem">
 									<i class="fa fa-book"></i>
 									<span>在线手册</span>
 								</div>
 							</a>
 							<a>
 								<div class="moreSourceItem loginTop">
-									<i class="fa fa-user"></i>
-									<span>登陆</span>
+									<div>
+										<i class="fa fa-user"></i>
+										<span>
+											{% if userInfo.username %}
+												{{userInfo.username}}
+											{% else %}
+												登陆
+											{% endif %}
+										</span>
+									</div>
+									<div class="userMore">
+										<div>
+											<i class="fa fa-user"></i>
+											<span>个人中心</span>
+										</div>
+										<div>
+											<i class="fa fa-user"></i>
+											<span>退出</span>
+										</div>
+									</div>
 								</div>
 							</a>
 						</div>
@@ -264,101 +282,7 @@
 				</div>
 			</div>
 		</div>
-		<style>
-			.top-loginBox{
-				width:100%;
-				height:100%;
-				position: absolute;
-				top:0;
-				left:0;
-				z-index:1000000;
-				/*display: none;*/
-			}
-			.top-loginBox .top-loginBox-bg{
-				width:100%;
-				height:100%;
-				background: #000000;
-				opacity:.7;
-			}
-			.top-loginBox .top-loginBox-con{
-				width:600px;
-				height:400px;
-				background: #fff;
-				border-radius: 20px;
-				position: absolute;
-				left: 0;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				margin: auto;
-			}
-			.top-loginBox .top-loginBox-con .login-logo{
-				width:100px;
-				height:100px;
-				display: inherit;
-				margin:0 auto;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input{
-				width:100%;
-				border-top: 1px solid #ddd;
-				border-bottom: 1px solid #ddd;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input li:not(:last-child){
-				width:400px;
-				display: flex;
-				line-height:50px;
-				border-radius: 10px;
-				border:1px solid #ddd;
-				margin:20px auto 0;
-				overflow: hidden;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input li:last-child{
-				width:400px;
-				line-height:50px;
-				margin:20px auto;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input li:last-child .loginBtn{
-				margin:0 auto;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input p{
-				width:50px;
-				height:50px;
-				border-right: 1px solid #ddd;
-				/* Firefox */
-				display:-moz-box;
-				-moz-box-pack:center;
-				-moz-box-align:center;
-				/* Safari, Chrome, and Opera */
-				display:-webkit-box;
-				-webkit-box-pack:center;
-				-webkit-box-align:center;
-				/* W3C */
-				display:box;
-				box-pack:center;
-				box-align:center;
-				background: #eeeeee;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input .loginBtn{
-				width:250px;
-				height:50px;
-				color: #fff;
-				font-weight: bold;
-				font-size: 16px;
-				text-align: center;
-				line-height: 50px;
-				border-radius: 5px;
-				background: #5899f0;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-input .loginBtn:hover{
-				background: #5899d0;
-			}
-			.top-loginBox .top-loginBox-con .top-loginBox-bottom{
-				line-height:66px;
-				color: #000;
-				float: right;
-				margin-right:60px;
-			}
-		</style>
+		<!--登陆 遮罩-->
 		<div class="top-loginBox">
 			<div class="top-loginBox-bg"></div>
 			<div class="top-loginBox-con">
@@ -368,13 +292,13 @@
 						<p>
 							<i class="fa fa-user-o"></i>
 						</p>
-						<input type="text" class="username">
+						<input type="text" class="username1">
 					</li>
 					<li>
 						<p>
 							<i class="fa fa-key fa-fw"></i>
 						</p>
-						<input type="text" class="password">
+						<input type="text" class="password1">
 					</li>
 					<li>
 						<div class="loginBtn">登陆</div>

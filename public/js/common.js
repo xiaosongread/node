@@ -99,8 +99,10 @@ $(function(){
 	 *点击登陆按钮的绑定事件
 	 */
 	function loginFn(){
-		var username = $(".Login").find("input[name='username']").val();
-		var password = $(".Login").find("input[name='password']").val();
+		// var username = $(".Login").find("input[name='username']").val();
+		// var password = $(".Login").find("input[name='password']").val();
+        var username = $(".username1").val();
+        var password = $(".password1").val();
 		// console.log(username + "$" + password)
 		$.ajax({
 			type:"post",
@@ -110,11 +112,14 @@ $(function(){
 				password:password
 			},
 			success:function(data){
-				// console.log(data)
+				console.log(data)
 				if(data.code == 9){
-					setTimeout(function(){
-						window.location.reload();
-					},300)
+					// setTimeout(function(){
+					// 	window.location.reload();
+					// },300)
+                    $(".loginTop").find("span").html(data.data.username)
+                    $(".loginTop").removeClass('loginTop')
+					$(".top-loginBox").hide()
 				}else{
 					$(".totast").html(data.message)
 				}
