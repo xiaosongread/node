@@ -86,6 +86,8 @@ router.post('/user/register',function(req,res,next){
 	var username =  req.body.username;
 	var password = req.body.password;
 	var repassword = req.body.repassword;
+	var time = req.body.time;
+	console.log("注册的时间：",time)
 	console.log(username)
 	console.log(password)
 	console.log(repassword)
@@ -132,7 +134,8 @@ router.post('/user/register',function(req,res,next){
 		//保存用户注册的账号到数据库中
 		var user = new User({
 			username:username,
-			password:password
+			password:password,
+            time:time
 		});
 		return user.save();
 	}).then(function(newUserInfo){
