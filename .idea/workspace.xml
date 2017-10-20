@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bb258a2-531f-407b-a9d1-e36f03376169" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app1.js" afterPath="$PROJECT_DIR$/app1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/common.js" afterPath="$PROJECT_DIR$/public/js/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schemas/users.js" afterPath="$PROJECT_DIR$/schemas/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/user_index.html" afterPath="$PROJECT_DIR$/views/admin/user_index.html" />
-    </list>
+    <list default="true" id="1bb258a2-531f-407b-a9d1-e36f03376169" name="Default" comment="" />
     <ignored path="node.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -77,8 +71,8 @@
       <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="71" column="19" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="19" />
+            <state relative-caret-position="389">
+              <caret line="86" column="16" lean-forward="true" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -97,7 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>联系</find>
       <find>apply</find>
       <find>.fileupload</find>
       <find>thumbnail</find>
@@ -127,6 +120,7 @@
       <find>/user</find>
       <find>注册</find>
       <find>time</find>
+      <find>tim</find>
     </findStrings>
   </component>
   <component name="Git.Rebase.Settings">
@@ -210,7 +204,6 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="777" />
@@ -485,12 +478,12 @@
       <workItem from="1506676080983" duration="7398000" />
       <workItem from="1506765377043" duration="667000" />
       <workItem from="1507069000333" duration="448000" />
-      <workItem from="1508403812051" duration="2639000" />
+      <workItem from="1508403812051" duration="4004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="428776000" />
+    <option name="totallyTimeSpent" value="430141000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -902,7 +895,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -969,8 +962,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="71" column="19" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="19" />
+        <state relative-caret-position="389">
+          <caret line="86" column="16" lean-forward="true" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
           <folding />
         </state>
       </provider>
