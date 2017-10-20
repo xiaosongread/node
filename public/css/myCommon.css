@@ -920,6 +920,9 @@ canvas{
 .top-loginBox .top-loginBox-con .top-loginBox-input .loginBtn:hover{
 	background: #5899d0;
 }
+.top-loginBox .top-loginBox-con .top-loginBox-input input{
+	width:340px;
+}
 .top-loginBox .top-loginBox-con .top-loginBox-bottom{
 	line-height:66px;
 	color: #000;

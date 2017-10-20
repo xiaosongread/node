@@ -26,6 +26,7 @@ body{
 }
 .loginBox .loginBox_left ul li{
 	padding:0 20px;
+	border-radius: 10px;
 }
 .loginBox .loginBox_left ul li span{
 	display: block;
@@ -43,6 +44,19 @@ body{
 .loginBox .loginBox_right{
 	height:100px;
 	flex:3;
+}
+.loginBox .loginBox_right img{
+	width:150px;
+	height:150px;
+	display: inherit;
+	margin:50px auto;
+}
+.loginBox .loginBox_right h4{
+	text-align: center;
+	font-weight:bold;
+	font-size:14px;
+	margin-bottom:20px;
+	color: #888888;
 }
 .registeredBtn{
 	width:250px;
