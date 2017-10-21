@@ -148,10 +148,12 @@ $(function(){
 	})
 	//滚动页面导航定位变化
 	$(window).on("scroll",function(){
-		if(document.body.scrollTop >=80){
+        var scrollTopHeight = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+		console.log(scrollTopHeight)
+		if(scrollTopHeight >=80){
 			$(".navbar").addClass("navbarPosition");
 			$(".logoImg").attr("src","/public/images/logo.png");
-		}else if(document.body.scrollTop <= 40){
+		}else if(scrollTopHeight <= 40){
 			$(".navbar").removeClass("navbarPosition");
 			$(".logoImg").attr("src","/public/images/logo-default-white.png")
 		}
