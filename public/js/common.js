@@ -135,7 +135,7 @@ $(function(){
 		}
 	})
 	//用户登录退出
-	$(".userInfo .exit").on("click",function(){
+	$(".loginTop .exit").on("click",function(){
 		//请求后端删除cookie的接口
 		$.ajax({
 			type:"post",

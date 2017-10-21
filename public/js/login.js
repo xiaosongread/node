@@ -1,21 +1,40 @@
 $(function(){
     function registeredFn(){
-        var username = $(".loginBox_left").find("input[name='username']").val();
-        var password = $(".loginBox_left").find("input[name='password']").val();
-        var repassword = $(".loginBox_left").find("input[name='repassword']").val();
+        var username = $(".registereds").find("input[name='username']").val();
+        var password = $(".registereds").find("input[name='password']").val();
+        var repassword = $(".registereds").find("input[name='repassword']").val();
         $.ajax({
             type:"post",
             url:"/api/user/register",
             data:{
                 username:username,
                 password:password,
-                repassword:repassword
+                repassword:repassword,
+                time:Number(Date.parse(new Date()))
             },
             success:function(data){
                 // console.log(data)
                 if(data.code == 8){
                     setTimeout(function(){
-                        window.location.href="/"
+                        $.ajax({
+                            type:"post",
+                            url:"/api/user/login",
+                            data:{
+                                username:username,
+                                password:password
+                            },
+                            success:function(data){
+                                console.log(data)
+                                if(data.code == 9){
+                                    setTimeout(function(){
+                                        window.location.href = '/'
+                                    },300)
+                                }else{
+                                    $(".totast").html(data.message)
+                                }
+                            }
+                        });
+
                     },300)
                 }else{
                     $(".totast").html(data.message)
