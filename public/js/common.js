@@ -194,9 +194,10 @@ $(function(){
 		$(".top-loginBox").show();
 		$("body,html").addClass('fixed')
 	})
-	// $(".top-loginBox").on("click",function(){
-     //    $(this).hide()
-	// })
+	$(".top-loginBox-bg").on("click",function(){
+        $(".top-loginBox").hide()
+        $("body,html").removeClass('fixed')
+	})
 })
 var _hmt = _hmt || [];
 (function() {

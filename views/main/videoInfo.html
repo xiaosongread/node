@@ -56,12 +56,22 @@
 									<span>在线手册</span>
 								</div>
 							</a>
-							<!--<a href="">-->
-								<!--<div class="moreSourceItem">-->
-									<!--<i class="fa fa-user"></i>-->
-									<!--<span>登陆</span>-->
-								<!--</div>-->
-							<!--</a>-->
+							<a>
+								<div class="moreSourceItem loginTop">
+									<i class="fa fa-user"></i>
+									<span>
+										{% if userInfo.username %}
+											{{userInfo.username}}
+										{% else %}
+											登陆
+										{% endif %}
+									</span>
+									{% if userInfo.username %}
+									<span>| 个人中心 | </span>
+									<span class="exit">退出</span>
+									{% endif %}
+								</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -225,73 +235,73 @@
 							</div>
 						</section>
 					</div>
-					<!--登录-->
-					{% if userInfo._id %}
-					<div class="userInfo">
-						<p>
-							<i class="fa fa-user-o"></i><span>您的信息</span>
-							{% if userInfo.isAdmin %}
-							<i class="fa fa-hand-o-right"></i><a class="adminPage" href="/admin" target="_blank">点击进入管理后台</a>
-							{% endif %}
-						</p>
-						{% if userInfo.isAdmin %}
-						<div class="welcome">欢迎
-							{% if userInfo.vip %}
-							<img src="/public/images/vip.png" id="viper">
-							{% endif %}
-							<span class="yourUserName">管理员{{userInfo.username}}</span>登陆进入我的博客
-						</div>
+					<!--&lt;!&ndash;登录&ndash;&gt;-->
+					<!--{% if userInfo._id %}-->
+					<!--<div class="userInfo">-->
+						<!--<p>-->
+							<!--<i class="fa fa-user-o"></i><span>您的信息</span>-->
+							<!--{% if userInfo.isAdmin %}-->
+							<!--<i class="fa fa-hand-o-right"></i><a class="adminPage" href="/admin" target="_blank">点击进入管理后台</a>-->
+							<!--{% endif %}-->
+						<!--</p>-->
+						<!--{% if userInfo.isAdmin %}-->
+						<!--<div class="welcome">欢迎-->
+							<!--{% if userInfo.vip %}-->
+							<!--<img src="/public/images/vip.png" id="viper">-->
+							<!--{% endif %}-->
+							<!--<span class="yourUserName">管理员{{userInfo.username}}</span>登陆进入我的博客-->
+						<!--</div>-->
 
-						{% else %}
-						<div class="welcome">欢迎
-							{% if userInfo.vip %}
-							<img src="/public/images/vip.png"  id="viper">
-							{% endif %}
-							<span class="yourUserName">{{userInfo.username}}</span>登陆进入我的博客
-						</div>
-						{% endif %}
-						<div class="exit">
-							<p>exit</p>
-						</div>
-					</div>
-					{% else %}
-					<div class="Login">
-						<div class="loginTitle">
-							<p><i class="fa fa-user-circle-o"></i>登陆</p>
-							<div class="selectedLogin selected"><i class="fa fa-hand-o-right"></i>选择注册</div>
-						</div>
-						<div class="username">
-							<!--<span>用户名：</span>-->
-							<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>
-						</div>
-						<div class="password">
-							<!--<span>密码：</span>-->
-							<input type="password" name="password" placeholder="请输入您的密码" class="input"/>
-						</div>
-						<div class="loginBtn">登陆</div>
-						<p class="totast"></p>
-					</div>
-					<div class="registered">
-						<div class="registeredTitle">
-							<p><i class="fa fa-user-circle-o"></i>注册</p>
-							<div class="selectedRegistered selected"><i class="fa fa-hand-o-right"></i>选择登陆</div>
-						</div>
-						<div class="username">
-							<!--<span>用户名：</span>-->
-							<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>
-						</div>
-						<div class="password">
-							<!--<span>输入密码：</span>-->
-							<input type="password" name="password" placeholder="请输入不少于6位数的密码" class="input"/>
-						</div>
-						<div class="repassword">
-							<!--<span>重新输入密码：</span>-->
-							<input type="password" name="repassword" placeholder="请重新输入您的密码" class="input"/>
-						</div>
-						<div class="registeredBtn">注册</div>
-						<p class="totast"></p>
-					</div>
-					{% endif %}
+						<!--{% else %}-->
+						<!--<div class="welcome">欢迎-->
+							<!--{% if userInfo.vip %}-->
+							<!--<img src="/public/images/vip.png"  id="viper">-->
+							<!--{% endif %}-->
+							<!--<span class="yourUserName">{{userInfo.username}}</span>登陆进入我的博客-->
+						<!--</div>-->
+						<!--{% endif %}-->
+						<!--<div class="exit">-->
+							<!--<p>exit</p>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--{% else %}-->
+					<!--<div class="Login">-->
+						<!--<div class="loginTitle">-->
+							<!--<p><i class="fa fa-user-circle-o"></i>登陆</p>-->
+							<!--<div class="selectedLogin selected"><i class="fa fa-hand-o-right"></i>选择注册</div>-->
+						<!--</div>-->
+						<!--<div class="username">-->
+							<!--&lt;!&ndash;<span>用户名：</span>&ndash;&gt;-->
+							<!--<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>-->
+						<!--</div>-->
+						<!--<div class="password">-->
+							<!--&lt;!&ndash;<span>密码：</span>&ndash;&gt;-->
+							<!--<input type="password" name="password" placeholder="请输入您的密码" class="input"/>-->
+						<!--</div>-->
+						<!--<div class="loginBtn">登陆</div>-->
+						<!--<p class="totast"></p>-->
+					<!--</div>-->
+					<!--<div class="registered">-->
+						<!--<div class="registeredTitle">-->
+							<!--<p><i class="fa fa-user-circle-o"></i>注册</p>-->
+							<!--<div class="selectedRegistered selected"><i class="fa fa-hand-o-right"></i>选择登陆</div>-->
+						<!--</div>-->
+						<!--<div class="username">-->
+							<!--&lt;!&ndash;<span>用户名：</span>&ndash;&gt;-->
+							<!--<input type="text" name="username" placeholder="请输入您的用户名" class="input"/>-->
+						<!--</div>-->
+						<!--<div class="password">-->
+							<!--&lt;!&ndash;<span>输入密码：</span>&ndash;&gt;-->
+							<!--<input type="password" name="password" placeholder="请输入不少于6位数的密码" class="input"/>-->
+						<!--</div>-->
+						<!--<div class="repassword">-->
+							<!--&lt;!&ndash;<span>重新输入密码：</span>&ndash;&gt;-->
+							<!--<input type="password" name="repassword" placeholder="请重新输入您的密码" class="input"/>-->
+						<!--</div>-->
+						<!--<div class="registeredBtn">注册</div>-->
+						<!--<p class="totast"></p>-->
+					<!--</div>-->
+					<!--{% endif %}-->
 					<!--<div class="setMessage">-->
 						<!--<div class="setMessageTitle">-->
 							<!--<p><i class="fa fa-user-circle-o"></i>给我留言</p>-->
@@ -316,6 +326,35 @@
 				</div>
 				<div class="bottomArtile">
 					<p>逆水行舟,不进则退.  ——宋彦斌</p>
+				</div>
+			</div>
+		</div>
+		<!--登陆 遮罩-->
+		<div class="top-loginBox">
+			<div class="top-loginBox-bg"></div>
+			<div class="top-loginBox-con">
+				<img src="/public/images/logo.png" class="login-logo"/>
+				<ul class="top-loginBox-input">
+					<li>
+						<p>
+							<i class="fa fa-user-o"></i>
+						</p>
+						<input type="text" class="username1">
+					</li>
+					<li>
+						<p>
+							<i class="fa fa-key fa-fw"></i>
+						</p>
+						<input type="password" class="password1">
+					</li>
+					<li>
+						<div class="loginBtn">登陆</div>
+					</li>
+				</ul>
+				<div class="top-loginBox-bottom">
+					<a href="/login">
+						<p>点击注册</p>
+					</a>
 				</div>
 			</div>
 		</div>

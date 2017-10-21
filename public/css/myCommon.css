@@ -922,12 +922,16 @@ canvas{
 }
 .top-loginBox .top-loginBox-con .top-loginBox-input input{
 	width:340px;
+	padding: 0 20px;
 }
 .top-loginBox .top-loginBox-con .top-loginBox-bottom{
 	line-height:66px;
 	color: #000;
 	float: right;
 	margin-right:60px;
+}
+.top-loginBox .top-loginBox-con .top-loginBox-bottom p:hover{
+	color: #337ab7;
 }
 
 
