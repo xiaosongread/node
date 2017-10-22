@@ -83,7 +83,7 @@ $(function(){
         }
     })
 
-    var sTop = document.body.scrollTop;//滚动条的高度
+    var sTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;;//滚动条的高度
     var wHeight = $(window).height();//浏览器的高度
     for(var i=0;i<$(".recourceImg").length;i++){
         if($(".recourceImg")[i].offsetTop <= sTop + wHeight){
@@ -93,7 +93,7 @@ $(function(){
     }
     $(window).scroll(function(){
         console.log("123")
-        sTop = document.body.scrollTop;//滚动条的高度
+        sTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;;//滚动条的高度
         for(var j=0;j<$(".recourceImg.add").length;j++){
             if($(".recourceImg.add")[j].offsetTop <= sTop + wHeight){
                 $(".recourceImg.add")[j].src = $(".recourceImg.add")[j].getAttribute("data-src")
