@@ -3,61 +3,81 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>关于我的首页</title>
-		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="/public/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/public/normal.css" />
-		<link rel="stylesheet" type="text/css" href="/public/css/myCommon.css"/>
-		<link rel="stylesheet" type="text/css" href="/public/css/index.css"/>
-		<script src="/public/js/jQuery-2.1.4.min.js"></script>
-		<script	src="/public/js/template.js"></script>
-		<script src="/public/js/bootstrap.min.js"></script>
-		<script src="/public/js/common.js"></script>
-		<script src="/public/js/index.js"></script>
-
+		<link rel="stylesheet" href="/public/css/swiper.min.css">
 		<link rel="stylesheet" media="screen" href="/public/css/aboutMe_style.css">
 	</head>
 	<body>
-		<style>
-			.asd{
-				width:500px;
-				height:300px;
-				background: #fff;
-				position: absolute;
-				top:100px;
-				left:100px;
-			}
-			.find{
-				width: 200px;
-				line-height:50px;
-				border:1px solid #000;
-				color: #000;
-			}
-			.btn{
-				width:100px;
-				line-height:50px;
-				background: red;
-				text-align: center;
-			}
-		</style>
-	    <canvas></canvas>
+	<div class="topBar">
+		<ul class="topBarCons">
+			<li>首页</li>
+			<li>作品</li>
+			<li>
+				<img src="/public/images/me.jpg">
+			</li>
+			<li>能力</li>
+			<li>联系</li>
+		</ul>
+	</div>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<div class="swiper-cons">
+					<h4>我是一名前端开发工程师</h4>
+					<p>代码改变世界，我只想改善自己。</p>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="swiper-cons">
+					<ul>
+						<li>
+							<div>
+								<img src="/public/images/banner1.jpg">
+							</div>
+							<p>
+								我的项目
+							</p>
+						</li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="swiper-cons">
+					<h4>我是一名前端开发工程师</h4>
+					<p>代码改变世界，我只想改善自己。</p>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="swiper-cons">
+					<h4>我是一名前端开发工程师</h4>
+					<p>代码改变世界，我只想改善自己。</p>
+				</div>
+			</div>
+		</div>
+		<!-- Add Pagination -->
+		<!--<div class="swiper-pagination"></div>-->
+
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</div>
 	</body>
+	<script src="/public/js/swiper.min.js"></script>
 </html>
 <script>
-	$(function(){
-		$(".btn").on("click",function(){
-			$.ajax({
-				type:"post",
-				url:"/api/find",
-				data:{
-					keyWord:$(".find").val()
-				},
-				success:function(data){
-
-				}
-			})
-		})
-	})
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        direction: 'vertical',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        mousewheelControl: true
+    });
 </script>
 <script>
 	var _hmt = _hmt || [];

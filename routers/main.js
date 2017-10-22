@@ -361,5 +361,9 @@ router.get('/login',function(req,res,next){
         })
     })
 })
+//导航栏关于我的路由
+router.get('/aboutMe',function(req,res,next){
+    res.render('main/aboutMe_index.html')
+})
 
 module.exports = router;

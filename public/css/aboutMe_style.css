@@ -1,84 +1,85 @@
-/* =============================================================================
-   HTML5 CSS Reset Minified - Eric Meyer
-   ========================================================================== */
-
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
-body{line-height:1}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
-nav ul{list-style:none}
-blockquote,q{quotes:none}
-blockquote:before,blockquote:after,q:before,q:after{content:none}
-a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;text-decoration:none}
-mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
-del{text-decoration:line-through}
-abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
-table{border-collapse:collapse;border-spacing:0}
-hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
-input,select{vertical-align:middle}
-li{list-style:none}
-
-
-/* =============================================================================
-   My CSS
-   ========================================================================== */
-
-/* ---- base ---- */
-
-html,body{ width: 100%; height: 100%; background-color: #060606; }
-
-html{
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+html, body {
+  position: relative;
+  height: 100%;
 }
-
-body{
-  font:normal 75% Arial, Helvetica, sans-serif;
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color:#000;
+  margin: 0;
+  padding: 0;
 }
-
-canvas{
-  display:block;
-  vertical-align:bottom;
+ul,li{
+  text-decoration: none;
+  list-style: none;
 }
-
-
-/* ---- stats.js ---- */
-
-.count-particles{
-  background: #000022;
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.swiper-slide {
+   text-align: center;
+  font-size: 18px;
+  background: blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+   display: flex;
+   -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-box-align: center;
+  -ms-flex-align: center;
+   -webkit-align-items: center;
+   align-items: center;
+}
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{
   position: absolute;
-  top: 48px;
-  left: 0;
-  width: 80px;
-  color: #13E8E9;
-  font-size: .8em;
-  text-align: left;
-  text-indent: 4px;
-  line-height: 14px;
-  padding-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
+  bottom:150px !important;
+  left: 50%;
+  transform:rotate(90deg);
+  -ms-transform:rotate(90deg); 	/* IE 9 */
+  -moz-transform:rotate(90deg); 	/* Firefox */
+  -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+  -o-transform:rotate(90deg);
 }
 
-.js-count-particles{
-  font-size: 1.1em;
-}
-
-#stats,
-.count-particles{
-  -webkit-user-select: none;
-  margin-top: 5px;
-  margin-left: 5px;
-}
-
-#stats{
-  border-radius: 3px 3px 0 0;
+.topBar{
+  width:100%;
+  height:100px;
+  background: red;
   overflow: hidden;
 }
-
-.count-particles{
-  border-radius: 0 0 3px 3px;
+.topBar .topBarCons{
+  width:800px;
+  margin:0 auto;
+  display: flex;
+}
+.topBar .topBarCons li{
+  flex:1;
+  line-height: 100px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.topBar .topBarCons li img{
+  width:100%;
 }
 
-
-/*!* ---- particles.js container ---- *!  002B5A*/
-
-#particles-js{ width: 100%; height: 100%; background-color: #5899d0; background-image: url(''); background-size: cover; background-position: 50% 50%; background-repeat: no-repeat; }
+.swiper-cons{
+  width: 600px;
+  height:700px;
+  text-align: center;
+}
+.swiper-cons ul li{
+  width: 200px;
+  height:300px;
+}
+.swiper-cons ul li img{
+  width:100%;
+  height:300px;
+}
