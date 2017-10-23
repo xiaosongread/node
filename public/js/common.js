@@ -127,7 +127,7 @@ $(function(){
 	//绑定点击登陆按钮
 	$(".loginBtn").on("click",loginFn)
 	//点击回车执行登陆函数
-	var $loginInput = $(".Login input");
+	var $loginInput = $(".loginBtn");
 	$loginInput.on("keydown",function(e){
 		if(e.which == 13){
 			e.preventDefault();
@@ -192,7 +192,7 @@ $(function(){
         }
 	})
 	//点击顶部登陆按钮
-	$(".loginTop").on("click",function(){
+	$(".loginTop .logins-btns").on("click",function(){
 		$(".top-loginBox").show();
 		$("body,html").addClass('fixed')
 	})
@@ -200,6 +200,10 @@ $(function(){
         $(".top-loginBox").hide()
         $("body,html").removeClass('fixed')
 	})
+	//个人中心
+    $(".loginTop .top-login-person").on("click",function(){
+        window.location.href='/';
+    })
 })
 var _hmt = _hmt || [];
 (function() {

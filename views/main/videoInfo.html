@@ -59,7 +59,7 @@
 							<a>
 								<div class="moreSourceItem loginTop">
 									<i class="fa fa-user"></i>
-									<span>
+									<span class="logins-btns">
 										{% if userInfo.username %}
 											{{userInfo.username}}
 										{% else %}
@@ -67,7 +67,7 @@
 										{% endif %}
 									</span>
 									{% if userInfo.username %}
-									<span>| 个人中心 | </span>
+									<span class="top-login-person">| 个人中心 | </span>
 									<span class="exit">退出</span>
 									{% endif %}
 								</div>
