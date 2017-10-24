@@ -202,7 +202,7 @@ $(function(){
 	})
 	//个人中心
     $(".loginTop .top-login-person").on("click",function(){
-        window.location.href='/admin';
+        window.open('/admin')
     })
 })
 var _hmt = _hmt || [];
