@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="keywords" content="html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化,宋彦斌,小宋,抿圪斗,rem">
+		<meta name="keywords" content="前端,前端博客,html,css3,js,javascript,node,mongodb,react,前端组件,前端自动化,宋彦斌,小宋,抿圪斗,rem">
 		<meta name="description" content="小宋博客专注于前端开发,H5,h5相关技术的分享,主要涉及的html,css3,js,jsvascript,node,mongodb,react,前端组件,前端自动化的知识,同时记录一些自己在开发中遇到的问题。">
 		<title>小宋博客</title>
 		<link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
@@ -130,7 +130,8 @@
 						<li id="{{content._id.toString()}}">
 							<h3>{{content.title}}</h3>
 							<div class="contentInfo">
-								<i class="fa fa-clock-o"></i><span>{{content.startTime|date('Y年m月d日 H:i:s', -480, 'CCT')}}</span><nav class="eyeNum"><i class="fa fa-eye"></i><span>{{content.views}}</span></nav>
+								<i class="fa fa-clock-o"></i><span>{{content.startTime|date('Y年m月d日 H:i:s', -480, 'CCT')}}</span>
+								<!--<nav class="eyeNum"><i class="fa fa-eye"></i><span>{{content.views}}</span></nav>-->
 							</div>
 							<div class="content_description">
 								<p>{{content.description}}</p>
