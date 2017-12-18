@@ -11,7 +11,15 @@ var Pushsource = require('../models/pushsource');
 var Source = require('../models/source');
 var Book = require('../models/bookList');
 var Plug = require('../models/plug');
+var Userinfo = require('../models/userinfo');
 router.get('/',function(req,res,next){
+    // var ip = req.connection.remoteAddress
+    // console.log("IP:",ip)
+    // var userinfo = new Userinfo({
+	// 	ip:ip
+	// });
+	// userinfo.save();
+    
 	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
 	var limte = 10;
 	var pages = 0;
