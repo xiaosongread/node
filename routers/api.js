@@ -631,4 +631,39 @@ router.get('/soucesCountList',function(req,res,next){
         })
     })
 })
+// 小程序获取token
+router.get('/user/WeChat/token',function(req,res,next){
+    https.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxfd528d56a6f059ec&secret=53350954146a3e4255987c11746fd19d', function(wxRes) {
+        wxRes.on('data', function(d) {
+
+        	console.log("token00:",JSON.parse(d.toString()).access_token)
+			console.log("333:","-------------")
+			var options = {
+			    hostname: 'api.weixin.qq.com',
+			    path: '/datacube/getweanalysisappiddailysummarytrend?access_token='+JSON.parse(d.toString()).access_token,
+			    method: 'POST'
+			};
+			var reqdata = {
+			    "begin_date" : "20171220",
+			    "end_date" : "20171221"
+			}
+			console.log("token11:", JSON.parse(d.toString()).access_token)
+			var aa = https.request(options, function(wxRes2) {
+			    wxRes2.on('data',function(d2){
+			        console.log("555:-------------------")
+			        responseData.code = 200;
+			        responseData.message = "获取小程序分析接口成功!";
+			        responseData.data = JSON.parse(d2.toString());
+			        res.json(responseData);
+			    });
+			    console.log("4444:-------------------")
+			    aa.write(JSON.stringify(reqdata))
+			    aa.end();
+			})
+        });
+    }).on('error', function(e) {
+        console.error(e);
+    });
+
+})
 module.exports = router;

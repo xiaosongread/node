@@ -19,6 +19,7 @@ var swig = require('swig');
 //用户请求的url，如果是以public开头的，他就会去public下面找对应请求的文件
 app.use('/public',express.static(__dirname + "/public"));
 app.use('/ueditor',express.static(__dirname + "/ueditor"));
+app.use('/static',express.static(__dirname + "/views/main/dist/static"));
 //在开发过程中需要取消模板的缓存
 swig.setDefaults({cache:false});
 //配置应用模板
@@ -93,6 +94,6 @@ mongoose.connect('mongodb://localhost:27017/blog',function(err){
         console.log("please open localhost:8888")
         // child_process.exec(cmd + ' "'+url + '"');
         //监听http请求
-        app.listen(8888);
+        app.listen(8008);
     }
 });

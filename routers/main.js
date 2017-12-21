@@ -19,11 +19,10 @@ router.get('/',function(req,res,next){
 	// 	ip:ip
 	// });
 	// userinfo.save();
-    
+    // res.render('main/dist/index.html')
 	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
 	var limte = 10;
 	var pages = 0;
-//	res.send('shouye')
 	//从数据库中获取网站的分类名称
 	Category.find().then(function(categories){
 		//查询数据库中的数据的条数

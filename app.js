@@ -64,6 +64,7 @@ app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 app.use('/public',require('./routers/public'));
+app.use('/static',require('./routers/public'));
 /*
  * node 自动打开指定的页面
  */

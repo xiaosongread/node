@@ -706,6 +706,7 @@ body{
 	overflow: hidden;
 	margin:0 15px 30px;
 	background: #fff;
+	box-shadow: 0 3px 8px rgba(0,0,0,0.18);
 	float: left;
 }
 .mgd_cons .resource_cons li .resource_img{
@@ -737,6 +738,7 @@ body{
 	font-size: 12px;
 	line-height:30px;
 	border-top:1px solid #ddd;
+	background: #f6f6f6;
 	overflow: hidden;
 }
 .mgd_cons .resource_cons li .resource_more .resource_view{
