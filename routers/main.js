@@ -20,41 +20,33 @@ router.get('/',function(req,res,next){
 	// });
 	// userinfo.save();
     // res.render('main/dist/index.html')
-	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
-	var limte = 10;
-	var pages = 0;
-	//从数据库中获取网站的分类名称
-	Category.find().then(function(categories){
-		//查询数据库中的数据的条数
-		Content.count().then(function(count) {
-			pages = Math.ceil(count / limte);//客户端应该显示的总页数
-			page = Math.min(page, pages);//page取值不能超过pages
-			page = Math.max(page, 1);//page取值不能小于1
-			var skip = (page - 1) * limte;
-			//sort()排序  -1 降序 1 升序
-			//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
-			Content.find({
-                posted: true
-            }).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
+	// var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
+	// var limte = 10;
+	// var pages = 0;
+	// //从数据库中获取网站的分类名称
+	// Category.find().then(function(categories){
+	// 	//查询数据库中的数据的条数
+	// 	Content.count().then(function(count) {
+	// 		pages = Math.ceil(count / limte);//客户端应该显示的总页数
+	// 		page = Math.min(page, pages);//page取值不能超过pages
+	// 		page = Math.max(page, 1);//page取值不能小于1
+	// 		var skip = (page - 1) * limte;
+	// 		//sort()排序  -1 降序 1 升序
+	// 		//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
+	// 		Content.find({
+     //            posted: true
+     //        }).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
                 var deviceAgent = req.headers["user-agent"].toLowerCase();
                 var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
                 if(agentID){
                     res.render('webApp/index.html')
                 }else{
-                    res.render('main/index.html', {
-                        categories:categories,
-                        userInfo: req.userInfo,
-                        contents: contents,
-                        page: page,
-                        count: count,
-                        pages: pages,
-                        limte: limte
-                    });
+                    res.render('main/dist/index.html')
                 }
-
-			})
-		})
-	})
+    //
+	// 		})
+	// 	})
+	// })
 })
 //评论列表的路由
 router.get('/contentInfo',function(req,res,next){
