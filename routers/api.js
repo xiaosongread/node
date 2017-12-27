@@ -393,6 +393,12 @@ router.get('/content/nowContentInfo',function(req,res,next){
 		responseData.message = "文章内容获取成功";
 		responseData.data = hotContents;
 		res.json(responseData);
+        Content.findById({
+            _id:req.query.contentId
+        }).then(function(content){
+            content.views++;
+            content.save();
+        })
 		return;
 	})
 })
