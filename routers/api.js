@@ -483,7 +483,6 @@ router.get('/contentList',function(req,res,next){
     var page = Number(req.query.page || 1);
     var limte = Number(req.query.limte || 10);
     var pages = 0;
-    // console.log(page)
 //	res.send('shouye')
     //从数据库中获取网站的分类名称
     Category.find().then(function(categories){
@@ -671,5 +670,10 @@ router.get('/user/WeChat/token',function(req,res,next){
         console.error(e);
     });
 
+})
+// 查看是否登陆
+router.get('/isLogin',function(req,res,next){
+    console.log("缓存1-1-1-1-1-1--1",req.cookies.get('userInfo'))
+	return
 })
 module.exports = router;
