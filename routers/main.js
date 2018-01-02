@@ -41,13 +41,37 @@ router.get('/',function(req,res,next){
                 if(agentID){
                     res.render('webApp/index.html')
                 }else{
-                    res.render('main/dist/index.html')
+                    // res.render('main/dist/index.html')
+                    res.render('main/node-vue-blog/dist/index.html')
                 }
     //
 	// 		})
 	// 	})
 	// })
 })
+router.get('/index',function(req,res,next){
+    res.render('main/dist/index.html')
+})
+router.get('/article/info',function(req,res,next){
+    res.render('main/dist/index.html')
+})
+router.get('/html',function(req,res,next){
+    console.log("分类路由走到了这里")
+    res.render('main/dist/index.html')
+})
+router.get('/css',function(req,res,next){
+    res.render('main/dist/index.html')
+})
+router.get('/js',function(req,res,next){
+    res.render('main/dist/index.html')
+})
+router.get('/gongcheng',function(req,res,next){
+    res.render('main/dist/index.html')
+})
+router.get('/kuangjia',function(req,res,next){
+    res.render('main/dist/index.html')
+})
+
 //评论列表的路由
 router.get('/contentInfo',function(req,res,next){
 	var id = req.query.id || "";//当前点击的文章的ID

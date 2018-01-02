@@ -225,6 +225,8 @@ router.post('/user/login',function(req,res,next){
 		responseData.data = {
 			username : userInfo.username
 		}
+
+        res.cookie('asd', userInfo.username);
 		//设置cookies 返回给客户端
 		req.cookies.set('userInfo',JSON.stringify({
 			_id : userInfo._id,
@@ -512,6 +514,7 @@ router.post('/banner',function(req,res,next){
         responseData.code = 43;
         responseData.message = "分类banner数据成功";
         responseData.data = bannerList;
+        responseData.userInfo = req.userInfo,
         res.json(responseData);
         return;
     })
@@ -531,7 +534,7 @@ router.post('/categories',function(req,res,next){
         return;
     })
 })
-//导航列表点击进入对应的分类下面的文章列表
+//导航列表点击进入对应的分类下面的文章列表（网站也用这个pc）
 router.get('/categoryListContent',function(req,res,next){
     var id = req.query.id || "";//当前点击的分类的ID
     var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
@@ -673,7 +676,10 @@ router.get('/user/WeChat/token',function(req,res,next){
 })
 // 查看是否登陆
 router.get('/isLogin',function(req,res,next){
-    console.log("缓存1-1-1-1-1-1--1",req.cookies.get('userInfo'))
-	return
+    responseData.code = 24;
+    responseData.message = "数据1获取成功!";
+    responseData.data = req.cookies.userInfo;
+    res.json(responseData);
+    return;
 })
 module.exports = router;
