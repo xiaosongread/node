@@ -42,7 +42,7 @@ router.get('/',function(req,res,next){
                     res.render('webApp/index.html')
                 }else{
                     // res.render('main/dist/index.html')
-                    res.render('main/node-vue-blog/dist/index.html')
+                    res.render('main/dist/index.html')
                 }
     //
 	// 		})
