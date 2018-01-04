@@ -5,6 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 //加载cookies模块
 var Cookies = require('cookies');
+var cookieParser = require('cookie-parser');
 var path = require('path');
 //引入用户user模型
 var User = require('./models/users');
@@ -58,6 +59,7 @@ app.use(function(req,res,next){
 	}
 
 });
+app.use(cookieParser());
 /*
  * 根据不同的功能划分模块
  *
@@ -66,7 +68,6 @@ app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 app.use('/public',require('./routers/public'));
-
 /*
  * node 自动打开指定的页面
  */

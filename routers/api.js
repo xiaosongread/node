@@ -191,6 +191,35 @@ router.get('/user/WeChat/register',function(req,res,next){
 	});
 
 })
+// 查看是否登陆
+router.get('/isLogin',function(req,res,next){
+	if(req.headers.cookie.indexOf(';') > 0) {
+        var cookieArray = req.headers.cookie.split(';');
+        var usernameArray = cookieArray[cookieArray.length - 1].split('=');
+        var username = usernameArray[usernameArray.length - 1]
+		console.log('cookies用户名:',username)
+        //查找数据库中是否有相似的用户名
+        User.findOne({
+            username:username
+        }).then(function(userInfo){
+        	console.log("当前登陆用户的信息：",userInfo)
+			if(userInfo.username) {
+                responseData.code = 24;
+                responseData.message = "您当前已经登陆成功!";
+                responseData.data = {
+                    username: userInfo.username,
+                    isAdmin: userInfo.isAdmin,
+                    vip:userInfo.vip
+                }
+			}else{
+                responseData.code = 1001;
+                responseData.message = "请您先登陆注册";
+			}
+            res.json(responseData);
+		})
+	}
+    return;
+})
 /*
  * 登陆逻辑
  */
@@ -226,12 +255,15 @@ router.post('/user/login',function(req,res,next){
 			username : userInfo.username
 		}
 
-        res.cookie('asd', userInfo.username);
+        res.cookie("account", username);
+
+
+        // res.cookie('asd', userInfo.username);
 		//设置cookies 返回给客户端
-		req.cookies.set('userInfo',JSON.stringify({
-			_id : userInfo._id,
-			username : userInfo.username
-		}));
+		// req.cookies.set('userInfo',JSON.stringify({
+		// 	_id : userInfo._id,
+		// 	username : userInfo.username
+		// }));
 		res.json(responseData);
 		return;
 	})
@@ -674,12 +706,5 @@ router.get('/user/WeChat/token',function(req,res,next){
     });
 
 })
-// 查看是否登陆
-router.get('/isLogin',function(req,res,next){
-    responseData.code = 24;
-    responseData.message = "数据1获取成功!";
-    responseData.data = req.cookies.userInfo;
-    res.json(responseData);
-    return;
-})
+
 module.exports = router;
