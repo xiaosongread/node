@@ -195,14 +195,12 @@ router.get('/user/WeChat/register',function(req,res,next){
 router.get('/isLogin',function(req,res,next){
 	if(req.headers.cookie.indexOf(';') > 0) {
         var cookieArray = req.headers.cookie.split(';');
-        var usernameArray = cookieArray[cookieArray.length - 1].split('=');
+        var usernameArray = cookieArray[cookieArray.length - 2].split('=');
         var username = usernameArray[usernameArray.length - 1]
-		console.log('cookies用户名:',username)
         //查找数据库中是否有相似的用户名
         User.findOne({
             username:username
         }).then(function(userInfo){
-        	console.log("当前登陆用户的信息：",userInfo)
 			if(userInfo.username) {
                 responseData.code = 24;
                 responseData.message = "您当前已经登陆成功!";
@@ -211,12 +209,17 @@ router.get('/isLogin',function(req,res,next){
                     isAdmin: userInfo.isAdmin,
                     vip:userInfo.vip
                 }
-			}else{
-                responseData.code = 1001;
-                responseData.message = "请您先登陆注册";
+                res.json(responseData);
 			}
+		}).catch(function(){
+            responseData.code = 1001;
+            responseData.message = "请您先登陆注册";
             res.json(responseData);
 		})
+	} else {
+        responseData.code = 1001;
+        responseData.message = "请您先登陆注册";
+        res.json(responseData);
 	}
     return;
 })
@@ -259,11 +262,11 @@ router.post('/user/login',function(req,res,next){
 
 
         // res.cookie('asd', userInfo.username);
-		//设置cookies 返回给客户端
-		// req.cookies.set('userInfo',JSON.stringify({
-		// 	_id : userInfo._id,
-		// 	username : userInfo.username
-		// }));
+        // 设置cookies 返回给客户端
+		req.cookies.set('userInfo',JSON.stringify({
+			_id : userInfo._id,
+			username : userInfo.username
+		}));
 		res.json(responseData);
 		return;
 	})
@@ -272,6 +275,7 @@ router.post('/user/login',function(req,res,next){
  *退出接口
  */
 router.post('/user/exit',function(req,res,next){
+	res.clearCookie('account')
 	//设置cookies 返回给客户端
 	req.cookies.set('userInfo',null);
 	res.json(responseData);

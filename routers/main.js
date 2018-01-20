@@ -16,61 +16,91 @@ router.get('/',function(req,res,next){
     // var ip = req.connection.remoteAddress
     // console.log("IP:",ip)
     // var userinfo = new Userinfo({
-	// 	ip:ip
-	// });
-	// userinfo.save();
+		// ip:ip
+    // });
+    // userinfo.save();
     // res.render('main/dist/index.html')
-	// var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
-	// var limte = 10;
-	// var pages = 0;
-	// //从数据库中获取网站的分类名称
-	// Category.find().then(function(categories){
-	// 	//查询数据库中的数据的条数
-	// 	Content.count().then(function(count) {
-	// 		pages = Math.ceil(count / limte);//客户端应该显示的总页数
-	// 		page = Math.min(page, pages);//page取值不能超过pages
-	// 		page = Math.max(page, 1);//page取值不能小于1
-	// 		var skip = (page - 1) * limte;
-	// 		//sort()排序  -1 降序 1 升序
-	// 		//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
-	// 		Content.find({
-     //            posted: true
-     //        }).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
+	var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
+	var limte = 10;
+	var pages = 0;
+	//从数据库中获取网站的分类名称
+	Category.find().then(function(categories){
+		//查询数据库中的数据的条数
+		Content.count().then(function(count) {
+			pages = Math.ceil(count / limte);//客户端应该显示的总页数
+			page = Math.min(page, pages);//page取值不能超过pages
+			page = Math.max(page, 1);//page取值不能小于1
+			var skip = (page - 1) * limte;
+			//sort()排序  -1 降序 1 升序
+			//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
+			Content.find({
+                posted: true
+            }).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
                 var deviceAgent = req.headers["user-agent"].toLowerCase();
                 var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
                 if(agentID){
                     res.render('webApp/index.html')
                 }else{
+                    res.render('main/index.html', {
+                        categories:categories,
+                        userInfo: req.userInfo,
+                        contents: contents,
+                        page: page,
+                        count: count,
+                        pages: pages,
+                        limte: limte
+                    });
                     // res.render('main/dist/index.html')
-                    res.render('main/dist/index.html')
                 }
-    //
-	// 		})
-	// 	})
-	// })
+
+			})
+		})
+	})
 })
-router.get('/index',function(req,res,next){
-    res.render('main/dist/index.html')
-})
-router.get('/article/info',function(req,res,next){
-    res.render('main/dist/index.html')
-})
-router.get('/html',function(req,res,next){
-    console.log("分类路由走到了这里")
-    res.render('main/dist/index.html')
-})
-router.get('/css',function(req,res,next){
-    res.render('main/dist/index.html')
-})
-router.get('/js',function(req,res,next){
-    res.render('main/dist/index.html')
-})
-router.get('/gongcheng',function(req,res,next){
-    res.render('main/dist/index.html')
-})
-router.get('/kuangjia',function(req,res,next){
-    res.render('main/dist/index.html')
-})
+// router.get('/old',function(req,res,next){
+//     var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
+//     var limte = 10;
+//     var pages = 0;
+//     //从数据库中获取网站的分类名称
+//     Category.find().then(function(categories){
+//     	//查询数据库中的数据的条数
+//     	Content.count().then(function(count) {
+//     		pages = Math.ceil(count / limte);//客户端应该显示的总页数
+//     		page = Math.min(page, pages);//page取值不能超过pages
+//     		page = Math.max(page, 1);//page取值不能小于1
+//     		var skip = (page - 1) * limte;
+//     		//sort()排序  -1 降序 1 升序
+//     		//populate('category')  填充关联内容的字段的具体内容(关联字段在指定另一张表中的具体内容)
+//     		Content.find({
+//                posted: true
+//            }).sort({_id: -1}).limit(limte).skip(skip).populate('category').then(function (contents) {
+//                 res.render('main/index.html')
+//     		})
+//     	})
+//     })
+// })
+// router.get('/index',function(req,res,next){
+//     res.render('main/dist/index.html')
+// })
+// router.get('/article/info',function(req,res,next){
+//     res.render('main/dist/index.html')
+// })
+// router.get('/html',function(req,res,next){
+//     console.log("分类路由走到了这里")
+//     res.render('main/dist/index.html')
+// })
+// router.get('/css',function(req,res,next){
+//     res.render('main/dist/index.html')
+// })
+// router.get('/js',function(req,res,next){
+//     res.render('main/dist/index.html')
+// })
+// router.get('/gongcheng',function(req,res,next){
+//     res.render('main/dist/index.html')
+// })
+// router.get('/kuangjia',function(req,res,next){
+//     res.render('main/dist/index.html')
+// })
 
 //评论列表的路由
 router.get('/contentInfo',function(req,res,next){
@@ -114,8 +144,6 @@ router.get('/categoryList_index',function(req,res,next){
 		Content.find(
 			{category:id,posted:true}//分类的ID
 		).count().then(function(count) {
-		    console.log("1-1-1-1-1")
-		    console.log(count)
 			pages = Math.ceil(count / limte);//客户端应该显示的总页数
 			page = Math.min(page, pages);//page取值不能超过pages
 			page = Math.max(page, 1);//page取值不能小于1
