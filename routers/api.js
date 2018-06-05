@@ -474,6 +474,8 @@ router.post('/content/edit',function(req,res,next){
 })
 //首頁分頁的接口（小程序首頁的接口）
 router.get('/contentList',function(req,res,next){
+	console.log("进入了啊")
+	console.log(req.query)
     var page = Number(req.query.page || 1);
     var limte = Number(req.query.limte || 10);
     var pages = 0;

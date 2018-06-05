@@ -66,6 +66,7 @@ app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 app.use('/public',require('./routers/public'));
+
 /*
  * node 自动打开指定的页面
  */
@@ -91,7 +92,7 @@ mongoose.connect('mongodb://localhost:27017/blog',function(err){
         console.log("数据库连接失败");
     }else{
         console.log("数据库连接成功");
-        console.log("please open localhost:8888")
+        console.log("please open localhost:8008")
         // child_process.exec(cmd + ' "'+url + '"');
         //监听http请求
         app.listen(8008);
