@@ -34,45 +34,42 @@
     </div>
     <div class="form-group">
         <label for="content">文章内容:</label>
-        <!--<textarea name="content" id="content" class="form-control" cols="30" rows="5" placeholder="请输入文章内容">{{contents.content}}</textarea>-->
-        <script id="editor" type="text/plain" style="width:100%;height:500px;">{{contents.content}}</script>
+        <!-- <script id="editor" type="text/plain" style="width:100%;height:500px;">{{contents.content}}</script> -->
+        <!-- 加载编辑器的容器 -->
+        <script id="container" name="content" type="text/plain">
+            
+        </script>
     </div>
     <button type="submit" class="btn btn-default">提交</button>
 <!--</form>-->
 <script>
     $(function(){
-        var ue = UE.getEditor('editor');
-//        var editor = new baidu.editor.ui.Editor();
-//        editor.render("editor");
-
-//        function GetQueryString(name){
-//            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-//            var r = window.location.search.substr(1).match(reg);
-//            if(r!=null)return  unescape(r[2]); return null;
-//        }
-//        $.ajax({
-//            url: '/api/content/admin-edit',
-//            type:'post',
-//            data:{
-//                id:GetQueryString('id')
-//            },
-//            success:function(data){
-//                console.log(data)
-//                $("#id").val(data.data.id)
-//                $("#category").val(data.data.categoriyName)
-//                $("#title").val(data.data.contents.title)
-//                $("#description").html(data.data.contents.description)
-//                var content = data.data.contents.content
-//                console.log("1:",content)
-//                setTimeout(function(){
-//                    console.log("2:",content)
-//                    ue.execCommand('insertHtml', content);
-//                },1000)
-//
-//            }
-//        })
+        function getParameter(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r!=null) return unescape(r[2]); return null;
+        }
+        var html;
+        // 获取页面的数据
+        $.ajax({
+            type:"post",
+            url:"/api/content/nowContentInfo",
+            data:{
+                contentId: getParameter("id")
+            },
+            success:function(data){
+                if(data.code == 36){
+                    html = data.data[0].content
+                }
+            }
+        })
+        var ue = UE.getEditor('container');
+        setTimeout(function(){
+            // ue.ready(function() {
+                ue.setContent(html);
+            // })
+        },500)
         $(".btn-default").on("click",function(){
-            console.log($(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html())
             $.ajax({
                 type:"post",
                 url:"/api/content/edit",
@@ -82,7 +79,8 @@
                     posted:$("#posted").val(),
                     title:$("#title").val(),
                     description:$("#description").val(),
-                    contents:$(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html()
+                    contents:ue.getContent()
+                    // contents:$(window.frames[1].document.getElementsByClassName("view")[0]).find(".view").html()
                 },
                 success:function(data){
                     if(data.code == 37){

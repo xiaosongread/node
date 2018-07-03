@@ -27,28 +27,41 @@ router.use(function(req,res,next){
  *首页获取数据库的数据
  *
  */
+var getIp = function(req) {  
+    var ip = req.headers['x-real-ip'] ||  
+        req.headers['x-forwarded-for'] ||  
+        req.socket.remoteAddress || '';  
+    if(ip.split(',').length>0){  
+        ip = ip.split(',')[0];  
+    }  
+    return ip;  
+};  
 router.post('/articlesList',function(req,res,next){
 	var page =  req.body.page;
 	var limte = 10;
 	var pages = 0;
 	var comments;
+	var clientIp = getIp(req);  
 	//从数据库中获取网站的分类名称
-	Category.find({
-        posted: true
-	}).then(function(categories){
+	// Category.find({
+    //     posted: "true"
+	// }).then(function(categories){
 		// console.log(categories)
 		//查询数据库中的数据的条数
-		Content.count().then(function(count) {
+		Content.find({
+			    posted: "true"
+			}).count().then(function(count) {
 			comments = {
 				"count" : count
 			}
 			responseData.code = 24;
 			responseData.message = "数据获取成功!";
 			responseData.data = comments;
+			responseData.ip = clientIp;
 			res.json(responseData);
 			return;
 		})
-	})
+	// })
 })
 /*
  *获取分类首页下的数据的条数
@@ -191,6 +204,38 @@ router.get('/user/WeChat/register',function(req,res,next){
 	});
 
 })
+// 查看是否登陆
+router.get('/isLogin',function(req,res,next){
+	if(req.headers.cookie.indexOf(';') > 0) {
+        var cookieArray = req.headers.cookie.split(';');
+        var usernameArray = cookieArray[cookieArray.length - 2].split('=');
+        var username = usernameArray[usernameArray.length - 1]
+        //查找数据库中是否有相似的用户名
+        User.findOne({
+            username:username
+        }).then(function(userInfo){
+			if(userInfo.username) {
+                responseData.code = 24;
+                responseData.message = "您当前已经登陆成功!";
+                responseData.data = {
+                    username: userInfo.username,
+                    isAdmin: userInfo.isAdmin,
+                    vip:userInfo.vip
+                }
+                res.json(responseData);
+			}
+		}).catch(function(){
+            responseData.code = 1001;
+            responseData.message = "请您先登陆注册";
+            res.json(responseData);
+		})
+	} else {
+        responseData.code = 1001;
+        responseData.message = "请您先登陆注册";
+        res.json(responseData);
+	}
+    return;
+})
 /*
  * 登陆逻辑
  */
@@ -225,7 +270,12 @@ router.post('/user/login',function(req,res,next){
 		responseData.data = {
 			username : userInfo.username
 		}
-		//设置cookies 返回给客户端
+
+        res.cookie("account", username);
+
+
+        // res.cookie('asd', userInfo.username);
+        // 设置cookies 返回给客户端
 		req.cookies.set('userInfo',JSON.stringify({
 			_id : userInfo._id,
 			username : userInfo.username
@@ -238,6 +288,7 @@ router.post('/user/login',function(req,res,next){
  *退出接口
  */
 router.post('/user/exit',function(req,res,next){
+	res.clearCookie('account')
 	//设置cookies 返回给客户端
 	req.cookies.set('userInfo',null);
 	res.json(responseData);
@@ -393,6 +444,12 @@ router.get('/content/nowContentInfo',function(req,res,next){
 		responseData.message = "文章内容获取成功";
 		responseData.data = hotContents;
 		res.json(responseData);
+        Content.findById({
+            _id:req.query.contentId
+        }).then(function(content){
+            content.views++;
+            content.save();
+        })
 		return;
 	})
 })
@@ -479,7 +536,6 @@ router.get('/contentList',function(req,res,next){
     var page = Number(req.query.page || 1);
     var limte = Number(req.query.limte || 10);
     var pages = 0;
-    // console.log(page)
 //	res.send('shouye')
     //从数据库中获取网站的分类名称
     Category.find().then(function(categories){
@@ -509,6 +565,7 @@ router.post('/banner',function(req,res,next){
         responseData.code = 43;
         responseData.message = "分类banner数据成功";
         responseData.data = bannerList;
+        responseData.userInfo = req.userInfo,
         res.json(responseData);
         return;
     })
@@ -528,7 +585,7 @@ router.post('/categories',function(req,res,next){
         return;
     })
 })
-//导航列表点击进入对应的分类下面的文章列表
+//导航列表点击进入对应的分类下面的文章列表（网站也用这个pc）
 router.get('/categoryListContent',function(req,res,next){
     var id = req.query.id || "";//当前点击的分类的ID
     var page = Number(req.query.page || 1);//req.query.page 获取?后面的页数
@@ -668,4 +725,5 @@ router.get('/user/WeChat/token',function(req,res,next){
     });
 
 })
+
 module.exports = router;

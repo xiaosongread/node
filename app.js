@@ -5,6 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 //加载cookies模块
 var Cookies = require('cookies');
+var cookieParser = require('cookie-parser');
 var path = require('path');
 //引入用户user模型
 var User = require('./models/users');
@@ -18,7 +19,8 @@ var swig = require('swig');
 //设置静态文件的托管
 //用户请求的url，如果是以public开头的，他就会去public下面找对应请求的文件
 app.use('/public',express.static(__dirname + "/public"));
-// app.use('/ueditor',express.static(__dirname + "/ueditor"));
+// app.use('/static',express.static(__dirname + "/views/main/dist/static"));
+app.use('/ueditor',express.static(__dirname + "/ueditor"));
 //在开发过程中需要取消模板的缓存
 swig.setDefaults({cache:false});
 //配置应用模板
@@ -30,6 +32,7 @@ app.engine('html',swig.renderFile);
 app.set('views','./views');
 //注册模板引擎 第一个参数必须是view engine ，第二个参数是app.engine 定义的模板的名字
 app.set('view engine','html');
+app.set('trust proxy', true);
 //bodyParser的设置
 app.use(bodyParser.urlencoded({extended:true}));
 //cookies的设置
@@ -56,6 +59,7 @@ app.use(function(req,res,next){
 	}
 
 });
+app.use(cookieParser());
 /*
  * 根据不同的功能划分模块
  *
@@ -64,7 +68,6 @@ app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 app.use('/public',require('./routers/public'));
-app.use('/static',require('./routers/public'));
 /*
  * node 自动打开指定的页面
  */
@@ -85,7 +88,7 @@ app.use('/static',require('./routers/public'));
 //
 // }
 //连接数据库
-mongoose.connect('mongodb://101.200.59.189:27017/data',function(err){
+mongoose.connect('mongodb://localhost:27017/data',function(err){
 	if(err){
 		console.log("数据库连接失败");
 	}else{
