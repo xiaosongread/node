@@ -79,9 +79,9 @@ router.get('/',function(req,res,next){
 //     	})
 //     })
 // })
-// router.get('/index',function(req,res,next){
-//     res.render('main/dist/index.html')
-// })
+router.get('/test',function(req,res,next){
+    res.render('main/dist/index.html')
+})
 // router.get('/article/info',function(req,res,next){
 //     res.render('main/dist/index.html')
 // })

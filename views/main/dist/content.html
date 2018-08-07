@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>博客重构</title>
+    <title>博客重构-详情页面</title>
     <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/public.css">
 <link rel="stylesheet" href="http://at.alicdn.com/t/font_519740_v5wxrnwfdnr.css">
-<link rel="stylesheet" href="./css/@@style.css">
+<link rel="stylesheet" href="./css/style2.css">
 
 </head>
-<body class="f16">
+<body>
     <div class="header f12 bold">
     <div class="header_box box between">
         <a href="/">
@@ -30,44 +30,33 @@
         </ul>
     </div>
 </div>
-    <div class="content mt50 f12">
-        <div class="con_left fl mr30 pd20">
-            <ul id="content">
-    <script id="test" type="text/html">
-        {{each data as value i}}
-        {{if value.category}}
-            <a href="/content.html?id={{value._id}}">
-                <li class="box mb15">
-                    <div class="art_box pd-l10 pd-r10 flex1 pd20">
-                        <h5 class="mr20 f16 mb10">{{value.title}}</h5>
-                        <div class="art_title box line14 f12 graytext1">
-                            <p class="mr20">
-                                <i class="iconfont icon-fenlei f12"></i>
-                                {{value.category.name}}
-                            </p>
-                            <p class="mr20">
-                                <i class="iconfont icon-datezhuanhuan f12"></i>
-                                {{value.startTime}}
-                            </p>
-                            <p>
-                                <i class="iconfont icon-browse f12"></i>
-                                {{value.views}}
-                            </p>
-                        </div>
-                        <div class="art_des mt10 over2">{{value.description}}</div>
+    <div class="content mt50 f16" id="cons">
+        <script id="conshtml" type="text/html">
+            <div class="con_left fl mr30 pd15">
+                <h4 class="pd15 f25">{{title}}</h4>
+                <div class="box between content_introduce f12">
+                    <div class="pd-l15 pd-r15 pd-t10 pd-b10">
+                        <i class="iconfont icon-datezhuanhuan f12"></i>
+                        <span>{{startTime}}</span>
                     </div>
-                </li>
-            </a>
-            {{/if}}
-        {{/each}}
-    </script>
-</ul>
-<div class="loading">
-    <p class="graytext">客官，小二正在努力加载中...</p>
-</div>
-        </div>
-        <div class="con_right fl">
-            <div class="about mb20 f14">
+                    <div class="pd-l15 pd-r15 pd-t10 pd-b10">
+                        <i class="iconfont icon-browse f12"></i>
+                        <span>{{views}}</span>
+                    </div>
+                </div>
+                <div class="">
+                    <h4 class="f20 pd-l15 pd-r15 pd-t15 pd-b10">前言</h4>
+                    <p class="f14 pd-b10 content_qy pd-l15 pd-r15 pd-t10 pd-b10">{{description}}</p>
+                </div>
+                <div class="conshtml f14">
+                    {{#content}}
+                </div>
+                <p class="pd-l15 pd-r15 pd-b10 pd-t10 bottomInfo f14">
+                    转载请注明:<span class="ml10">https://www.songyanbin.com</span>
+                </p>
+            </div>
+            <div class="con_right fl">
+                <div class="about mb20 f14">
     <div class="title line50 f16 bold pd-l15 pd-r15">
         <i class="iconfont icon-xiaoxi f12"></i>
         关于我
@@ -82,7 +71,7 @@
     </p>
     
 </div>
-            <div class="hotArticle f16">
+                <div class="hotArticle f16">
     <div class="title line50 f16 bold pd-l15 pd-r15">
         <i class="iconfont icon-hot f12"></i>
         热门文章
@@ -91,7 +80,8 @@
         
     </ul>
 </div>
-        </div>
+            </div>
+        </script>
     </div>
     <div class="foot f12 mt30">
     <div class="foot_box box between">
@@ -105,5 +95,5 @@
 <script src="./js/public/template.js"></script>
 <script type="text/javascript" src="./js/public/common.js"></script>
 <script src="./js/public/public.js"></script>
-<script src="./js/index.js"></script>
+<script src="./js/content.js"></script>
 </html>
