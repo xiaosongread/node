@@ -33,7 +33,7 @@ $(function(){
         type:"post",
         url:"/api/banner",
         success:function(data){
-            console.log(data)
+            // console.log(data)
             if(data.code == 43){
                 var htmls = ''
                 // console.log(data.data)
@@ -112,7 +112,7 @@ $(function(){
 				password:password
 			},
 			success:function(data){
-				console.log(data)
+				// console.log(data)
 				if(data.code == 9){
 					setTimeout(function(){
 						window.location.reload();
@@ -149,7 +149,7 @@ $(function(){
 	//滚动页面导航定位变化
 	$(window).on("scroll",function(){
         var scrollTopHeight = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-		console.log(scrollTopHeight)
+		// console.log(scrollTopHeight)
 		if(scrollTopHeight >=80){
 			$(".navbar").addClass("navbarPosition");
 			$(".logoImg").attr("src","/public/images/logo.png");
