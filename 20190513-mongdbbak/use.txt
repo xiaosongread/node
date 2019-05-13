@@ -1,0 +1,8 @@
+mongorestore -d data --dir /Users/songyanbin/Desktop/mongdbbak/data/
+
+
+
+
+
+
+
