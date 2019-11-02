@@ -16,7 +16,7 @@
     "fs": "0.0.1-security",
     "jquery-file-upload-middleware": "^0.1.8",
     "markdown": "^0.5.0",
-    "mongoose": "^4.5.7",
+    "mongoose": "^5.7.7",
     "pm2": "^2.4.0",
     "swig": "^1.4.2",
     "ueditor": "^1.2.0",
