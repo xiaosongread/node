@@ -22,4 +22,4 @@ node app1.js // 启动服务
 ![blockchain](https://raw.githubusercontent.com/xiaosongread/node/master/img-folder/node-1.png)
 ![blockchain](https://raw.githubusercontent.com/xiaosongread/node/master/img-folder/node-2.png)
 
-作者：小宋
+----  作者：小宋  ----
